@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/login.css">
+  <title>Login</title>
+</head>
+<body id="page">
+  <div id="container">
+    <a href="index.html">
+      <img src="media/Lancaster'sLogo.jpeg" alt="Lancaster's logo">
+    </a>
+
+    <div id="login-form">
+      <form method="post" action="selection.html">
+        <label for="username">USERNAME</label>
+        <input id="username" name="usernmae" type="text" required>
+        <label for="password">PASSWORD</label>
+        <input id="password" name="password" type="password" pattern="[a-z0-9]{8,}" required>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
