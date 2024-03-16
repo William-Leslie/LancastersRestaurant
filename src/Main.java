@@ -33,8 +33,6 @@ public class Main extends JFrame {
 
     public static void main(String[] args) {
         // Create and show window in event loop
-        SwingUtilities.invokeLater(() -> {
-            new Main().setVisible(true);
-        });
+        SwingUtilities.invokeLater(() -> new Main().setVisible(true));
     }
 }

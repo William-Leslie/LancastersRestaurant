@@ -7,67 +7,66 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Login extends JPanel {
-    private JLabel imageLogo = Resources.getLogo(300, 300);
-    private JLabel labelUsername = new JLabel("USERNAME");
-    private JTextField fieldUsername = new JTextField(20);
-    private JLabel labelPassword = new JLabel("PASSWORD");
-    private JPasswordField fieldPassword = new JPasswordField(20);
-    private JButton buttonLogin = new JButton("Login");
-
-    public Login (JPanel screens) {
+    public Login(JPanel screens) {
         super(new GridBagLayout());
         this.setBackground(new Color(0x2b3336));
         GridBagConstraints constraints = new GridBagConstraints(); // Constraints passed to each item
         constraints.fill = GridBagConstraints.HORIZONTAL; // All items stretch horizontally by default
 
         // Logo
+        JLabel imageLogo = Resources.getLogo(300, 300);
         constraints.gridy++;
         constraints.insets = new Insets(0, 0, 0, 0);
-        this.add(this.imageLogo, constraints);
+        this.add(imageLogo, constraints);
 
         // Username text
-        this.labelUsername.setForeground(new Color(0xaaaaaa));
-        this.labelUsername.setFont(Resources.getFont(18));
+        JLabel labelUsername = new JLabel("USERNAME");
+        labelUsername.setForeground(new Color(0xaaaaaa));
+        labelUsername.setFont(Resources.getFont(18));
         constraints.gridy++;
         constraints.insets = new Insets(20, 0, 0, 0);
-        this.add(this.labelUsername, constraints);
+        this.add(labelUsername, constraints);
 
         // Username field
-        this.fieldUsername.setForeground(new Color(0x2b3336));
-        this.fieldUsername.setBackground(new Color(0xffffff));
-        this.fieldUsername.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(0xaaaaaa)));
-        this.fieldUsername.setFont(Resources.getFont(18));
+        JTextField fieldUsername = new JTextField(20);
+        fieldUsername.setForeground(new Color(0x2b3336));
+        fieldUsername.setBackground(new Color(0xffffff));
+        fieldUsername.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(0xaaaaaa)));
+        fieldUsername.setFont(Resources.getFont(18));
         constraints.gridy++;
         constraints.insets = new Insets(0, 0, 0, 0);
-        this.add(this.fieldUsername, constraints);
+        this.add(fieldUsername, constraints);
 
         // Password text
-        this.labelPassword.setForeground(new Color(0xaaaaaa));
-        this.labelPassword.setFont(Resources.getFont(18));
+        JLabel labelPassword = new JLabel("PASSWORD");
+        labelPassword.setForeground(new Color(0xaaaaaa));
+        labelPassword.setFont(Resources.getFont(18));
         constraints.gridy++;
         constraints.insets = new Insets(20, 0, 0, 0);
-        this.add(this.labelPassword, constraints);
+        this.add(labelPassword, constraints);
 
         // Password field
-        this.fieldPassword.setForeground(new Color(0x2b3336));
-        this.fieldPassword.setBackground(new Color(0xffffff));
-        this.fieldPassword.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(0xaaaaaa)));
-        this.fieldPassword.setFont(Resources.getFont(18));
+        JPasswordField fieldPassword = new JPasswordField(20);
+        fieldPassword.setForeground(new Color(0x2b3336));
+        fieldPassword.setBackground(new Color(0xffffff));
+        fieldPassword.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(0xaaaaaa)));
+        fieldPassword.setFont(Resources.getFont(18));
         constraints.gridy++;
         constraints.insets = new Insets(0, 0, 0, 0);
-        this.add(this.fieldPassword, constraints);
+        this.add(fieldPassword, constraints);
 
         // Login button
-        this.buttonLogin.setForeground(new Color(0x2b3336));
-        this.buttonLogin.setBackground(new Color(0xaaaaaa));
-        this.buttonLogin.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(0xffffff)));
-        this.buttonLogin.setFont(Resources.getFont(26));
-        this.buttonLogin.setFocusPainted(false);
-        this.buttonLogin.addActionListener(event -> {
-            String username = this.fieldUsername.getText();
-            String password = new String(this.fieldPassword.getPassword());
-            if(username.equals("lancaster") && password.equals("lancaster")) {
-                CardLayout cl = (CardLayout)screens.getLayout();
+        JButton buttonLogin = new JButton("Login");
+        buttonLogin.setForeground(new Color(0x2b3336));
+        buttonLogin.setBackground(new Color(0xaaaaaa));
+        buttonLogin.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(0xffffff)));
+        buttonLogin.setFont(Resources.getFont(26));
+        buttonLogin.setFocusPainted(false);
+        buttonLogin.addActionListener(event -> {
+            String username = fieldUsername.getText();
+            String password = new String(fieldPassword.getPassword());
+            if (username.equals("lancaster") && password.equals("lancaster")) {
+                CardLayout cl = (CardLayout) screens.getLayout();
                 cl.show(screens, Screen.Selection.name());
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid login credentials!");
@@ -75,6 +74,6 @@ public class Login extends JPanel {
         });
         constraints.gridy++;
         constraints.insets = new Insets(30, 0, 0, 0);
-        this.add(this.buttonLogin, constraints);
+        this.add(buttonLogin, constraints);
     }
 }
