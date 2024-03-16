@@ -15,6 +15,31 @@ public class Login extends JPanel {
 
         // Logo
         JLabel imageLogo = Resources.getLogo(300, 300);
+        imageLogo.addMouseListener(new MouseListener() {
+            @Override // Click logo to go back to index
+            public void mouseClicked(MouseEvent event) {
+                if (event.getButton() == MouseEvent.BUTTON1) {
+                    CardLayout cl = (CardLayout) screens.getLayout();
+                    cl.show(screens, Screen.Index.name());
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent event) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent event) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent event) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent event) {
+            }
+        });
         constraints.gridy++;
         constraints.insets = new Insets(0, 0, 0, 0);
         this.add(imageLogo, constraints);
