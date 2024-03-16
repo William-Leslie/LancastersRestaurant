@@ -63,6 +63,16 @@ public class Login extends JPanel {
         this.buttonLogin.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(0xffffff)));
         this.buttonLogin.setFont(Resources.getFont(26));
         this.buttonLogin.setFocusPainted(false);
+        this.buttonLogin.addActionListener(event -> {
+            String username = this.fieldUsername.getText();
+            String password = new String(this.fieldPassword.getPassword());
+            if(username.equals("lancaster") && password.equals("lancaster")) {
+                CardLayout cl = (CardLayout)screens.getLayout();
+                cl.show(screens, Screen.Selection.name());
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid login credentials!");
+            }
+        });
         constraints.gridy++;
         constraints.insets = new Insets(30, 0, 0, 0);
         this.add(this.buttonLogin, constraints);
