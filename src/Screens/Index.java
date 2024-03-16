@@ -13,9 +13,9 @@ public class Index extends JPanel {
         this.setBackground(new Color(0x2b3336));
         constraints.fill = GridBagConstraints.HORIZONTAL;
 
+        JLabel logo = Resources.getLogo(300, 300);
         constraints.gridy++;
         constraints.insets = new Insets(0, 0, 0, 0);
-        JLabel logo = Resources.getLogo(300, 300);
         this.add(logo, constraints);
 
         JButton buttonEnter = new JButton("Enter");
