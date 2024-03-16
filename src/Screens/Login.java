@@ -15,22 +15,24 @@ public class Login extends JPanel {
     private JButton buttonLogin = new JButton("Login");
 
     public Login (JPanel screens) {
-        super();
-        this.setLayout(new GridBagLayout());
+        super(new GridBagLayout());
         this.setBackground(new Color(0x2b3336));
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.fill = GridBagConstraints.HORIZONTAL;
+        GridBagConstraints constraints = new GridBagConstraints(); // Constraints passed to each item
+        constraints.fill = GridBagConstraints.HORIZONTAL; // All items stretch horizontally by default
 
+        // Logo
         constraints.gridy++;
         constraints.insets = new Insets(0, 0, 0, 0);
         this.add(this.imageLogo, constraints);
 
+        // Username text
         this.labelUsername.setForeground(new Color(0xaaaaaa));
         this.labelUsername.setFont(Resources.getFont(18));
         constraints.gridy++;
         constraints.insets = new Insets(20, 0, 0, 0);
         this.add(this.labelUsername, constraints);
 
+        // Username field
         this.fieldUsername.setForeground(new Color(0x2b3336));
         this.fieldUsername.setBackground(new Color(0xffffff));
         this.fieldUsername.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(0xaaaaaa)));
@@ -39,12 +41,14 @@ public class Login extends JPanel {
         constraints.insets = new Insets(0, 0, 0, 0);
         this.add(this.fieldUsername, constraints);
 
+        // Password text
         this.labelPassword.setForeground(new Color(0xaaaaaa));
         this.labelPassword.setFont(Resources.getFont(18));
         constraints.gridy++;
         constraints.insets = new Insets(20, 0, 0, 0);
         this.add(this.labelPassword, constraints);
 
+        // Password field
         this.fieldPassword.setForeground(new Color(0x2b3336));
         this.fieldPassword.setBackground(new Color(0xffffff));
         this.fieldPassword.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(0xaaaaaa)));
@@ -53,6 +57,7 @@ public class Login extends JPanel {
         constraints.insets = new Insets(0, 0, 0, 0);
         this.add(this.fieldPassword, constraints);
 
+        // Login button
         this.buttonLogin.setForeground(new Color(0x2b3336));
         this.buttonLogin.setBackground(new Color(0xaaaaaa));
         this.buttonLogin.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(0xffffff)));
