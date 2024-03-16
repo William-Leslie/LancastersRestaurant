@@ -20,7 +20,7 @@ public class Main extends JFrame {
         this.add(this.screens);
         this.pack();
         this.setLocationRelativeTo(null);
-        this.setMinimumSize(new Dimension(200, 200));
+        this.setMinimumSize(new Dimension(800, 800));
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
