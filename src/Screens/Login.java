@@ -1,6 +1,6 @@
 package Screens;
 
-import Resources.*;
+import Resources.Resources;
 
 import javax.swing.*;
 import java.awt.*;

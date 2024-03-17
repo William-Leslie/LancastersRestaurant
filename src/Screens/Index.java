@@ -30,7 +30,6 @@ public class Index extends JPanel {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Login.name());
         });
-
         this.add(buttonEnter, constraints);
     }
 }
