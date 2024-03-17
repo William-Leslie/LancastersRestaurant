@@ -91,6 +91,8 @@ public class Login extends JPanel {
             String username = fieldUsername.getText();
             String password = new String(fieldPassword.getPassword());
             if (username.equals("lancaster") && password.equals("lancaster")) {
+                fieldUsername.setText("");
+                fieldPassword.setText("");
                 CardLayout cl = (CardLayout) screens.getLayout();
                 cl.show(screens, Screen.Selection.name());
             } else {
