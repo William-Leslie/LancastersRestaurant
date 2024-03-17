@@ -22,7 +22,7 @@ public class Resources {
         Image resized = Resources.logo.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         JLabel logo = new JLabel(new ImageIcon(resized));
         logo.setSize(new Dimension(width, height));
-        logo.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(0xffffff)));
+        logo.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
         return logo;
     }
 

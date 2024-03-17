@@ -33,7 +33,7 @@ public class Selection extends JPanel {
         JButton buttonLogout = new JButton("Logout");
         buttonLogout.setForeground(new Color(0x2b3336));
         buttonLogout.setBackground(new Color(0xaaaaaa));
-        buttonLogout.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(0xffffff)));
+        buttonLogout.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
         buttonLogout.setFont(Resources.getFont(20));
         buttonLogout.setFocusPainted(false);
         buttonLogout.addActionListener(event -> {
@@ -89,7 +89,7 @@ public class Selection extends JPanel {
         JButton buttonKitchen = new JButton("Kitchen");
         buttonKitchen.setForeground(new Color(0xC8C8C8));
         buttonKitchen.setBackground(new Color(0x455A61));
-        buttonKitchen.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(0xffffff)));
+        buttonKitchen.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
         buttonKitchen.setFont(Resources.getFont(26));
         buttonKitchen.setFocusPainted(false);
         buttonKitchen.setPreferredSize(new Dimension(2, 2));
@@ -109,7 +109,7 @@ public class Selection extends JPanel {
         JButton buttonSupplier = new JButton("Supplier");
         buttonSupplier.setForeground(new Color(0xC8C8C8));
         buttonSupplier.setBackground(new Color(0x506D7B));
-        buttonSupplier.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(0xffffff)));
+        buttonSupplier.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
         buttonSupplier.setFont(Resources.getFont(26));
         buttonSupplier.setFocusPainted(false);
         buttonSupplier.setPreferredSize(new Dimension(2, 2));
@@ -129,7 +129,7 @@ public class Selection extends JPanel {
         JButton buttonHome = new JButton("Home");
         buttonHome.setForeground(new Color(0xC8C8C8));
         buttonHome.setBackground(new Color(0x557B8A));
-        buttonHome.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(0xffffff)));
+        buttonHome.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
         buttonHome.setFont(Resources.getFont(26));
         buttonHome.setFocusPainted(false);
         buttonHome.setPreferredSize(new Dimension(2, 2));
@@ -155,7 +155,7 @@ public class Selection extends JPanel {
         JButton buttonPayroll = new JButton("Payroll");
         buttonPayroll.setForeground(new Color(0xC8C8C8));
         buttonPayroll.setBackground(new Color(0x506D7B));
-        buttonPayroll.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(0xffffff)));
+        buttonPayroll.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
         buttonPayroll.setFont(Resources.getFont(26));
         buttonPayroll.setFocusPainted(false);
         buttonPayroll.setPreferredSize(new Dimension(2, 2));
@@ -181,7 +181,7 @@ public class Selection extends JPanel {
         JButton buttonFoh = new JButton("FOH");
         buttonFoh.setForeground(new Color(0xC8C8C8));
         buttonFoh.setBackground(new Color(0x455A61));
-        buttonFoh.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(0xffffff)));
+        buttonFoh.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
         buttonFoh.setFont(Resources.getFont(26));
         buttonFoh.setFocusPainted(false);
         buttonFoh.setPreferredSize(new Dimension(2, 2));
