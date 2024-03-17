@@ -8,77 +8,109 @@ import java.awt.event.*;
 
 public class Home extends JPanel {
 
-    private JLabel Logo = Resources.getLogo(400,400);
-    private JButton buttonStaff = new JButton("Staff");
-    private JButton buttonWines = new JButton("Wines");
-    private JButton buttonMenus = new JButton("Menus");
-    private JButton buttonIngredients = new JButton("Ingredients");
-    private JButton buttonSales = new JButton("Sales");
-    private JButton buttonParameters = new JButton("Parameters");
-
-    public Home (JPanel screens) {
-        super();
-        setLayout(new BorderLayout());
-        GridBagConstraints constraints = new GridBagConstraints();
+    public Home(JPanel screens) {
+        super(new BorderLayout());
         this.setBackground(new Color(0x2b3336));
 
-        this.Logo.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-        this.add(this.Logo,BorderLayout.WEST);
+        JLabel logo = Resources.getLogo(400, 400);
+        logo.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        logo.addMouseListener(new MouseListener() {
+            @Override // Click logo to go back to index
+            public void mouseClicked(MouseEvent event) {
+                if (event.getButton() == MouseEvent.BUTTON1) {
+                    CardLayout cl = (CardLayout) screens.getLayout();
+                    cl.show(screens, Screen.Selection.name());
+                }
+            }
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+            @Override
+            public void mousePressed(MouseEvent event) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent event) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent event) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent event) {
+            }
+        });
+        this.add(logo, BorderLayout.WEST);
+
+        JPanel buttonPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints buttonConstraints = new GridBagConstraints();
         buttonPanel.setBackground(new Color(0x2b3336));
-        this.buttonStaff.setForeground(new Color(0xcccccc));
-        this.buttonStaff.setBackground(new Color(0x557b8a));
-        this.buttonStaff.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
-        this.buttonStaff.setFont(Resources.getFont(26));
-        this.buttonStaff.setFocusPainted(false);
-        this.buttonStaff.setPreferredSize(new Dimension(600,100));
-        buttonPanel.add(this.buttonStaff);
+        buttonConstraints.fill = GridBagConstraints.BOTH;
+        buttonConstraints.weightx = 1;
+        buttonConstraints.weighty = 1;
+        buttonConstraints.insets = new Insets(10, 0, 10, 0);
 
-        this.buttonIngredients.setForeground(new Color(0xcccccc));
-        this.buttonIngredients.setBackground(new Color(0x557b8a));
-        this.buttonIngredients.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
-        this.buttonIngredients.setFont(Resources.getFont(26));
-        this.buttonIngredients.setFocusPainted(false);
-        this.buttonIngredients.setPreferredSize(new Dimension(600,100));
-        buttonPanel.add(this.buttonIngredients);
+        JButton buttonStaff = new JButton("Staff");
+        buttonStaff.setForeground(new Color(0xcccccc));
+        buttonStaff.setBackground(new Color(0x557b8a));
+        buttonStaff.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
+        buttonStaff.setFont(Resources.getFont(26));
+        buttonStaff.setFocusPainted(false);
+        buttonConstraints.gridy++;
+        buttonPanel.add(buttonStaff, buttonConstraints);
 
-        this.buttonSales.setForeground(new Color(0xcccccc));
-        this.buttonSales.setBackground(new Color(0x557b8a));
-        this.buttonSales.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
-        this.buttonSales.setFont(Resources.getFont(26));
-        this.buttonSales.setFocusPainted(false);
-        this.buttonSales.setPreferredSize(new Dimension(600,100));
-        buttonPanel.add(this.buttonSales);
+        JButton buttonWines = new JButton("Wines");
+        buttonWines.setForeground(new Color(0xcccccc));
+        buttonWines.setBackground(new Color(0x557b8a));
+        buttonWines.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
+        buttonWines.setFont(Resources.getFont(26));
+        buttonWines.setFocusPainted(false);
+        buttonConstraints.gridy++;
+        buttonPanel.add(buttonWines, buttonConstraints);
 
-        this.buttonParameters.setForeground(new Color(0xcccccc));
-        this.buttonParameters.setBackground(new Color(0x557b8a));
-        this.buttonParameters.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
-        this.buttonParameters.setFont(Resources.getFont(26));
-        this.buttonParameters.setFocusPainted(false);
-        this.buttonParameters.setPreferredSize(new Dimension(600,100));
-        buttonPanel.add(this.buttonParameters);
+        JButton buttonMenus = new JButton("Menus");
+        buttonMenus.setForeground(new Color(0xcccccc));
+        buttonMenus.setBackground(new Color(0x557b8a));
+        buttonMenus.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
+        buttonMenus.setFont(Resources.getFont(26));
+        buttonMenus.setFocusPainted(false);
+        buttonConstraints.gridy++;
+        buttonPanel.add(buttonMenus, buttonConstraints);
 
-        this.buttonWines.setForeground(new Color(0xcccccc));
-        this.buttonWines.setBackground(new Color(0x557b8a));
-        this.buttonWines.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
-        this.buttonWines.setFont(Resources.getFont(26));
-        this.buttonWines.setFocusPainted(false);
-        this.buttonWines.setPreferredSize(new Dimension(600,100));
-        buttonPanel.add(this.buttonWines);
+        JButton buttonIngredients = new JButton("Ingredients");
+        buttonIngredients.setForeground(new Color(0xcccccc));
+        buttonIngredients.setBackground(new Color(0x557b8a));
+        buttonIngredients.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
+        buttonIngredients.setFont(Resources.getFont(26));
+        buttonIngredients.setFocusPainted(false);
+        buttonConstraints.gridy++;
+        buttonPanel.add(buttonIngredients, buttonConstraints);
 
-        this.buttonWines.setForeground(new Color(0xcccccc));
-        this.buttonWines.setBackground(new Color(0x557b8a));
-        this.buttonWines.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
-        this.buttonWines.setFont(Resources.getFont(26));
-        this.buttonWines.setFocusPainted(false);
-        this.buttonWines.setPreferredSize(new Dimension(600,100));
-        buttonPanel.add(this.buttonWines);
+        JButton buttonSales = new JButton("Sales");
+        buttonSales.setForeground(new Color(0xcccccc));
+        buttonSales.setBackground(new Color(0x557b8a));
+        buttonSales.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
+        buttonSales.setFont(Resources.getFont(26));
+        buttonSales.setFocusPainted(false);
+        buttonConstraints.gridy++;
+        buttonPanel.add(buttonSales, buttonConstraints);
+
+        JButton buttonParameters = new JButton("Parameters");
+        buttonParameters.setForeground(new Color(0xcccccc));
+        buttonParameters.setBackground(new Color(0x557b8a));
+        buttonParameters.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
+        buttonParameters.setFont(Resources.getFont(26));
+        buttonParameters.setFocusPainted(false);
+        buttonConstraints.gridy++;
+        buttonPanel.add(buttonParameters, buttonConstraints);
+
+        buttonWines.setForeground(new Color(0xcccccc));
+        buttonWines.setBackground(new Color(0x557b8a));
+        buttonWines.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
+        buttonWines.setFont(Resources.getFont(26));
+        buttonWines.setFocusPainted(false);
+        buttonConstraints.gridy++;
+        buttonPanel.add(buttonWines, buttonConstraints);
 
         this.add(buttonPanel);
-
-
-
     }
 }
