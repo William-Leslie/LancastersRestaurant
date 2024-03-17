@@ -4,7 +4,6 @@ import Resources.Resources;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class Index extends JPanel {
     public Index(JPanel screens) {
