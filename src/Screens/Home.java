@@ -19,14 +19,6 @@ public class Home extends JPanel {
         panelUser.setBackground(new Color(0x2b3336));
         userConstraints.fill = GridBagConstraints.HORIZONTAL;
 
-        JLabel labelUser = new JLabel("User: " + "lancaster");
-        labelUser.setForeground(new Color(0xaaaaaa));
-        labelUser.setFont(Resources.getFont(20));
-        userConstraints.gridx++;
-        userConstraints.weightx = 0;
-        userConstraints.insets = new Insets(0, 0, 0, 0);
-        panelUser.add(labelUser, userConstraints);
-
         JButton buttonLogout = new JButton("Logout");
         buttonLogout.setForeground(new Color(0x2b3336));
         buttonLogout.setBackground(new Color(0xaaaaaa));
@@ -39,8 +31,16 @@ public class Home extends JPanel {
         });
         userConstraints.gridx++;
         userConstraints.weightx = 1;
-        userConstraints.insets = new Insets(0, 10, 0, 0);
+        userConstraints.insets = new Insets(0, 0, 0, 10);
         panelUser.add(buttonLogout, userConstraints);
+
+        JLabel labelUser = new JLabel("User: " + "lancaster");
+        labelUser.setForeground(new Color(0xaaaaaa));
+        labelUser.setFont(Resources.getFont(20));
+        userConstraints.gridx++;
+        userConstraints.weightx = 0;
+        userConstraints.insets = new Insets(0, 0, 0, 0);
+        panelUser.add(labelUser, userConstraints);
 
         userConstraints.gridx++;
         userConstraints.weightx = 10;
