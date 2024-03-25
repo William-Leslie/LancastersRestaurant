@@ -1,7 +1,7 @@
 package Screens;
 
 public enum Screen {
-    Index,
+    Splash,
     Login,
     Selection,
     Home,

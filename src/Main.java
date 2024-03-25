@@ -12,14 +12,14 @@ public class Main extends JFrame {
         JPanel screens = new JPanel(new CardLayout());
 
         // Create all screens and pass screens manager reference, each screen is identified by Screen enum name
-        screens.add(new Screens.Index(screens), Screen.Index.name());
+        screens.add(new Splash(screens), Screen.Splash.name());
         screens.add(new Screens.Login(screens), Screen.Login.name());
         screens.add(new Screens.Selection(screens), Screen.Selection.name());
         screens.add(new Screens.Home(screens), Screen.Home.name());
 
         // Show initial screen
         CardLayout cl = (CardLayout) screens.getLayout();
-        cl.show(screens, Screen.Index.name());
+        cl.show(screens, Screen.Splash.name());
 
         // Add screens manager to main window
         this.add(screens);
