@@ -14,14 +14,13 @@ public class Main extends JFrame {
         // Create all screens and pass screens manager reference, each screen is identified by Screen enum name
         screens.add(new Splash(screens), Screen.Splash.name());
         screens.add(new Screens.Login(screens), Screen.Login.name());
-        screens.add(new Screens.Selection(screens), Screen.Selection.name());
         screens.add(new Screens.Home(screens), Screen.Home.name());
 
         // Show splash screen
         CardLayout cl = (CardLayout) screens.getLayout();
         cl.show(screens, Screen.Splash.name());
 
-        // Switch to login screen after 3 seconds
+        // Switch to log in screen after 3 seconds
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
                     @Override

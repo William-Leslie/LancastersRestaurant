@@ -9,41 +9,67 @@ import java.awt.event.*;
 public class Home extends JPanel {
 
     public Home(JPanel screens) {
-        super(new BorderLayout());
+        super(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
         this.setBackground(new Color(0x2b3336));
+
+        // Inner panel with user info, easier to manage
+        JPanel panelUser = new JPanel(new GridBagLayout());
+        GridBagConstraints userConstraints = new GridBagConstraints();
+        panelUser.setBackground(new Color(0x2b3336));
+        userConstraints.fill = GridBagConstraints.HORIZONTAL;
+
+        JLabel labelUser = new JLabel("User: " + "lancaster");
+        labelUser.setForeground(new Color(0xaaaaaa));
+        labelUser.setFont(Resources.getFont(20));
+        userConstraints.gridx++;
+        userConstraints.weightx = 0;
+        userConstraints.insets = new Insets(0, 0, 0, 0);
+        panelUser.add(labelUser, userConstraints);
+
+        JButton buttonLogout = new JButton("Logout");
+        buttonLogout.setForeground(new Color(0x2b3336));
+        buttonLogout.setBackground(new Color(0xaaaaaa));
+        buttonLogout.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
+        buttonLogout.setFont(Resources.getFont(20));
+        buttonLogout.setFocusPainted(false);
+        buttonLogout.addActionListener(event -> {
+            CardLayout cl = (CardLayout) screens.getLayout();
+            cl.show(screens, Screen.Login.name());
+        });
+        userConstraints.gridx++;
+        userConstraints.weightx = 1;
+        userConstraints.insets = new Insets(0, 10, 0, 0);
+        panelUser.add(buttonLogout, userConstraints);
+
+        userConstraints.gridx++;
+        userConstraints.weightx = 10;
+        panelUser.add(Box.createHorizontalGlue(), userConstraints);
+
+        // Add the user panel to this screen
+        constraints.gridx = 1;
+        constraints.gridy = 1;
+        constraints.weightx = 1;
+        constraints.weighty = 0;
+        constraints.insets = new Insets(10, 10, 0, 10);
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.anchor = GridBagConstraints.CENTER;
+        this.add(panelUser, constraints);
 
         JLabel logo = Resources.getLogo(400, 400);
         logo.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        logo.addMouseListener(new MouseListener() {
-            @Override // Click logo to go back to index
-            public void mouseClicked(MouseEvent event) {
-                if (event.getButton() == MouseEvent.BUTTON1) {
-                    CardLayout cl = (CardLayout) screens.getLayout();
-                    cl.show(screens, Screen.Selection.name());
-                }
-            }
+        constraints.gridx = 1;
+        constraints.gridy = 2;
+        constraints.weightx = 0;
+        constraints.weighty = 0;
+        constraints.insets = new Insets(0, 0, 0, 0);
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.CENTER;
+        this.add(logo, constraints);
 
-            @Override
-            public void mousePressed(MouseEvent event) {
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent event) {
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent event) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent event) {
-            }
-        });
-        this.add(logo, BorderLayout.WEST);
-
-        JPanel buttonPanel = new JPanel(new GridBagLayout());
+        JPanel panelButtons = new JPanel(new GridBagLayout());
         GridBagConstraints buttonConstraints = new GridBagConstraints();
-        buttonPanel.setBackground(new Color(0x2b3336));
+        panelButtons.setBackground(new Color(0x2b3336));
         buttonConstraints.fill = GridBagConstraints.BOTH;
         buttonConstraints.weightx = 1;
         buttonConstraints.weighty = 1;
@@ -56,7 +82,7 @@ public class Home extends JPanel {
         buttonStaff.setFont(Resources.getFont(26));
         buttonStaff.setFocusPainted(false);
         buttonConstraints.gridy++;
-        buttonPanel.add(buttonStaff, buttonConstraints);
+        panelButtons.add(buttonStaff, buttonConstraints);
 
         JButton buttonWines = new JButton("Wines");
         buttonWines.setForeground(new Color(0xcccccc));
@@ -65,7 +91,7 @@ public class Home extends JPanel {
         buttonWines.setFont(Resources.getFont(26));
         buttonWines.setFocusPainted(false);
         buttonConstraints.gridy++;
-        buttonPanel.add(buttonWines, buttonConstraints);
+        panelButtons.add(buttonWines, buttonConstraints);
 
         JButton buttonMenus = new JButton("Menus");
         buttonMenus.setForeground(new Color(0xcccccc));
@@ -74,7 +100,7 @@ public class Home extends JPanel {
         buttonMenus.setFont(Resources.getFont(26));
         buttonMenus.setFocusPainted(false);
         buttonConstraints.gridy++;
-        buttonPanel.add(buttonMenus, buttonConstraints);
+        panelButtons.add(buttonMenus, buttonConstraints);
 
         JButton buttonIngredients = new JButton("Ingredients");
         buttonIngredients.setForeground(new Color(0xcccccc));
@@ -83,7 +109,7 @@ public class Home extends JPanel {
         buttonIngredients.setFont(Resources.getFont(26));
         buttonIngredients.setFocusPainted(false);
         buttonConstraints.gridy++;
-        buttonPanel.add(buttonIngredients, buttonConstraints);
+        panelButtons.add(buttonIngredients, buttonConstraints);
 
         JButton buttonSales = new JButton("Sales");
         buttonSales.setForeground(new Color(0xcccccc));
@@ -92,7 +118,7 @@ public class Home extends JPanel {
         buttonSales.setFont(Resources.getFont(26));
         buttonSales.setFocusPainted(false);
         buttonConstraints.gridy++;
-        buttonPanel.add(buttonSales, buttonConstraints);
+        panelButtons.add(buttonSales, buttonConstraints);
 
         JButton buttonParameters = new JButton("Restaurant Capacity");
         buttonParameters.setForeground(new Color(0xcccccc));
@@ -101,16 +127,17 @@ public class Home extends JPanel {
         buttonParameters.setFont(Resources.getFont(26));
         buttonParameters.setFocusPainted(false);
         buttonConstraints.gridy++;
-        buttonPanel.add(buttonParameters, buttonConstraints);
+        panelButtons.add(buttonParameters, buttonConstraints);
 
-        buttonWines.setForeground(new Color(0xcccccc));
-        buttonWines.setBackground(new Color(0x557b8a));
-        buttonWines.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
-        buttonWines.setFont(Resources.getFont(26));
-        buttonWines.setFocusPainted(false);
-        buttonConstraints.gridy++;
-        buttonPanel.add(buttonWines, buttonConstraints);
-
-        this.add(buttonPanel);
+        // Add the button panel to this screen
+        constraints.gridx = 2;
+        constraints.gridy = 1;
+        constraints.weightx = 1;
+        constraints.weighty = 1;
+        constraints.gridheight = 2;
+        constraints.insets = new Insets(0, 0, 0, 0);
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.anchor = GridBagConstraints.CENTER;
+        this.add(panelButtons, constraints);
     }
 }

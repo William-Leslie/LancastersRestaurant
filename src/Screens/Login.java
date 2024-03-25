@@ -69,7 +69,7 @@ public class Login extends JPanel {
                 fieldUsername.setText("");
                 fieldPassword.setText("");
                 CardLayout cl = (CardLayout) screens.getLayout();
-                cl.show(screens, Screen.Selection.name());
+                cl.show(screens, Screen.Home.name());
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid login credentials!");
             }
