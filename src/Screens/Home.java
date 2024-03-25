@@ -51,6 +51,7 @@ public class Home extends JPanel {
         constraints.gridy = 1;
         constraints.weightx = 1;
         constraints.weighty = 0;
+        constraints.gridheight = 1;
         constraints.insets = new Insets(10, 10, 0, 10);
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.anchor = GridBagConstraints.CENTER;
@@ -59,9 +60,10 @@ public class Home extends JPanel {
         JLabel logo = Resources.getLogo(400, 400);
         logo.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         constraints.gridx = 1;
-        constraints.gridy = 2;
+        constraints.gridy = 1;
         constraints.weightx = 0;
         constraints.weighty = 0;
+        constraints.gridheight = 2;
         constraints.insets = new Insets(0, 0, 0, 0);
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.CENTER;
