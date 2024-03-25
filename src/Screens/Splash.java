@@ -16,16 +16,5 @@ public class Splash extends JPanel {
         constraints.gridy++;
         constraints.insets = new Insets(0, 0, 0, 0);
         this.add(logo, constraints);
-
-        new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        CardLayout cl = (CardLayout) screens.getLayout();
-                        cl.show(screens, Screen.Login.name());
-                    }
-                },
-                3000
-        );
     }
 }

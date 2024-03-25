@@ -17,9 +17,21 @@ public class Main extends JFrame {
         screens.add(new Screens.Selection(screens), Screen.Selection.name());
         screens.add(new Screens.Home(screens), Screen.Home.name());
 
-        // Show initial screen
+        // Show splash screen
         CardLayout cl = (CardLayout) screens.getLayout();
         cl.show(screens, Screen.Splash.name());
+
+        // Switch to login screen after 3 seconds
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        CardLayout cl = (CardLayout) screens.getLayout();
+                        cl.show(screens, Screen.Login.name());
+                    }
+                },
+                3000
+        );
 
         // Add screens manager to main window
         this.add(screens);
