@@ -94,7 +94,7 @@ public class Home extends JPanel {
         buttonConstraints.gridy++;
         buttonPanel.add(buttonSales, buttonConstraints);
 
-        JButton buttonParameters = new JButton("Parameters");
+        JButton buttonParameters = new JButton("Restaurant Capacity");
         buttonParameters.setForeground(new Color(0xcccccc));
         buttonParameters.setBackground(new Color(0x557b8a));
         buttonParameters.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
