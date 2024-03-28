@@ -4,7 +4,6 @@ import Resources.Resources;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class Login extends JPanel {
     public Login(JPanel screens) {
