@@ -4,7 +4,6 @@ import Resources.Resources;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class Home extends JPanel {
 
@@ -101,6 +100,10 @@ public class Home extends JPanel {
         buttonMenus.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
         buttonMenus.setFont(Resources.getFont(26));
         buttonMenus.setFocusPainted(false);
+        buttonMenus.addActionListener(event -> {
+            CardLayout cl = (CardLayout) screens.getLayout();
+            cl.show(screens, Screen.Menus.name());
+        });
         buttonConstraints.gridy++;
         panelButtons.add(buttonMenus, buttonConstraints);
 
