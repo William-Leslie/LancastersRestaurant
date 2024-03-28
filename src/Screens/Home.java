@@ -107,14 +107,14 @@ public class Home extends JPanel {
         buttonConstraints.gridy++;
         panelButtons.add(buttonMenus, buttonConstraints);
 
-        JButton buttonIngredients = new JButton("Ingredients");
-        buttonIngredients.setForeground(new Color(0xcccccc));
-        buttonIngredients.setBackground(new Color(0x557b8a));
-        buttonIngredients.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
-        buttonIngredients.setFont(Resources.getFont(26));
-        buttonIngredients.setFocusPainted(false);
+        JButton buttonInventory = new JButton("Inventory");
+        buttonInventory.setForeground(new Color(0xcccccc));
+        buttonInventory.setBackground(new Color(0x557b8a));
+        buttonInventory.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
+        buttonInventory.setFont(Resources.getFont(26));
+        buttonInventory.setFocusPainted(false);
         buttonConstraints.gridy++;
-        panelButtons.add(buttonIngredients, buttonConstraints);
+        panelButtons.add(buttonInventory, buttonConstraints);
 
         JButton buttonSales = new JButton("Sales");
         buttonSales.setForeground(new Color(0xcccccc));
@@ -125,14 +125,14 @@ public class Home extends JPanel {
         buttonConstraints.gridy++;
         panelButtons.add(buttonSales, buttonConstraints);
 
-        JButton buttonParameters = new JButton("Restaurant Capacity");
-        buttonParameters.setForeground(new Color(0xcccccc));
-        buttonParameters.setBackground(new Color(0x557b8a));
-        buttonParameters.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
-        buttonParameters.setFont(Resources.getFont(26));
-        buttonParameters.setFocusPainted(false);
+        JButton buttonPayroll = new JButton("Payroll & HR");
+        buttonPayroll.setForeground(new Color(0xcccccc));
+        buttonPayroll.setBackground(new Color(0x557b8a));
+        buttonPayroll.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
+        buttonPayroll.setFont(Resources.getFont(26));
+        buttonPayroll.setFocusPainted(false);
         buttonConstraints.gridy++;
-        panelButtons.add(buttonParameters, buttonConstraints);
+        panelButtons.add(buttonPayroll, buttonConstraints);
 
         // Add the button panel to this screen
         constraints.gridx = 2;
