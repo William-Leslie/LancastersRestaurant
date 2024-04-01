@@ -1,6 +1,7 @@
 package Screens;
 
-import Resources.Resources;
+import Components.*;
+import Resources.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,10 +14,10 @@ public class Login extends JPanel {
         constraints.fill = GridBagConstraints.HORIZONTAL; // All items stretch horizontally by default
 
         // Logo
-        JLabel imageLogo = Resources.getLogo(300, 300);
+        Logo logo = new Logo(300, 300);
         constraints.gridy++;
         constraints.insets = new Insets(0, 0, 0, 0);
-        this.add(imageLogo, constraints);
+        this.add(logo, constraints);
 
         // Username text
         JLabel labelUsername = new JLabel("USERNAME");

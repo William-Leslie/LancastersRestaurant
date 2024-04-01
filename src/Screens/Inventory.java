@@ -1,6 +1,7 @@
 package Screens;
 
-import Resources.Resources;
+import Components.*;
+import Resources.*;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -43,7 +44,7 @@ public class Inventory extends JPanel {
         topbarConstraints.fill = GridBagConstraints.VERTICAL;
         panelTopbar.add(Box.createHorizontalGlue(), topbarConstraints);
 
-        JLabel logo = Resources.getLogo(100, 100);
+        Logo logo = new Logo(100, 100);
         logo.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         logo.setPreferredSize(new Dimension(100, 50));
         topbarConstraints.gridx++;

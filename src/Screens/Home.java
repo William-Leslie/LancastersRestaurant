@@ -1,6 +1,7 @@
 package Screens;
 
-import Resources.Resources;
+import Components.*;
+import Resources.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -56,7 +57,7 @@ public class Home extends JPanel {
         constraints.anchor = GridBagConstraints.CENTER;
         this.add(panelUser, constraints);
 
-        JLabel logo = Resources.getLogo(400, 400);
+        Logo logo = new Logo(400, 400);
         logo.setBorder(null);
         constraints.gridx = 1;
         constraints.gridy = 1;
