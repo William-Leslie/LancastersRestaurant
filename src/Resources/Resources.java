@@ -19,6 +19,7 @@ public class Resources {
         JButton buttonBack = new JButton("Back");
         buttonBack.setForeground(new Color(0x2b3336));
         buttonBack.setBackground(new Color(0xaaaaaa));
+        buttonBack.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
         buttonBack.setFont(Resources.getFont(20));
         buttonBack.setFocusPainted(false);
         buttonBack.addActionListener(backAction);
