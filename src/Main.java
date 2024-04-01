@@ -16,7 +16,10 @@ public class Main extends JFrame {
         screens.add(new Login(screens), Screen.Login.name());
         screens.add(new Home(screens), Screen.Home.name());
         screens.add(new Staff(screens), Screen.Staff.name());
+        // screens.add(new Wines(screens), Screen.Wines.name());
         screens.add(new Menus(screens), Screen.Menus.name());
+        screens.add(new Inventory(screens), Screen.Inventory.name());
+        // screens.add(new Sales(screens), Screen.Sales.name());
 
         // Show splash screen
         CardLayout cl = (CardLayout) screens.getLayout();

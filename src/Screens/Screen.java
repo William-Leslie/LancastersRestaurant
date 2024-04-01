@@ -5,5 +5,8 @@ public enum Screen {
     Login,
     Home,
     Staff,
+    Wines,
     Menus,
+    Inventory,
+    Sales,
 }
