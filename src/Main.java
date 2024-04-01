@@ -15,6 +15,7 @@ public class Main extends JFrame {
         screens.add(new Splash(screens), Screen.Splash.name());
         screens.add(new Login(screens), Screen.Login.name());
         screens.add(new Home(screens), Screen.Home.name());
+        screens.add(new Staff(screens), Screen.Staff.name());
         screens.add(new Menus(screens), Screen.Menus.name());
 
         // Show splash screen

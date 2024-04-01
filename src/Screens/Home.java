@@ -82,6 +82,10 @@ public class Home extends JPanel {
         buttonStaff.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
         buttonStaff.setFont(Resources.getFont(26));
         buttonStaff.setFocusPainted(false);
+        buttonStaff.addActionListener(event -> {
+            CardLayout cl = (CardLayout) screens.getLayout();
+            cl.show(screens, Screen.Staff.name());
+        });
         buttonConstraints.gridy++;
         panelButtons.add(buttonStaff, buttonConstraints);
 

@@ -1,0 +1,155 @@
+package Screens;
+
+import Resources.Resources;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class Staff extends JPanel {
+    private static class Employee {
+        public String name;
+        public String role;
+        public boolean onHoliday;
+        private Employee(String name, String role, boolean onHoliday) {
+            this.name = name;
+            this.role = role;
+            this.onHoliday = onHoliday;
+        }
+    }
+    private Employee[] employees = new Employee[] {
+        new Employee("Luis J. Burrus", "FOH", false),
+        new Employee("Richard K. Moreno", "FOH", true),
+        new Employee("Edward J. Villacorta", "FOH", false),
+        new Employee("Cecelia D. Nolasco", "Kitchen", false),
+        new Employee("John V. Roe", "Kitchen", false),
+        new Employee("Bessie D. Fisk", "Kitchen", true),
+        new Employee("Jolene K. Lang", "Management", false),
+        new Employee("Gregg T. Edwards", "Management", true),
+        new Employee("Luis J. Burrus", "FOH", false),
+        new Employee("Richard K. Moreno", "FOH", true),
+        new Employee("Edward J. Villacorta", "FOH", false),
+        new Employee("Cecelia D. Nolasco", "Kitchen", false),
+        new Employee("John V. Roe", "Kitchen", false),
+        new Employee("Bessie D. Fisk", "Kitchen", true),
+        new Employee("Jolene K. Lang", "Management", false),
+        new Employee("Gregg T. Edwards", "Management", true),
+        new Employee("Luis J. Burrus", "FOH", false),
+        new Employee("Richard K. Moreno", "FOH", true),
+        new Employee("Edward J. Villacorta", "FOH", false),
+        new Employee("Cecelia D. Nolasco", "Kitchen", false),
+        new Employee("John V. Roe", "Kitchen", false),
+        new Employee("Bessie D. Fisk", "Kitchen", true),
+        new Employee("Jolene K. Lang", "Management", false),
+        new Employee("Gregg T. Edwards", "Management", true),
+        new Employee("Luis J. Burrus", "FOH", false),
+        new Employee("Richard K. Moreno", "FOH", true),
+        new Employee("Edward J. Villacorta", "FOH", false),
+        new Employee("Cecelia D. Nolasco", "Kitchen", false),
+        new Employee("John V. Roe", "Kitchen", false),
+        new Employee("Bessie D. Fisk", "Kitchen", true),
+        new Employee("Jolene K. Lang", "Management", false),
+        new Employee("Gregg T. Edwards", "Management", true),
+        new Employee("Luis J. Burrus", "FOH", false),
+        new Employee("Richard K. Moreno", "FOH", true),
+        new Employee("Edward J. Villacorta", "FOH", false),
+        new Employee("Cecelia D. Nolasco", "Kitchen", false),
+        new Employee("John V. Roe", "Kitchen", false),
+        new Employee("Bessie D. Fisk", "Kitchen", true),
+        new Employee("Jolene K. Lang", "Management", false),
+        new Employee("Gregg T. Edwards", "Management", true),
+        new Employee("Luis J. Burrus", "FOH", false),
+        new Employee("Richard K. Moreno", "FOH", true),
+        new Employee("Edward J. Villacorta", "FOH", false),
+        new Employee("Cecelia D. Nolasco", "Kitchen", false),
+        new Employee("John V. Roe", "Kitchen", false),
+        new Employee("Bessie D. Fisk", "Kitchen", true),
+        new Employee("Jolene K. Lang", "Management", false),
+        new Employee("Gregg T. Edwards", "Management", true),
+    };
+
+    public Staff(JPanel screens) {
+        super(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+        this.setBackground(new Color(0x2b3336));
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.weightx = 1;
+        constraints.gridx = 1;
+        constraints.gridwidth = 3;
+
+        JPanel panelNavbar = Resources.getNavbar("Staff", event -> {
+            CardLayout cl = (CardLayout) screens.getLayout();
+            cl.show(screens, Screen.Home.name());
+        });
+        constraints.gridy = 1;
+        constraints.weighty = 0;
+        constraints.insets = new Insets(10, 10, 0, 10);
+        this.add(panelNavbar, constraints);
+
+        JPanel panelMain = new JPanel(new GridBagLayout());
+        GridBagConstraints mainConstraints = new GridBagConstraints();
+        panelMain.setBackground(new Color(0x2b3336));
+        mainConstraints.insets = new Insets(8, 16, 8, 16);
+
+        for(Employee employee : this.employees) {
+            mainConstraints.gridy++;
+            mainConstraints.gridx = 0;
+
+            JLabel labelName = new JLabel(employee.name);
+            labelName.setForeground(new Color(0xaaaaaa));
+            labelName.setFont(Resources.getFont(20));
+            mainConstraints.gridx++;
+            mainConstraints.anchor = GridBagConstraints.WEST;
+            panelMain.add(labelName, mainConstraints);
+
+            JLabel labelRole = new JLabel(employee.role);
+            labelRole.setForeground(new Color(0xaaaaaa));
+            labelRole.setFont(Resources.getFont(20));
+            mainConstraints.gridx++;
+            mainConstraints.anchor = GridBagConstraints.CENTER;
+            panelMain.add(labelRole, mainConstraints);
+
+            JCheckBox checkboxHoliday = new JCheckBox("On Holiday", employee.onHoliday);
+            checkboxHoliday.setForeground(new Color(0xaaaaaa));
+            checkboxHoliday.setBackground(new Color(0x2b3336));
+            checkboxHoliday.setFont(Resources.getFont(20));
+            checkboxHoliday.setFocusPainted(false);
+            checkboxHoliday.addActionListener(event -> employee.onHoliday = checkboxHoliday.isSelected());
+            mainConstraints.gridx++;
+            mainConstraints.anchor = GridBagConstraints.EAST;
+            panelMain.add(checkboxHoliday, mainConstraints);
+        }
+
+        JScrollPane scrollMain = new JScrollPane(panelMain);
+        scrollMain.setPreferredSize(new Dimension(0, 0));
+        scrollMain.getVerticalScrollBar().setUnitIncrement(8);
+        scrollMain.setBorder(null);
+        constraints.gridy = 2;
+        constraints.weighty = 1;
+        constraints.insets = new Insets(10, 10, 10, 10);
+        this.add(scrollMain, constraints);
+
+        JSpinner spinnerCovers = new JSpinner(new SpinnerNumberModel(0, 0, 99, 1));
+        constraints.gridy = 3;
+        constraints.gridx = 1;
+        constraints.gridwidth = 1;
+        constraints.weighty = 0;
+        constraints.insets = new Insets(10, 10, 10, 10);
+        this.add(spinnerCovers, constraints);
+
+        JSpinner spinnerTwo = new JSpinner(new SpinnerNumberModel(0, 0, 99, 1));
+        constraints.gridy = 3;
+        constraints.gridx = 2;
+        constraints.gridwidth = 1;
+        constraints.weighty = 0;
+        constraints.insets = new Insets(10, 10, 10, 10);
+        this.add(spinnerTwo, constraints);
+
+        JSpinner spinner3 = new JSpinner(new SpinnerNumberModel(0, 0, 99, 1));
+        constraints.gridy = 3;
+        constraints.gridx = 3;
+        constraints.gridwidth = 1;
+        constraints.weighty = 0;
+        constraints.insets = new Insets(10, 10, 10, 10);
+        this.add(spinner3, constraints);
+    }
+}
