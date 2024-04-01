@@ -57,7 +57,7 @@ public class Home extends JPanel {
         this.add(panelUser, constraints);
 
         JLabel logo = Resources.getLogo(400, 400);
-        logo.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        logo.setBorder(null);
         constraints.gridx = 1;
         constraints.gridy = 1;
         constraints.weightx = 0;
