@@ -74,7 +74,7 @@ public class Staff extends JPanel {
         constraints.fill = GridBagConstraints.BOTH;
         constraints.weightx = 1;
         constraints.gridx = 1;
-        constraints.gridwidth = 3;
+        constraints.gridwidth = 6;
 
         JPanel panelNavbar = Resources.getNavbar("Staff", event -> {
             CardLayout cl = (CardLayout) screens.getLayout();
@@ -108,6 +108,7 @@ public class Staff extends JPanel {
             mainConstraints.anchor = GridBagConstraints.CENTER;
             panelMain.add(labelRole, mainConstraints);
 
+            // TODO: Theming JCheckBox
             JCheckBox checkboxHoliday = new JCheckBox("On Holiday", employee.onHoliday);
             checkboxHoliday.setForeground(new Color(0xaaaaaa));
             checkboxHoliday.setBackground(new Color(0x2b3336));
@@ -119,6 +120,7 @@ public class Staff extends JPanel {
             panelMain.add(checkboxHoliday, mainConstraints);
         }
 
+        // TODO: Theming JScrollPane
         JScrollPane scrollMain = new JScrollPane(panelMain);
         scrollMain.setPreferredSize(new Dimension(0, 0));
         scrollMain.getVerticalScrollBar().setUnitIncrement(8);
@@ -128,28 +130,49 @@ public class Staff extends JPanel {
         constraints.insets = new Insets(10, 10, 10, 10);
         this.add(scrollMain, constraints);
 
-        JSpinner spinnerCovers = new JSpinner(new SpinnerNumberModel(0, 0, 99, 1));
-        constraints.gridy = 3;
-        constraints.gridx = 1;
-        constraints.gridwidth = 1;
+        // Parameters on bottom
         constraints.weighty = 0;
+        constraints.gridy = 3;
+        constraints.gridx = 0;
+        constraints.gridwidth = 1;
         constraints.insets = new Insets(10, 10, 10, 10);
-        this.add(spinnerCovers, constraints);
+        constraints.anchor = GridBagConstraints.EAST;
 
-        JSpinner spinnerTwo = new JSpinner(new SpinnerNumberModel(0, 0, 99, 1));
-        constraints.gridy = 3;
-        constraints.gridx = 2;
-        constraints.gridwidth = 1;
-        constraints.weighty = 0;
-        constraints.insets = new Insets(10, 10, 10, 10);
-        this.add(spinnerTwo, constraints);
+        JLabel labelHalfHour = new JLabel("Half Hour Limit");
+        labelHalfHour.setForeground(new Color(0xaaaaaa));
+        labelHalfHour.setFont(Resources.getFont(20));
+        constraints.gridx++;
+        constraints.fill = GridBagConstraints.VERTICAL;
+        this.add(labelHalfHour, constraints);
 
-        JSpinner spinner3 = new JSpinner(new SpinnerNumberModel(0, 0, 99, 1));
-        constraints.gridy = 3;
-        constraints.gridx = 3;
-        constraints.gridwidth = 1;
-        constraints.weighty = 0;
-        constraints.insets = new Insets(10, 10, 10, 10);
-        this.add(spinner3, constraints);
+        // TODO: Theming JSpinners
+        JSpinner spinnerHalfHour = new JSpinner(new SpinnerNumberModel(0, 0, 99, 1));
+        constraints.gridx++;
+        constraints.fill = GridBagConstraints.BOTH;
+        this.add(spinnerHalfHour, constraints);
+
+        JLabel labelPreBook = new JLabel("Pre Book Limit");
+        labelPreBook.setForeground(new Color(0xaaaaaa));
+        labelPreBook.setFont(Resources.getFont(20));
+        constraints.gridx++;
+        constraints.fill = GridBagConstraints.VERTICAL;
+        this.add(labelPreBook, constraints);
+
+        JSpinner spinnerPreBook = new JSpinner(new SpinnerNumberModel(0, 0, 99, 1));
+        constraints.gridx++;
+        constraints.fill = GridBagConstraints.BOTH;
+        this.add(spinnerPreBook, constraints);
+
+        JLabel labelMaxDining = new JLabel("Max Dining Limit");
+        labelMaxDining.setForeground(new Color(0xaaaaaa));
+        labelMaxDining.setFont(Resources.getFont(20));
+        constraints.gridx++;
+        constraints.fill = GridBagConstraints.VERTICAL;
+        this.add(labelMaxDining, constraints);
+
+        JSpinner spinnerMaxDining = new JSpinner(new SpinnerNumberModel(0, 0, 99, 1));
+        constraints.gridx++;
+        constraints.fill = GridBagConstraints.BOTH;
+        this.add(spinnerMaxDining, constraints);
     }
 }
