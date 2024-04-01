@@ -1,5 +1,6 @@
 package Screens;
 
+import Components.*;
 import Resources.Resources;
 
 import javax.swing.*;
@@ -76,14 +77,14 @@ public class Staff extends JPanel {
         constraints.gridx = 1;
         constraints.gridwidth = 6;
 
-        JPanel panelNavbar = Resources.getNavbar("Staff", event -> {
+        Navbar navbar = new Navbar("Staff", event -> {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Home.name());
         });
         constraints.gridy = 1;
         constraints.weighty = 0;
         constraints.insets = new Insets(10, 10, 0, 10);
-        this.add(panelNavbar, constraints);
+        this.add(navbar, constraints);
 
         JPanel panelMain = new JPanel(new GridBagLayout());
         GridBagConstraints mainConstraints = new GridBagConstraints();
