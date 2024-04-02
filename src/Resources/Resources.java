@@ -11,7 +11,7 @@ public class Resources {
 
     public static Image getLogo(int size) {
         try {
-            if(Resources.logo == null) {
+            if (Resources.logo == null) {
                 Resources.logo = ImageIO.read(new File("resources/LancastersLogo.jpeg"));
             }
         } catch (IOException exception) {
@@ -23,7 +23,7 @@ public class Resources {
 
     public static Font getFont(float size) {
         try {
-            if(Resources.font == null) {
+            if (Resources.font == null) {
                 Resources.font = Font.createFont(Font.TRUETYPE_FONT, new File("resources/AbrilFatface-Regular.ttf"));
             }
         } catch (IOException | FontFormatException exception) {

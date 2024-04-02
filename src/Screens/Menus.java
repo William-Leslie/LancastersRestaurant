@@ -45,7 +45,7 @@ public class Menus extends JPanel {
             panelMenu.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
             menuConstraints.weightx = 1;
 
-            if(monday.isBefore(today)) {
+            if (monday.isBefore(today)) {
                 panelMenu.setBackground(new Color(0x557b8a));
 
                 CLabel labelCurrent = new CLabel("Current Week");
