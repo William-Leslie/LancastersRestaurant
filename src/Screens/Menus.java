@@ -36,16 +36,13 @@ public class Menus extends JPanel {
         LocalDateTime monday = today.minusDays(today.getDayOfWeek().getValue() - 1); // Find Monday, getValue() does +1
 
         // Get current and next 4 weeks
-        monday = monday.plusWeeks(5);
-        while (monday.isAfter(today)) {
-            monday = monday.minusWeeks(1);
-
+        for (LocalDateTime stop = monday.plusWeeks(5); monday.isBefore(stop); monday = monday.plusWeeks(1)) {
             JPanel panelMenu = new JPanel(new GridBagLayout());
             GridBagConstraints menuConstraints = new GridBagConstraints();
             panelMenu.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
             menuConstraints.weightx = 1;
 
-            if (monday.isBefore(today)) {
+            if (monday.isBefore(today) || monday.isEqual(today)) {
                 panelMenu.setBackground(new Color(0x557b8a));
 
                 CLabel labelCurrent = new CLabel("Current Week");
