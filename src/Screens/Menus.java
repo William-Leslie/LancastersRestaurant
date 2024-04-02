@@ -74,7 +74,7 @@ public class Menus extends JPanel {
             menuConstraints.anchor = GridBagConstraints.NORTHWEST;
             panelMenu.add(labelDate, menuConstraints);
 
-            CLabel labelAvgPrice = new CLabel("Average Price: " + 24.65f, 18);
+            CLabel labelAvgPrice = new CLabel("Average Price: " + CPrice.of(24.65), 18);
             labelAvgPrice.setForeground(new Color(0xcccccc));
             menuConstraints.gridx = 2;
             menuConstraints.gridy = 1;
@@ -83,7 +83,7 @@ public class Menus extends JPanel {
             menuConstraints.anchor = GridBagConstraints.EAST;
             panelMenu.add(labelAvgPrice, menuConstraints);
 
-            CLabel labelMaxPrice = new CLabel("Maximum Price: " + 35, 18);
+            CLabel labelMaxPrice = new CLabel("Maximum Price: " + CPrice.of(35), 18);
             labelMaxPrice.setForeground(new Color(0xcccccc));
             menuConstraints.gridx = 2;
             menuConstraints.gridy = 2;
@@ -92,7 +92,7 @@ public class Menus extends JPanel {
             menuConstraints.anchor = GridBagConstraints.EAST;
             panelMenu.add(labelMaxPrice, menuConstraints);
 
-            CLabel labelMinPrice = new CLabel("Minimum Price: " + 7, 18);
+            CLabel labelMinPrice = new CLabel("Minimum Price: " + CPrice.of(7), 18);
             labelMinPrice.setForeground(new Color(0xcccccc));
             menuConstraints.gridx = 2;
             menuConstraints.gridy = 3;

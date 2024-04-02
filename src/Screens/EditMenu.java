@@ -106,7 +106,7 @@ public class EditMenu extends JPanel {
                 dishConstraints.insets = new Insets(16, 16, 16, 16);
                 panelDish.add(fieldDishName, dishConstraints);
 
-                CLabel labelDishPrice = new CLabel("Suggested: " + dish.price + "    Price: ", 18);
+                CLabel labelDishPrice = new CLabel("Suggested: " + CPrice.of(dish.price) + "    Price: ", 18);
                 labelDishPrice.setForeground(new Color(0xcccccc));
                 dishConstraints.gridx = 2;
                 dishConstraints.gridwidth = 1;
@@ -115,6 +115,8 @@ public class EditMenu extends JPanel {
                 dishConstraints.insets = new Insets(16, 16, 16, 0);
                 panelDish.add(labelDishPrice, dishConstraints);
 
+                // FIXME: Add decimals and £ symbol to spinner
+                // TODO: Theme JSpinner
                 JSpinner spinnerDishPrice = new JSpinner(new SpinnerNumberModel(dish.price, 0, 99, 1));
                 dishConstraints.gridx = 3;
                 dishConstraints.gridwidth = 1;
