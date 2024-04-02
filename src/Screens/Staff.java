@@ -144,7 +144,7 @@ public class Staff extends JPanel {
         this.add(labelHalfHour, constraints);
 
         // TODO: Theming JSpinners
-        JSpinner spinnerHalfHour = new JSpinner(new SpinnerNumberModel(0, 0, 99, 1));
+        JSpinner spinnerHalfHour = new JSpinner(new SpinnerNumberModel(6, 0, 99, 1));
         constraints.gridx++;
         constraints.fill = GridBagConstraints.BOTH;
         this.add(spinnerHalfHour, constraints);
@@ -154,7 +154,7 @@ public class Staff extends JPanel {
         constraints.fill = GridBagConstraints.VERTICAL;
         this.add(labelPreBook, constraints);
 
-        JSpinner spinnerPreBook = new JSpinner(new SpinnerNumberModel(0, 0, 99, 1));
+        JSpinner spinnerPreBook = new JSpinner(new SpinnerNumberModel(10, 0, 99, 1));
         constraints.gridx++;
         constraints.fill = GridBagConstraints.BOTH;
         this.add(spinnerPreBook, constraints);
@@ -164,7 +164,7 @@ public class Staff extends JPanel {
         constraints.fill = GridBagConstraints.VERTICAL;
         this.add(labelMaxDining, constraints);
 
-        JSpinner spinnerMaxDining = new JSpinner(new SpinnerNumberModel(0, 0, 99, 1));
+        JSpinner spinnerMaxDining = new JSpinner(new SpinnerNumberModel(18, 0, 99, 1));
         constraints.gridx++;
         constraints.fill = GridBagConstraints.BOTH;
         this.add(spinnerMaxDining, constraints);
