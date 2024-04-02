@@ -19,7 +19,7 @@ public class Login extends JPanel {
         this.add(logo, constraints);
 
         // Username text
-        CLabel labelUsername = new CLabel("USERNAME");
+        CLabel labelUsername = new CLabel("USERNAME", 18);
         constraints.gridy++;
         constraints.insets = new Insets(20, 0, 0, 0);
         this.add(labelUsername, constraints);
@@ -31,7 +31,7 @@ public class Login extends JPanel {
         this.add(fieldUsername, constraints);
 
         // Password text
-        CLabel labelPassword = new CLabel("PASSWORD");
+        CLabel labelPassword = new CLabel("PASSWORD", 18);
         constraints.gridy++;
         constraints.insets = new Insets(20, 0, 0, 0);
         this.add(labelPassword, constraints);
@@ -43,7 +43,7 @@ public class Login extends JPanel {
         this.add(fieldPassword, constraints);
 
         // Login button
-        CButton buttonLogin = new CButton("Login", event -> {
+        CButton buttonLogin = new CButton("Login", 26, event -> {
             String username = fieldUsername.getText();
             String password = new String(fieldPassword.getPassword());
             if (username.equals("lancaster") && password.equals("lancaster")) {

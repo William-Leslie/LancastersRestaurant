@@ -68,7 +68,7 @@ public class Home extends JPanel {
         buttonConstraints.weighty = 1;
         buttonConstraints.insets = new Insets(10, 0, 10, 0);
 
-        CButton buttonStaff = new CButton("Staff", event -> {
+        CButton buttonStaff = new CButton("Staff", 26, event -> {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Staff.name());
         });
@@ -77,7 +77,7 @@ public class Home extends JPanel {
         buttonConstraints.gridy++;
         panelButtons.add(buttonStaff, buttonConstraints);
 
-        CButton buttonWines = new CButton("Wines", event -> {
+        CButton buttonWines = new CButton("Wines", 26, event -> {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Wines.name());
         });
@@ -86,7 +86,7 @@ public class Home extends JPanel {
         buttonConstraints.gridy++;
         panelButtons.add(buttonWines, buttonConstraints);
 
-        CButton buttonMenus = new CButton("Menus", event -> {
+        CButton buttonMenus = new CButton("Menus", 26, event -> {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Menus.name());
         });
@@ -95,7 +95,7 @@ public class Home extends JPanel {
         buttonConstraints.gridy++;
         panelButtons.add(buttonMenus, buttonConstraints);
 
-        CButton buttonInventory = new CButton("Inventory", event -> {
+        CButton buttonInventory = new CButton("Inventory", 26, event -> {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Inventory.name());
         });
@@ -104,7 +104,7 @@ public class Home extends JPanel {
         buttonConstraints.gridy++;
         panelButtons.add(buttonInventory, buttonConstraints);
 
-        CButton buttonSales = new CButton("Sales", event -> {
+        CButton buttonSales = new CButton("Sales", 26, event -> {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Sales.name());
         });
@@ -113,7 +113,7 @@ public class Home extends JPanel {
         buttonConstraints.gridy++;
         panelButtons.add(buttonSales, buttonConstraints);
 
-        CButton buttonPayroll = new CButton("Payroll & HR", event -> {
+        CButton buttonPayroll = new CButton("Payroll & HR", 26, event -> {
             // TODO: Open external webpage?
         });
         buttonPayroll.setForeground(new Color(0xcccccc));
