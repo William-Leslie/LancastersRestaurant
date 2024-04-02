@@ -98,14 +98,13 @@ public class EditMenu extends JPanel {
                 dishConstraints.fill = GridBagConstraints.BOTH;
                 dishConstraints.anchor = GridBagConstraints.NORTHWEST;
 
-                CLabel labelDishName = new CLabel(dish.name, 22);
-                labelDishName.setForeground(new Color(0xcccccc));
+                CTextField fieldDishName = new CTextField(dish.name, 22);
                 dishConstraints.gridx = 1;
                 dishConstraints.gridwidth = 1;
                 dishConstraints.weightx = 1;
                 dishConstraints.gridy = 1;
                 dishConstraints.insets = new Insets(16, 16, 16, 16);
-                panelDish.add(labelDishName, dishConstraints);
+                panelDish.add(fieldDishName, dishConstraints);
 
                 CLabel labelDishPrice = new CLabel("Suggested: " + dish.price + "    Price: ", 18);
                 labelDishPrice.setForeground(new Color(0xcccccc));
@@ -126,12 +125,38 @@ public class EditMenu extends JPanel {
 
                 // FIXME: For some reason, adding a JTextArea will scroll to the bottom of the whole window
                 CTextArea areaDescription = new CTextArea(dish.description, 16);
+                areaDescription.setRows(2);
                 dishConstraints.gridx = 1;
                 dishConstraints.gridwidth = 3;
                 dishConstraints.weightx = 1;
                 dishConstraints.gridy = 2;
-                dishConstraints.insets = new Insets(0, 16, 16, 16);
+                dishConstraints.insets = new Insets(0, 16, 8, 16);
                 panelDish.add(areaDescription, dishConstraints);
+
+                JPanel panelDishAllergens = new JPanel(new GridBagLayout());
+                GridBagConstraints dishAllergenConstraints = new GridBagConstraints();
+                panelDishAllergens.setBackground(new Color(0x557b8a));
+                dishAllergenConstraints.fill = GridBagConstraints.BOTH;
+
+                CLabel labelDishAllergens = new CLabel("Allergens: ", 18);
+                labelDishAllergens.setForeground(new Color(0xcccccc));
+                dishAllergenConstraints.gridx++;
+                dishAllergenConstraints.weightx = 0;
+                dishAllergenConstraints.insets = new Insets(0, 0, 0, 0);
+                panelDishAllergens.add(labelDishAllergens, dishAllergenConstraints);
+
+                CTextField fieldDishAllergens = new CTextField("No Allergens", 16);
+                dishAllergenConstraints.gridx++;
+                dishAllergenConstraints.weightx = 1;
+                dishAllergenConstraints.insets = new Insets(0, 6, 0, 0);
+                panelDishAllergens.add(fieldDishAllergens, dishAllergenConstraints);
+
+                dishConstraints.gridx = 1;
+                dishConstraints.gridwidth = 3;
+                dishConstraints.weightx = 1;
+                dishConstraints.gridy = 3;
+                dishConstraints.insets = new Insets(0, 16, 16, 16);
+                panelDish.add(panelDishAllergens, dishConstraints);
 
                 courseConstraints.gridy++;
                 courseConstraints.insets = new Insets(0, 16, 16, 16);
