@@ -39,7 +39,7 @@ public class Inventory extends JPanel {
         tableInventory.setRowHeight(30);
         tableInventory.setFont(Resources.getFont(20));
 
-        JScrollPane scrollInventory = new JScrollPane(tableInventory);
+        CScroll scrollInventory = new CScroll(tableInventory);
         scrollInventory.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xaaaaaa)));
         constraints.gridx = 1;
         constraints.gridy++;

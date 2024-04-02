@@ -33,11 +33,7 @@ public class Sales extends JPanel {
         mainConstraints.weighty = 1;
         panelMain.add(Box.createVerticalGlue(), mainConstraints);
 
-        // TODO: Theming JScrollPane
-        JScrollPane scrollMain = new JScrollPane(panelMain);
-        scrollMain.setPreferredSize(new Dimension(0, 0));
-        scrollMain.getVerticalScrollBar().setUnitIncrement(8);
-        scrollMain.setBorder(null);
+        CScroll scrollMain = new CScroll(panelMain);
         constraints.gridy = 2;
         constraints.weighty = 1;
         constraints.insets = new Insets(10, 10, 10, 10);
