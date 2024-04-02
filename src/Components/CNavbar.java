@@ -4,13 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Navbar extends JPanel {
-    public Navbar(String title, ActionListener backAction) {
+public class CNavbar extends JPanel {
+    public CNavbar(String title, ActionListener backAction) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         this.setBackground(new Color(0x2b3336));
 
-        Button buttonBack = new Button("Back", backAction);
+        CButton buttonBack = new CButton("Back", backAction);
         constraints.gridx++;
         constraints.gridy = 1;
         constraints.gridheight = 2;
@@ -27,7 +27,7 @@ public class Navbar extends JPanel {
         constraints.fill = GridBagConstraints.VERTICAL;
         this.add(Box.createHorizontalGlue(), constraints);
 
-        Logo logo = new Logo(100, 50);
+        CLogo logo = new CLogo(100, 50);
         logo.setBorder(null);
         constraints.gridx++;
         constraints.gridy = 1;
@@ -37,7 +37,7 @@ public class Navbar extends JPanel {
         constraints.fill = GridBagConstraints.VERTICAL;
         this.add(logo, constraints);
 
-        Label labelTitle = new Label(title);
+        CLabel labelTitle = new CLabel(title);
         constraints.gridx++;
         constraints.gridy = 1;
         constraints.gridheight = 2;
@@ -54,7 +54,7 @@ public class Navbar extends JPanel {
         constraints.fill = GridBagConstraints.VERTICAL;
         this.add(Box.createHorizontalGlue(), constraints);
 
-        Label labelUser = new Label("User: " + "lancaster");
+        CLabel labelUser = new CLabel("User: " + "lancaster");
         constraints.gridx++;
         constraints.gridy = 1;
         constraints.gridheight = 1;
@@ -64,7 +64,7 @@ public class Navbar extends JPanel {
         constraints.anchor = GridBagConstraints.EAST;
         this.add(labelUser, constraints);
 
-        Label labelRole = new Label("Role: " + "admin");
+        CLabel labelRole = new CLabel("Role: " + "admin");
         constraints.gridy = 2;
         constraints.gridheight = 1;
         constraints.weightx = 0;

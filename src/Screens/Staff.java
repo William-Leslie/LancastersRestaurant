@@ -1,23 +1,26 @@
 package Screens;
 
 import Components.*;
-import Resources.Resources;
+import Resources.*;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Staff extends JPanel {
+    // Dummy data
     private static class Employee {
         public String name;
         public String role;
         public boolean onHoliday;
+
         private Employee(String name, String role, boolean onHoliday) {
             this.name = name;
             this.role = role;
             this.onHoliday = onHoliday;
         }
     }
-    private Employee[] employees = new Employee[] {
+
+    private Employee[] employees = new Employee[]{
         new Employee("Luis J. Burrus", "FOH", false),
         new Employee("Richard K. Moreno", "FOH", true),
         new Employee("Edward J. Villacorta", "FOH", false),
@@ -77,7 +80,7 @@ public class Staff extends JPanel {
         constraints.gridx = 1;
         constraints.gridwidth = 6;
 
-        Navbar navbar = new Navbar("Staff", event -> {
+        CNavbar navbar = new CNavbar("Staff", event -> {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Home.name());
         });
@@ -91,20 +94,16 @@ public class Staff extends JPanel {
         panelMain.setBackground(new Color(0x2b3336));
         mainConstraints.insets = new Insets(8, 16, 8, 16);
 
-        for(Employee employee : this.employees) {
+        for (Employee employee : this.employees) {
             mainConstraints.gridy++;
             mainConstraints.gridx = 0;
 
-            JLabel labelName = new JLabel(employee.name);
-            labelName.setForeground(new Color(0xaaaaaa));
-            labelName.setFont(Resources.getFont(20));
+            CLabel labelName = new CLabel(employee.name);
             mainConstraints.gridx++;
             mainConstraints.anchor = GridBagConstraints.WEST;
             panelMain.add(labelName, mainConstraints);
 
-            JLabel labelRole = new JLabel(employee.role);
-            labelRole.setForeground(new Color(0xaaaaaa));
-            labelRole.setFont(Resources.getFont(20));
+            CLabel labelRole = new CLabel(employee.role);
             mainConstraints.gridx++;
             mainConstraints.anchor = GridBagConstraints.CENTER;
             panelMain.add(labelRole, mainConstraints);
@@ -139,9 +138,7 @@ public class Staff extends JPanel {
         constraints.insets = new Insets(10, 10, 10, 10);
         constraints.anchor = GridBagConstraints.EAST;
 
-        JLabel labelHalfHour = new JLabel("Half Hour Limit");
-        labelHalfHour.setForeground(new Color(0xaaaaaa));
-        labelHalfHour.setFont(Resources.getFont(20));
+        CLabel labelHalfHour = new CLabel("Half Hour Limit");
         constraints.gridx++;
         constraints.fill = GridBagConstraints.VERTICAL;
         this.add(labelHalfHour, constraints);
@@ -152,9 +149,7 @@ public class Staff extends JPanel {
         constraints.fill = GridBagConstraints.BOTH;
         this.add(spinnerHalfHour, constraints);
 
-        JLabel labelPreBook = new JLabel("Pre Book Limit");
-        labelPreBook.setForeground(new Color(0xaaaaaa));
-        labelPreBook.setFont(Resources.getFont(20));
+        CLabel labelPreBook = new CLabel("Pre Book Limit");
         constraints.gridx++;
         constraints.fill = GridBagConstraints.VERTICAL;
         this.add(labelPreBook, constraints);
@@ -164,9 +159,7 @@ public class Staff extends JPanel {
         constraints.fill = GridBagConstraints.BOTH;
         this.add(spinnerPreBook, constraints);
 
-        JLabel labelMaxDining = new JLabel("Max Dining Limit");
-        labelMaxDining.setForeground(new Color(0xaaaaaa));
-        labelMaxDining.setFont(Resources.getFont(20));
+        CLabel labelMaxDining = new CLabel("Max Dining Limit");
         constraints.gridx++;
         constraints.fill = GridBagConstraints.VERTICAL;
         this.add(labelMaxDining, constraints);

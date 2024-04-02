@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Home extends JPanel {
-
     public Home(JPanel screens) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
@@ -19,13 +18,7 @@ public class Home extends JPanel {
         panelUser.setBackground(new Color(0x2b3336));
         userConstraints.fill = GridBagConstraints.HORIZONTAL;
 
-        JButton buttonLogout = new JButton("Logout");
-        buttonLogout.setForeground(new Color(0x2b3336));
-        buttonLogout.setBackground(new Color(0xaaaaaa));
-        buttonLogout.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
-        buttonLogout.setFont(Resources.getFont(20));
-        buttonLogout.setFocusPainted(false);
-        buttonLogout.addActionListener(event -> {
+        CButton buttonLogout = new CButton("Logout", event -> {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Login.name());
         });
@@ -34,9 +27,7 @@ public class Home extends JPanel {
         userConstraints.insets = new Insets(0, 0, 0, 10);
         panelUser.add(buttonLogout, userConstraints);
 
-        JLabel labelUser = new JLabel("User: " + "lancaster");
-        labelUser.setForeground(new Color(0xaaaaaa));
-        labelUser.setFont(Resources.getFont(20));
+        CLabel labelUser = new CLabel("User: " + "lancaster");
         userConstraints.gridx++;
         userConstraints.weightx = 0;
         userConstraints.insets = new Insets(0, 0, 0, 0);
@@ -57,7 +48,7 @@ public class Home extends JPanel {
         constraints.anchor = GridBagConstraints.CENTER;
         this.add(panelUser, constraints);
 
-        Logo logo = new Logo(400, 400);
+        CLogo logo = new CLogo(400, 400);
         logo.setBorder(null);
         constraints.gridx = 1;
         constraints.gridy = 1;
@@ -77,65 +68,56 @@ public class Home extends JPanel {
         buttonConstraints.weighty = 1;
         buttonConstraints.insets = new Insets(10, 0, 10, 0);
 
-        JButton buttonStaff = new JButton("Staff");
-        buttonStaff.setForeground(new Color(0xcccccc));
-        buttonStaff.setBackground(new Color(0x557b8a));
-        buttonStaff.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
-        buttonStaff.setFont(Resources.getFont(26));
-        buttonStaff.setFocusPainted(false);
-        buttonStaff.addActionListener(event -> {
+        CButton buttonStaff = new CButton("Staff", event -> {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Staff.name());
         });
+        buttonStaff.setForeground(new Color(0xcccccc));
+        buttonStaff.setBackground(new Color(0x557b8a));
         buttonConstraints.gridy++;
         panelButtons.add(buttonStaff, buttonConstraints);
 
-        JButton buttonWines = new JButton("Wines");
+        CButton buttonWines = new CButton("Wines", event -> {
+            CardLayout cl = (CardLayout) screens.getLayout();
+            cl.show(screens, Screen.Wines.name());
+        });
         buttonWines.setForeground(new Color(0xcccccc));
         buttonWines.setBackground(new Color(0x557b8a));
-        buttonWines.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
-        buttonWines.setFont(Resources.getFont(26));
-        buttonWines.setFocusPainted(false);
         buttonConstraints.gridy++;
         panelButtons.add(buttonWines, buttonConstraints);
 
-        JButton buttonMenus = new JButton("Menus");
-        buttonMenus.setForeground(new Color(0xcccccc));
-        buttonMenus.setBackground(new Color(0x557b8a));
-        buttonMenus.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
-        buttonMenus.setFont(Resources.getFont(26));
-        buttonMenus.setFocusPainted(false);
-        buttonMenus.addActionListener(event -> {
+        CButton buttonMenus = new CButton("Menus", event -> {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Menus.name());
         });
+        buttonMenus.setForeground(new Color(0xcccccc));
+        buttonMenus.setBackground(new Color(0x557b8a));
         buttonConstraints.gridy++;
         panelButtons.add(buttonMenus, buttonConstraints);
 
-        JButton buttonInventory = new JButton("Inventory");
+        CButton buttonInventory = new CButton("Inventory", event -> {
+            CardLayout cl = (CardLayout) screens.getLayout();
+            cl.show(screens, Screen.Inventory.name());
+        });
         buttonInventory.setForeground(new Color(0xcccccc));
         buttonInventory.setBackground(new Color(0x557b8a));
-        buttonInventory.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
-        buttonInventory.setFont(Resources.getFont(26));
-        buttonInventory.setFocusPainted(false);
         buttonConstraints.gridy++;
         panelButtons.add(buttonInventory, buttonConstraints);
 
-        JButton buttonSales = new JButton("Sales");
+        CButton buttonSales = new CButton("Sales", event -> {
+            CardLayout cl = (CardLayout) screens.getLayout();
+            cl.show(screens, Screen.Sales.name());
+        });
         buttonSales.setForeground(new Color(0xcccccc));
         buttonSales.setBackground(new Color(0x557b8a));
-        buttonSales.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
-        buttonSales.setFont(Resources.getFont(26));
-        buttonSales.setFocusPainted(false);
         buttonConstraints.gridy++;
         panelButtons.add(buttonSales, buttonConstraints);
 
-        JButton buttonPayroll = new JButton("Payroll & HR");
+        CButton buttonPayroll = new CButton("Payroll & HR", event -> {
+            // TODO: Open external webpage?
+        });
         buttonPayroll.setForeground(new Color(0xcccccc));
         buttonPayroll.setBackground(new Color(0x557b8a));
-        buttonPayroll.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
-        buttonPayroll.setFont(Resources.getFont(26));
-        buttonPayroll.setFocusPainted(false);
         buttonConstraints.gridy++;
         panelButtons.add(buttonPayroll, buttonConstraints);
 

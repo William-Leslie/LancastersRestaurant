@@ -12,7 +12,7 @@ public class Splash extends JPanel {
         this.setBackground(new Color(0x2b3336));
         constraints.fill = GridBagConstraints.HORIZONTAL;
 
-        Logo logo = new Logo(400, 400);
+        CLogo logo = new CLogo(400, 400);
         constraints.gridy++;
         constraints.insets = new Insets(0, 0, 0, 0);
         this.add(logo, constraints);

@@ -4,7 +4,6 @@ import Components.*;
 import Resources.*;
 
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 public class Inventory extends JPanel {
@@ -44,7 +43,7 @@ public class Inventory extends JPanel {
         topbarConstraints.fill = GridBagConstraints.VERTICAL;
         panelTopbar.add(Box.createHorizontalGlue(), topbarConstraints);
 
-        Logo logo = new Logo(100, 100);
+        CLogo logo = new CLogo(100, 100);
         logo.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         logo.setPreferredSize(new Dimension(100, 50));
         topbarConstraints.gridx++;

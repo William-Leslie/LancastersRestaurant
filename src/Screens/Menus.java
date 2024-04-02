@@ -12,7 +12,7 @@ public class Menus extends JPanel {
         this.setBackground(new Color(0x2b3336));
         constraints.fill = GridBagConstraints.HORIZONTAL;
 
-        Navbar navbar = new Navbar("Menus", event -> {
+        CNavbar navbar = new CNavbar("Menus", event -> {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Home.name());
         });
