@@ -15,25 +15,39 @@ public class Home extends JPanel {
         JPanel panelUser = new JPanel(new GridBagLayout());
         GridBagConstraints userConstraints = new GridBagConstraints();
         panelUser.setBackground(new Color(0x2b3336));
-        userConstraints.fill = GridBagConstraints.HORIZONTAL;
+        userConstraints.fill = GridBagConstraints.BOTH;
 
         CButton buttonLogout = new CButton("Logout", event -> {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Login.name());
         });
-        buttonLogout.setPreferredSize(new Dimension(100, 50));
-        userConstraints.gridx++;
+        buttonLogout.setPreferredSize(new Dimension(150, 0));
+        userConstraints.gridx = 1;
+        userConstraints.gridy = 1;
+        userConstraints.gridheight = 2;
         userConstraints.weightx = 0;
         userConstraints.insets = new Insets(0, 0, 0, 10);
         panelUser.add(buttonLogout, userConstraints);
 
         CLabel labelUser = new CLabel("User: " + "lancaster");
-        userConstraints.gridx++;
+        userConstraints.gridx = 2;
+        userConstraints.gridy = 1;
+        userConstraints.gridheight = 1;
         userConstraints.weightx = 0;
         userConstraints.insets = new Insets(0, 0, 0, 0);
         panelUser.add(labelUser, userConstraints);
 
-        userConstraints.gridx++;
+        CLabel labelRole = new CLabel("Role: " + "admin");
+        userConstraints.gridx = 2;
+        userConstraints.gridy = 2;
+        userConstraints.gridheight = 1;
+        userConstraints.weightx = 0;
+        userConstraints.insets = new Insets(0, 0, 0, 0);
+        panelUser.add(labelRole, userConstraints);
+
+        userConstraints.gridx = 3;
+        userConstraints.gridy = 1;
+        userConstraints.gridheight = 2;
         userConstraints.weightx = 1;
         panelUser.add(Box.createHorizontalGlue(), userConstraints);
 
