@@ -18,6 +18,7 @@ public class Main extends JFrame {
         screens.add(new Staff(screens), Screen.Staff.name());
         // screens.add(new Wines(screens), Screen.Wines.name());
         screens.add(new Menus(screens), Screen.Menus.name());
+        screens.add(new EditMenu(screens), Screen.EditMenu.name());
         screens.add(new Inventory(screens), Screen.Inventory.name());
         // screens.add(new Sales(screens), Screen.Sales.name());
 

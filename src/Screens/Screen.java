@@ -7,6 +7,7 @@ public enum Screen {
     Staff,
     Wines,
     Menus,
+    EditMenu,
     Inventory,
     Sales,
 }
