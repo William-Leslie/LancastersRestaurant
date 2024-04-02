@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Staff extends JPanel {
-    // Dummy data
+    // FIXME: Dummy data
     private static class Employee {
         public String name;
         public String role;
@@ -19,57 +19,6 @@ public class Staff extends JPanel {
             this.onHoliday = onHoliday;
         }
     }
-
-    private Employee[] employees = new Employee[]{
-        new Employee("Luis J. Burrus", "FOH", false),
-        new Employee("Richard K. Moreno", "FOH", true),
-        new Employee("Edward J. Villacorta", "FOH", false),
-        new Employee("Cecelia D. Nolasco", "Kitchen", false),
-        new Employee("John V. Roe", "Kitchen", false),
-        new Employee("Bessie D. Fisk", "Kitchen", true),
-        new Employee("Jolene K. Lang", "Management", false),
-        new Employee("Gregg T. Edwards", "Management", true),
-        new Employee("Luis J. Burrus", "FOH", false),
-        new Employee("Richard K. Moreno", "FOH", true),
-        new Employee("Edward J. Villacorta", "FOH", false),
-        new Employee("Cecelia D. Nolasco", "Kitchen", false),
-        new Employee("John V. Roe", "Kitchen", false),
-        new Employee("Bessie D. Fisk", "Kitchen", true),
-        new Employee("Jolene K. Lang", "Management", false),
-        new Employee("Gregg T. Edwards", "Management", true),
-        new Employee("Luis J. Burrus", "FOH", false),
-        new Employee("Richard K. Moreno", "FOH", true),
-        new Employee("Edward J. Villacorta", "FOH", false),
-        new Employee("Cecelia D. Nolasco", "Kitchen", false),
-        new Employee("John V. Roe", "Kitchen", false),
-        new Employee("Bessie D. Fisk", "Kitchen", true),
-        new Employee("Jolene K. Lang", "Management", false),
-        new Employee("Gregg T. Edwards", "Management", true),
-        new Employee("Luis J. Burrus", "FOH", false),
-        new Employee("Richard K. Moreno", "FOH", true),
-        new Employee("Edward J. Villacorta", "FOH", false),
-        new Employee("Cecelia D. Nolasco", "Kitchen", false),
-        new Employee("John V. Roe", "Kitchen", false),
-        new Employee("Bessie D. Fisk", "Kitchen", true),
-        new Employee("Jolene K. Lang", "Management", false),
-        new Employee("Gregg T. Edwards", "Management", true),
-        new Employee("Luis J. Burrus", "FOH", false),
-        new Employee("Richard K. Moreno", "FOH", true),
-        new Employee("Edward J. Villacorta", "FOH", false),
-        new Employee("Cecelia D. Nolasco", "Kitchen", false),
-        new Employee("John V. Roe", "Kitchen", false),
-        new Employee("Bessie D. Fisk", "Kitchen", true),
-        new Employee("Jolene K. Lang", "Management", false),
-        new Employee("Gregg T. Edwards", "Management", true),
-        new Employee("Luis J. Burrus", "FOH", false),
-        new Employee("Richard K. Moreno", "FOH", true),
-        new Employee("Edward J. Villacorta", "FOH", false),
-        new Employee("Cecelia D. Nolasco", "Kitchen", false),
-        new Employee("John V. Roe", "Kitchen", false),
-        new Employee("Bessie D. Fisk", "Kitchen", true),
-        new Employee("Jolene K. Lang", "Management", false),
-        new Employee("Gregg T. Edwards", "Management", true),
-    };
 
     public Staff(JPanel screens) {
         super(new GridBagLayout());
@@ -94,7 +43,58 @@ public class Staff extends JPanel {
         panelMain.setBackground(new Color(0x2b3336));
         mainConstraints.insets = new Insets(8, 16, 8, 16);
 
-        for (Employee employee : this.employees) {
+        // FIXME: Dummy data
+        Employee[] employees = new Employee[]{
+            new Employee("Luis J. Burrus", "FOH", false),
+            new Employee("Richard K. Moreno", "FOH", true),
+            new Employee("Edward J. Villacorta", "FOH", false),
+            new Employee("Cecelia D. Nolasco", "Kitchen", false),
+            new Employee("John V. Roe", "Kitchen", false),
+            new Employee("Bessie D. Fisk", "Kitchen", true),
+            new Employee("Jolene K. Lang", "Management", false),
+            new Employee("Gregg T. Edwards", "Management", true),
+            new Employee("Luis J. Burrus", "FOH", false),
+            new Employee("Richard K. Moreno", "FOH", true),
+            new Employee("Edward J. Villacorta", "FOH", false),
+            new Employee("Cecelia D. Nolasco", "Kitchen", false),
+            new Employee("John V. Roe", "Kitchen", false),
+            new Employee("Bessie D. Fisk", "Kitchen", true),
+            new Employee("Jolene K. Lang", "Management", false),
+            new Employee("Gregg T. Edwards", "Management", true),
+            new Employee("Luis J. Burrus", "FOH", false),
+            new Employee("Richard K. Moreno", "FOH", true),
+            new Employee("Edward J. Villacorta", "FOH", false),
+            new Employee("Cecelia D. Nolasco", "Kitchen", false),
+            new Employee("John V. Roe", "Kitchen", false),
+            new Employee("Bessie D. Fisk", "Kitchen", true),
+            new Employee("Jolene K. Lang", "Management", false),
+            new Employee("Gregg T. Edwards", "Management", true),
+            new Employee("Luis J. Burrus", "FOH", false),
+            new Employee("Richard K. Moreno", "FOH", true),
+            new Employee("Edward J. Villacorta", "FOH", false),
+            new Employee("Cecelia D. Nolasco", "Kitchen", false),
+            new Employee("John V. Roe", "Kitchen", false),
+            new Employee("Bessie D. Fisk", "Kitchen", true),
+            new Employee("Jolene K. Lang", "Management", false),
+            new Employee("Gregg T. Edwards", "Management", true),
+            new Employee("Luis J. Burrus", "FOH", false),
+            new Employee("Richard K. Moreno", "FOH", true),
+            new Employee("Edward J. Villacorta", "FOH", false),
+            new Employee("Cecelia D. Nolasco", "Kitchen", false),
+            new Employee("John V. Roe", "Kitchen", false),
+            new Employee("Bessie D. Fisk", "Kitchen", true),
+            new Employee("Jolene K. Lang", "Management", false),
+            new Employee("Gregg T. Edwards", "Management", true),
+            new Employee("Luis J. Burrus", "FOH", false),
+            new Employee("Richard K. Moreno", "FOH", true),
+            new Employee("Edward J. Villacorta", "FOH", false),
+            new Employee("Cecelia D. Nolasco", "Kitchen", false),
+            new Employee("John V. Roe", "Kitchen", false),
+            new Employee("Bessie D. Fisk", "Kitchen", true),
+            new Employee("Jolene K. Lang", "Management", false),
+            new Employee("Gregg T. Edwards", "Management", true),
+        };
+        for (Employee employee : employees) {
             mainConstraints.gridy++;
             mainConstraints.gridx = 0;
 

@@ -1,9 +1,7 @@
 package Resources;
 
 import javax.imageio.*;
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.image.*;
 import java.io.*;
 
