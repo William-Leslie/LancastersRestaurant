@@ -55,6 +55,7 @@ public class Login extends JPanel {
                 JOptionPane.showMessageDialog(this, "Invalid login credentials!");
             }
         });
+        buttonLogin.setPreferredSize(new Dimension(0, 50));
         constraints.gridy++;
         constraints.insets = new Insets(30, 0, 0, 0);
         this.add(buttonLogin, constraints);

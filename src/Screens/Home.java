@@ -21,8 +21,9 @@ public class Home extends JPanel {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Login.name());
         });
+        buttonLogout.setPreferredSize(new Dimension(100, 50));
         userConstraints.gridx++;
-        userConstraints.weightx = 1;
+        userConstraints.weightx = 0;
         userConstraints.insets = new Insets(0, 0, 0, 10);
         panelUser.add(buttonLogout, userConstraints);
 
@@ -33,7 +34,7 @@ public class Home extends JPanel {
         panelUser.add(labelUser, userConstraints);
 
         userConstraints.gridx++;
-        userConstraints.weightx = 10;
+        userConstraints.weightx = 1;
         panelUser.add(Box.createHorizontalGlue(), userConstraints);
 
         // Add the user panel to this screen

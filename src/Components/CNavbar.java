@@ -11,10 +11,11 @@ public class CNavbar extends JPanel {
         this.setBackground(new Color(0x2b3336));
 
         CButton buttonBack = new CButton("Back", backAction);
+        buttonBack.setPreferredSize(new Dimension(150, 0));
         constraints.gridx++;
         constraints.gridy = 1;
         constraints.gridheight = 2;
-        constraints.weightx = 2;
+        constraints.weightx = 0;
         constraints.insets = new Insets(0, 0, 0, 0);
         constraints.fill = GridBagConstraints.BOTH;
         this.add(buttonBack, constraints);
@@ -22,7 +23,7 @@ public class CNavbar extends JPanel {
         constraints.gridx++;
         constraints.gridy = 1;
         constraints.gridheight = 2;
-        constraints.weightx = 5;
+        constraints.weightx = 1;
         constraints.insets = new Insets(0, 0, 0, 0);
         constraints.fill = GridBagConstraints.VERTICAL;
         this.add(Box.createHorizontalGlue(), constraints);
@@ -49,7 +50,7 @@ public class CNavbar extends JPanel {
         constraints.gridx++;
         constraints.gridy = 1;
         constraints.gridheight = 2;
-        constraints.weightx = 5;
+        constraints.weightx = 1;
         constraints.insets = new Insets(0, 0, 0, 0);
         constraints.fill = GridBagConstraints.VERTICAL;
         this.add(Box.createHorizontalGlue(), constraints);
