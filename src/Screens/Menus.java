@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.time.*;
-import java.time.format.*;
 
 public class Menus extends JPanel {
     public Menus(JPanel screens) {
@@ -57,12 +56,7 @@ public class Menus extends JPanel {
                 panelMenu.setBackground(new Color(0x455a61));
             }
 
-            CLabel labelDate = new CLabel(
-                monday.format(DateTimeFormatter.ISO_LOCAL_DATE)
-                    + "  to  "
-                    + monday.plusDays(7).format(DateTimeFormatter.ISO_LOCAL_DATE),
-                26
-            );
+            CLabel labelDate = new CLabel(CDate.of(monday) + "  to  " + CDate.of(monday.plusDays(6)), 26);
             labelDate.setForeground(new Color(0xcccccc));
             menuConstraints.gridx = 1;
             menuConstraints.gridy = 1;
