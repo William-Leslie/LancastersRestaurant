@@ -38,7 +38,9 @@ public class EditMenu extends JPanel {
         constraints.weightx = 1;
 
         CNavbar navbar = new CNavbar("Edit Menu", event -> {
+            // TODO: Track edits, show warning if backing out with edits
             CardLayout cl = (CardLayout) screens.getLayout();
+            // TODO: Should this go to Home instead? IMO no but maybe?
             cl.show(screens, Screen.Menus.name());
         });
         constraints.gridy = 1;
@@ -116,7 +118,7 @@ public class EditMenu extends JPanel {
                 panelDish.add(labelDishPrice, dishConstraints);
 
                 // FIXME: Add decimals and £ symbol to spinner
-                // TODO: Theme JSpinner
+                // FIXME: Theme JSpinner
                 JSpinner spinnerDishPrice = new JSpinner(new SpinnerNumberModel(dish.price, 0, 99, 1));
                 dishConstraints.gridx = 3;
                 dishConstraints.gridwidth = 1;
@@ -135,6 +137,7 @@ public class EditMenu extends JPanel {
                 dishConstraints.insets = new Insets(0, 16, 8, 16);
                 panelDish.add(areaDescription, dishConstraints);
 
+                // TODO: Remove allergens, assign automatically based on ingredients
                 JPanel panelDishAllergens = new JPanel(new GridBagLayout());
                 GridBagConstraints dishAllergenConstraints = new GridBagConstraints();
                 panelDishAllergens.setBackground(new Color(0x557b8a));
@@ -178,5 +181,7 @@ public class EditMenu extends JPanel {
         constraints.weighty = 1;
         constraints.insets = new Insets(10, 10, 10, 10);
         this.add(scrollMain, constraints);
+
+        // TODO: Add overlay button for Save/Update at the bottom, mark enabled/disabled based on edits
     }
 }

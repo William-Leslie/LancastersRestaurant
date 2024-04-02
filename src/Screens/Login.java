@@ -25,6 +25,7 @@ public class Login extends JPanel {
         this.add(labelUsername, constraints);
 
         // Username field
+        // FIXME: Enter should login
         CTextField fieldUsername = new CTextField();
         constraints.gridy++;
         constraints.insets = new Insets(0, 0, 0, 0);
@@ -37,6 +38,7 @@ public class Login extends JPanel {
         this.add(labelPassword, constraints);
 
         // Password field
+        // FIXME: Enter should login
         CPasswordField fieldPassword = new CPasswordField();
         constraints.gridy++;
         constraints.insets = new Insets(0, 0, 0, 0);

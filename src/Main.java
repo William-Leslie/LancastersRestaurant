@@ -27,6 +27,7 @@ public class Main extends JFrame {
         cl.show(screens, Screen.Splash.name());
 
         // Switch to log in screen after 3 seconds
+        // FIXME: Allow skipping by clicking (maybe move this logic into Splash screen itself?)
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
                     @Override

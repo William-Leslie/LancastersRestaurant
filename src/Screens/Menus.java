@@ -56,6 +56,8 @@ public class Menus extends JPanel {
                 panelMenu.setBackground(new Color(0x455a61));
             }
 
+            // TODO: Show if approved and sent to FOH
+
             CLabel labelDate = new CLabel(CDate.of(monday) + "  to  " + CDate.of(monday.plusDays(6)), 26);
             labelDate.setForeground(new Color(0xcccccc));
             menuConstraints.gridx = 1;

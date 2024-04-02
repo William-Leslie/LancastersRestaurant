@@ -26,6 +26,7 @@ public class Inventory extends JPanel {
         this.add(navbar, constraints);
 
         // FIXME: Dummy data
+        // TODO: Add units and prices
         String[][] ingredientsData = {
             {"Milk", "10", "20"},
             {"Egg", "20", "15"},
@@ -33,7 +34,7 @@ public class Inventory extends JPanel {
         };
         String[] IngredientsHeader = {"Ingredient", "In Stock", "Minimum Stock"};
 
-        // TODO: Theming JTable
+        // FIXME: Theme JTable
         JTable tableInventory = new JTable(ingredientsData, IngredientsHeader);
         tableInventory.setForeground(new Color(0x2b3336));
         tableInventory.setRowHeight(30);

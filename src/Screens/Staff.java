@@ -43,6 +43,9 @@ public class Staff extends JPanel {
         panelMain.setBackground(new Color(0x2b3336));
         mainConstraints.insets = new Insets(8, 16, 8, 16);
 
+        // TODO: Add date selector
+        // TODO: Rework holiday handling
+
         // FIXME: Dummy data
         Employee[] employees = new Employee[]{
             new Employee("Luis J. Burrus", "FOH", false),
@@ -108,7 +111,7 @@ public class Staff extends JPanel {
             mainConstraints.anchor = GridBagConstraints.CENTER;
             panelMain.add(labelRole, mainConstraints);
 
-            // TODO: Theming JCheckBox
+            // FIXME: Theme JCheckBox
             JCheckBox checkboxHoliday = new JCheckBox("On Holiday", employee.onHoliday);
             checkboxHoliday.setForeground(new Color(0xaaaaaa));
             checkboxHoliday.setBackground(new Color(0x2b3336));
@@ -127,6 +130,7 @@ public class Staff extends JPanel {
         this.add(scrollMain, constraints);
 
         // Parameters on bottom
+        // TODO: Limit parameters should be date based
         constraints.weighty = 0;
         constraints.gridy = 3;
         constraints.gridx = 0;
@@ -139,7 +143,7 @@ public class Staff extends JPanel {
         constraints.fill = GridBagConstraints.VERTICAL;
         this.add(labelHalfHour, constraints);
 
-        // TODO: Theming JSpinners
+        // FIXME: Theme JSpinner
         JSpinner spinnerHalfHour = new JSpinner(new SpinnerNumberModel(6, 0, 99, 1));
         constraints.gridx++;
         constraints.fill = GridBagConstraints.BOTH;
@@ -150,6 +154,7 @@ public class Staff extends JPanel {
         constraints.fill = GridBagConstraints.VERTICAL;
         this.add(labelPreBook, constraints);
 
+        // FIXME: Theme JSpinner
         JSpinner spinnerPreBook = new JSpinner(new SpinnerNumberModel(10, 0, 99, 1));
         constraints.gridx++;
         constraints.fill = GridBagConstraints.BOTH;
@@ -160,6 +165,7 @@ public class Staff extends JPanel {
         constraints.fill = GridBagConstraints.VERTICAL;
         this.add(labelMaxDining, constraints);
 
+        // FIXME: Theme JSpinner
         JSpinner spinnerMaxDining = new JSpinner(new SpinnerNumberModel(18, 0, 99, 1));
         constraints.gridx++;
         constraints.fill = GridBagConstraints.BOTH;

@@ -29,6 +29,8 @@ public class Sales extends JPanel {
         mainConstraints.weightx = 1;
         mainConstraints.insets = new Insets(16, 16, 16, 16);
 
+        // TODO: Add sales graphs and statistics
+
         mainConstraints.gridy++;
         mainConstraints.weighty = 1;
         panelMain.add(Box.createVerticalGlue(), mainConstraints);
