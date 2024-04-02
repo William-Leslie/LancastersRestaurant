@@ -37,7 +37,7 @@ public class CNavbar extends JPanel {
         constraints.fill = GridBagConstraints.VERTICAL;
         this.add(logo, constraints);
 
-        CLabel labelTitle = new CLabel(title);
+        CLabel labelTitle = new CLabel(title, 32);
         constraints.gridx++;
         constraints.gridy = 1;
         constraints.gridheight = 2;
