@@ -4,7 +4,9 @@ import Components.*;
 import Resources.*;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.List;
 
 public class Inventory extends JPanel {
     public Inventory(JPanel screens) {
@@ -27,15 +29,17 @@ public class Inventory extends JPanel {
 
         // FIXME: Dummy data
         // TODO: Add units and prices
-        String[][] ingredientsData = {
+       /* String[][] ingredientsData = {
             {"Milk", "10", "20"},
             {"Egg", "20", "15"},
             {"Flour", "30", "10"},
-        };
-        String[] IngredientsHeader = {"Ingredient", "In Stock", "Minimum Stock"};
+        };*/
+        List<Object[]> data = Database.getIngredientsTable();
+        String[] IngredientsHeader = {"IngredientID", "Ingredient Name", "Quantity", "StockLevel","LowStockThreshold"};
 
+        DefaultTableModel model = new DefaultTableModel(data.toArray(new Object[0][]), IngredientsHeader);
         // FIXME: Theme JTable
-        JTable tableInventory = new JTable(ingredientsData, IngredientsHeader);
+        JTable tableInventory = new JTable(model);
         tableInventory.setForeground(new Color(0x2b3336));
         tableInventory.setRowHeight(30);
         tableInventory.setFont(Resources.getFont(20));
