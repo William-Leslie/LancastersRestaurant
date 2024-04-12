@@ -17,11 +17,13 @@ public class Sales extends JPanel {
     private ChartPanel chartPanel1;
     private ChartPanel chartPanel2;
     private ChartPanel chartPanel3;
-    private ChartPanel chartPanel4;
 
     private DefaultCategoryDataset dishData;
     private DefaultCategoryDataset takingsData;
     private DefaultCategoryDataset bookingDataCombined;
+    private JFreeChart chart1;
+    private JFreeChart chart2;
+    private JFreeChart chart3;
     public Sales(JPanel screens) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
@@ -82,7 +84,7 @@ public class Sales extends JPanel {
         updateData("day");
 
         // Create charts
-        JFreeChart chart1 = ChartFactory.createBarChart(
+        chart1 = ChartFactory.createBarChart(
                 "Most Popular Dishes",
                 "Amount",
                 "Dish",
@@ -90,7 +92,7 @@ public class Sales extends JPanel {
                 PlotOrientation.VERTICAL,
                 true, true, false);
 
-        JFreeChart chart2 = ChartFactory.createBarChart(
+        chart2 = ChartFactory.createBarChart(
                 "Takings",
                 "Date",
                 "Amount",
@@ -98,7 +100,7 @@ public class Sales extends JPanel {
                 PlotOrientation.VERTICAL,
                 true, true, false);
 
-        JFreeChart chart3 = ChartFactory.createBarChart(
+        chart3 = ChartFactory.createBarChart(
                 "Booking Combined",
                 "Date",
                 "Amount",
@@ -181,7 +183,7 @@ public class Sales extends JPanel {
                 bookingDataCombined.addValue(130, "Phone", "Thursday");
 
                 break;
-            case "month":
+            case "month": //Instead of doing Week 1 etc could do starting day of week e.g. 08/04/2024 - 14/04/2024
                 takingsData.addValue(120, "Takings", "Week 1");
                 takingsData.addValue(100, "Takings", "Week 2");
                 takingsData.addValue(160, "Takings", "Week 3");
@@ -201,6 +203,12 @@ public class Sales extends JPanel {
                 takingsData.addValue(120, "Takings", "October");
                 takingsData.addValue(120, "Takings", "November");
                 takingsData.addValue(120, "Takings", "December");
+
+                //If labels are touching too much use this to rotate:
+                //CategoryPlot plot2 = (CategoryPlot) chart2.getPlot();
+                //CategoryAxis xAxis2 = plot2.getDomainAxis();
+                //xAxis2.setCategoryLabelPositions(CategoryLabelPositions.UP_90);
+
                 break;
             default:
                 break;
