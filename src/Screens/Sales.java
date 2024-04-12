@@ -14,9 +14,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Sales extends JPanel {
-    private ChartPanel chartPanel1;
-    private ChartPanel chartPanel2;
-    private ChartPanel chartPanel3;
 
     private DefaultCategoryDataset dishData;
     private DefaultCategoryDataset takingsData;
@@ -55,24 +52,16 @@ public class Sales extends JPanel {
         JPanel buttonPanel = new JPanel(new GridLayout(1, 4));
         buttonPanel.setBackground(new Color(0x2b3336));
 
-        CButton day = new CButton("Day", e -> {
-            updateData("day");
-        });
+        CButton day = new CButton("Day", e -> updateData("day"));
         buttonPanel.add(day);
 
-        CButton week = new CButton("Week", e -> {
-            updateData("week");
-        });
+        CButton week = new CButton("Week", e -> updateData("week"));
         buttonPanel.add(week);
 
-        CButton month = new CButton("Month", e -> {
-            updateData("month");
-        });
+        CButton month = new CButton("Month", e -> updateData("month"));
         buttonPanel.add(month);
 
-        CButton year = new CButton("Year", e -> {
-            updateData("year");
-        });
+        CButton year = new CButton("Year", e -> updateData("year"));
         buttonPanel.add(year);
 
         // Add the buttonPanel to the main panel
@@ -109,19 +98,19 @@ public class Sales extends JPanel {
                 true, true, false);
 
         // Create ChartPanel for first chart
-        chartPanel1 = new ChartPanel(chart1);
+        ChartPanel chartPanel1 = new ChartPanel(chart1);
         chartPanel1.setPreferredSize(new java.awt.Dimension(560, 367));
         mainConstraints.gridy = 1;
         panelMain.add(chartPanel1, mainConstraints);
 
         // Create ChartPanel for second chart
-        chartPanel2 = new ChartPanel(chart2);
+        ChartPanel chartPanel2 = new ChartPanel(chart2);
         chartPanel2.setPreferredSize(new java.awt.Dimension(560, 367));
         mainConstraints.gridy = 2;
         panelMain.add(chartPanel2, mainConstraints);
 
         // Create ChartPanel for second chart
-        chartPanel3 = new ChartPanel(chart3);
+        ChartPanel chartPanel3 = new ChartPanel(chart3);
         chartPanel3.setPreferredSize(new java.awt.Dimension(560, 367));
         mainConstraints.gridy = 3;
         panelMain.add(chartPanel3, mainConstraints);
@@ -183,7 +172,7 @@ public class Sales extends JPanel {
                 bookingDataCombined.addValue(130, "Phone", "Thursday");
 
                 break;
-            case "month": //Instead of doing Week 1 etc could do starting day of week e.g. 08/04/2024 - 14/04/2024
+            case "month": //Instead of doing Week 1 etc. could do starting day of week e.g. 08/04/2024 - 14/04/2024
                 takingsData.addValue(120, "Takings", "Week 1");
                 takingsData.addValue(100, "Takings", "Week 2");
                 takingsData.addValue(160, "Takings", "Week 3");
