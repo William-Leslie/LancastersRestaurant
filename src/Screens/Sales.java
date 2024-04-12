@@ -193,7 +193,7 @@ public class Sales extends JPanel {
                 takingsData.addValue(120, "Takings", "November");
                 takingsData.addValue(120, "Takings", "December");
 
-                //If labels are touching too much use this to rotate:
+                //If labels are touching too much use this to rotatename labels:
                 //CategoryPlot plot2 = (CategoryPlot) chart2.getPlot();
                 //CategoryAxis xAxis2 = plot2.getDomainAxis();
                 //xAxis2.setCategoryLabelPositions(CategoryLabelPositions.UP_90);
