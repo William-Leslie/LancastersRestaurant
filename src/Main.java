@@ -24,6 +24,7 @@ public class Main extends JFrame {
 
         // Show splash screen
         CardLayout cl = (CardLayout) screens.getLayout();
+        //cl.show(screens, Screen.Splash.name());
         cl.show(screens, Screen.Splash.name());
 
         // Switch to log in screen after 3 seconds
@@ -45,7 +46,8 @@ public class Main extends JFrame {
 
         // Set main window configuration
         this.setLocationRelativeTo(null);
-        this.setMinimumSize(new Dimension(800, 800));
+        this.setMinimumSize(new Dimension(1100, 700));
+        this.setMaximumSize(new Dimension(1100, 700));
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 

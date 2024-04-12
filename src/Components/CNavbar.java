@@ -1,5 +1,7 @@
 package Components;
 
+import Resources.Colors;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -8,7 +10,7 @@ public class CNavbar extends JPanel {
     public CNavbar(String title, ActionListener backAction) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
-        this.setBackground(new Color(0x2b3336));
+        this.setBackground(Colors.primary);
 
         CButton buttonBack = new CButton("Back", backAction);
         buttonBack.setPreferredSize(new Dimension(150, 0));

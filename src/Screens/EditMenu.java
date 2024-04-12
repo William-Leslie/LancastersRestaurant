@@ -108,7 +108,7 @@ public class EditMenu extends JPanel {
                 dishConstraints.insets = new Insets(16, 16, 16, 16);
                 panelDish.add(fieldDishName, dishConstraints);
 
-                CLabel labelDishPrice = new CLabel("Suggested: " + CPrice.of(dish.price) + "    Price: ", 18);
+                CLabel labelDishPrice = new CLabel("Suggested: " + CPrice.of(dish.price) + "    Price: £", 18);
                 labelDishPrice.setForeground(new Color(0xcccccc));
                 dishConstraints.gridx = 2;
                 dishConstraints.gridwidth = 1;
@@ -150,11 +150,24 @@ public class EditMenu extends JPanel {
                 dishAllergenConstraints.insets = new Insets(0, 0, 0, 0);
                 panelDishAllergens.add(labelDishAllergens, dishAllergenConstraints);
 
-                CTextField fieldDishAllergens = new CTextField("No Allergens", 16);
+                CTextField fieldDishAllergens = new CTextField("No allergens", 16);
                 dishAllergenConstraints.gridx++;
                 dishAllergenConstraints.weightx = 1;
                 dishAllergenConstraints.insets = new Insets(0, 6, 0, 0);
                 panelDishAllergens.add(fieldDishAllergens, dishAllergenConstraints);
+
+                CLabel labelWines = new CLabel("Wines: ", 18);
+                labelWines.setForeground(new Color(0xcccccc));
+                dishAllergenConstraints.gridx++;
+                dishAllergenConstraints.weightx = 0;
+                dishAllergenConstraints.insets = new Insets(0, 12, 0, 0);
+                panelDishAllergens.add(labelWines, dishAllergenConstraints);
+
+                CTextField fieldWines = new CTextField("No wines", 16);
+                dishAllergenConstraints.gridx++;
+                dishAllergenConstraints.weightx = 1;
+                dishAllergenConstraints.insets = new Insets(0, 6, 0, 0);
+                panelDishAllergens.add(fieldWines, dishAllergenConstraints);
 
                 dishConstraints.gridx = 1;
                 dishConstraints.gridwidth = 3;
@@ -183,5 +196,15 @@ public class EditMenu extends JPanel {
         this.add(scrollMain, constraints);
 
         // TODO: Add overlay button for Save/Update at the bottom, mark enabled/disabled based on edits
+        CButton saveButton = new CButton("Save changes", event -> {
+            CardLayout cl = (CardLayout) screens.getLayout();
+            cl.show(screens, Screen.Menus.name());
+        });
+
+        constraints.gridy++;
+        constraints.weighty = 0.05;
+        constraints.weightx = 0.1;
+        constraints.insets = new Insets(0, 400, 5, 400);
+        this.add(saveButton, constraints);
     }
 }

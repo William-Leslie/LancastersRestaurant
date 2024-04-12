@@ -1,20 +1,22 @@
 package Screens;
 
 import Components.*;
+import Resources.Colors;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class Home extends JPanel {
     public Home(JPanel screens) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
-        this.setBackground(new Color(0x2b3336));
+        this.setBackground(Colors.primary);
 
         // Inner panel with user info, easier to manage
         JPanel panelUser = new JPanel(new GridBagLayout());
         GridBagConstraints userConstraints = new GridBagConstraints();
-        panelUser.setBackground(new Color(0x2b3336));
+        panelUser.setBackground(Colors.primary);
         userConstraints.fill = GridBagConstraints.BOTH;
 
         CButton buttonLogout = new CButton("Logout", event -> {
@@ -76,7 +78,7 @@ public class Home extends JPanel {
 
         JPanel panelButtons = new JPanel(new GridBagLayout());
         GridBagConstraints buttonConstraints = new GridBagConstraints();
-        panelButtons.setBackground(new Color(0x2b3336));
+        panelButtons.setBackground(Colors.primary);
         buttonConstraints.fill = GridBagConstraints.BOTH;
         buttonConstraints.weightx = 1;
         buttonConstraints.weighty = 1;
@@ -86,8 +88,8 @@ public class Home extends JPanel {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Staff.name());
         });
-        buttonStaff.setForeground(new Color(0xcccccc));
-        buttonStaff.setBackground(new Color(0x557b8a));
+        buttonStaff.setForeground(Colors.secondary);
+        buttonStaff.setBackground(Colors.primary);
         buttonConstraints.gridy++;
         panelButtons.add(buttonStaff, buttonConstraints);
 
@@ -95,8 +97,8 @@ public class Home extends JPanel {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Wines.name());
         });
-        buttonWines.setForeground(new Color(0xcccccc));
-        buttonWines.setBackground(new Color(0x557b8a));
+        buttonWines.setForeground(Colors.secondary);
+        buttonWines.setBackground(Colors.primary);
         buttonConstraints.gridy++;
         panelButtons.add(buttonWines, buttonConstraints);
 
@@ -104,8 +106,8 @@ public class Home extends JPanel {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Menus.name());
         });
-        buttonMenus.setForeground(new Color(0xcccccc));
-        buttonMenus.setBackground(new Color(0x557b8a));
+        buttonMenus.setForeground(Colors.secondary);
+        buttonMenus.setBackground(Colors.primary);
         buttonConstraints.gridy++;
         panelButtons.add(buttonMenus, buttonConstraints);
 
@@ -113,8 +115,8 @@ public class Home extends JPanel {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Inventory.name());
         });
-        buttonInventory.setForeground(new Color(0xcccccc));
-        buttonInventory.setBackground(new Color(0x557b8a));
+        buttonInventory.setForeground(Colors.secondary);
+        buttonInventory.setBackground(Colors.primary);
         buttonConstraints.gridy++;
         panelButtons.add(buttonInventory, buttonConstraints);
 
@@ -122,16 +124,20 @@ public class Home extends JPanel {
             CardLayout cl = (CardLayout) screens.getLayout();
             cl.show(screens, Screen.Sales.name());
         });
-        buttonSales.setForeground(new Color(0xcccccc));
-        buttonSales.setBackground(new Color(0x557b8a));
+        buttonSales.setForeground(Colors.secondary);
+        buttonSales.setBackground(Colors.primary);
         buttonConstraints.gridy++;
         panelButtons.add(buttonSales, buttonConstraints);
 
         CButton buttonPayroll = new CButton("Payroll & HR", 26, event -> {
-            // TODO: Open external webpage?
+            try {
+                Desktop.getDesktop().open(new java.io.File("resources/index.html"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
-        buttonPayroll.setForeground(new Color(0xcccccc));
-        buttonPayroll.setBackground(new Color(0x557b8a));
+        buttonPayroll.setForeground(Colors.secondary);
+        buttonPayroll.setBackground(Colors.primary);
         buttonConstraints.gridy++;
         panelButtons.add(buttonPayroll, buttonConstraints);
 
