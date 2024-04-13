@@ -30,7 +30,7 @@ public class EditMenu extends JPanel {
         }
     }
 
-    public EditMenu(JPanel screens) {
+    public EditMenu(Window window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         this.setBackground(new Color(0x2b3336));
@@ -39,9 +39,8 @@ public class EditMenu extends JPanel {
 
         CNavbar navbar = new CNavbar("Edit Menu", event -> {
             // TODO: Track edits, show warning if backing out with edits
-            CardLayout cl = (CardLayout) screens.getLayout();
             // TODO: Should this go to Home instead? IMO no but maybe?
-            cl.show(screens, Screen.Menus.name());
+            window.switchTo(new Menus(window));
         });
         constraints.gridy = 1;
         constraints.weighty = 0;
@@ -195,10 +194,8 @@ public class EditMenu extends JPanel {
         constraints.insets = new Insets(10, 10, 10, 10);
         this.add(scrollMain, constraints);
 
-        // TODO: Add overlay button for Save/Update at the bottom, mark enabled/disabled based on edits
         CButton saveButton = new CButton("Save changes", event -> {
-            CardLayout cl = (CardLayout) screens.getLayout();
-            cl.show(screens, Screen.Menus.name());
+            // FIXME: save
         });
 
         constraints.gridy++;

@@ -10,7 +10,7 @@ public class CNavbar extends JPanel {
     public CNavbar(String title, ActionListener backAction) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
-        this.setBackground(Colors.primary);
+        this.setBackground(Colors.background);
 
         CButton buttonBack = new CButton("Back", backAction);
         buttonBack.setPreferredSize(new Dimension(150, 0));

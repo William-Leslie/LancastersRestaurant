@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.List;
 
 public class Inventory extends JPanel {
-    public Inventory(JPanel screens) {
+    public Inventory(Window window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         this.setBackground(new Color(0x2b3336));
@@ -17,8 +17,7 @@ public class Inventory extends JPanel {
         constraints.weightx = 1;
 
         CNavbar navbar = new CNavbar("Inventory", event -> {
-            CardLayout cl = (CardLayout) screens.getLayout();
-            cl.show(screens, Screen.Home.name());
+            window.switchTo(new Home(window));
         });
         constraints.gridx = 1;
         constraints.gridy++;

@@ -83,7 +83,7 @@ public class Staff extends JPanel {
         return sc;
     }
 
-    public Staff(JPanel screens) {
+    public Staff(Window window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         this.setBackground(new Color(0x2b3336));
@@ -93,8 +93,7 @@ public class Staff extends JPanel {
         constraints.gridwidth = 6;
 
         CNavbar navbar = new CNavbar("Staff", event -> {
-            CardLayout cl = (CardLayout) screens.getLayout();
-            cl.show(screens, Screen.Home.name());
+            window.switchTo(new Home(window));
         });
         constraints.gridy = 1;
         constraints.weighty = 0;
@@ -102,6 +101,7 @@ public class Staff extends JPanel {
         this.add(navbar, constraints);
 
         // create a datePicker panel, then run the datePicker scene in a new thread
+        // FIXME: what?????
         JFXPanel panelDate = new JFXPanel();
         new Thread(() -> {
             Scene scene = createScene();
@@ -177,7 +177,7 @@ public class Staff extends JPanel {
         mainConstraints.anchor = GridBagConstraints.WEST;
         mainConstraints.insets = new Insets(8, 16, 8, 0);
         CLabel labelHoliday = new CLabel("ON HOLIDAY", 24);
-        labelHoliday.setForeground(Colors.tertiary);
+        labelHoliday.setForeground(Colors.red);
         panelMain.add(labelHoliday, mainConstraints);
 
         for (Employee employee : employees) {
@@ -214,7 +214,7 @@ public class Staff extends JPanel {
         mainConstraints.anchor = GridBagConstraints.WEST;
         mainConstraints.insets = new Insets(8, 16, 8, 0);
         CLabel labelNotHoliday = new CLabel("WORKING", 24);
-        labelNotHoliday.setForeground(Colors.fourth);
+        labelNotHoliday.setForeground(Colors.blue);
         panelMain.add(labelNotHoliday, mainConstraints);
 
         for (Employee employee2 : employees) {

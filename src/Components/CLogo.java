@@ -8,7 +8,7 @@ import java.awt.*;
 public class CLogo extends JLabel {
     public CLogo(int width, int height) {
         super(new ImageIcon(Resources.getLogo(Integer.max(width, height))));
-        this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Colors.secondary));
+        this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Colors.text));
         this.setPreferredSize(new Dimension(width, height));
     }
 }

@@ -1,58 +1,10 @@
 import Screens.*;
 
-import java.awt.*;
 import javax.swing.*;
 
 public class Main extends JFrame {
-    public Main() {
-        // Initialize window with title
-        super("Lancaster's Restaurant");
-
-        // Screens contained in a CardLayout manager, must be passed to each screen to be able to change active screen
-        JPanel screens = new JPanel(new CardLayout());
-
-        // Create all screens and pass screens manager reference, each screen is identified by Screen enum name
-        screens.add(new Splash(screens), Screen.Splash.name());
-        screens.add(new Login(screens), Screen.Login.name());
-        screens.add(new Home(screens), Screen.Home.name());
-        screens.add(new Staff(screens), Screen.Staff.name());
-        screens.add(new Wines(screens), Screen.Wines.name());
-        screens.add(new Menus(screens), Screen.Menus.name());
-        screens.add(new EditMenu(screens), Screen.EditMenu.name());
-        screens.add(new Inventory(screens), Screen.Inventory.name());
-        screens.add(new Sales(screens), Screen.Sales.name());
-
-        // Show splash screen
-        CardLayout cl = (CardLayout) screens.getLayout();
-        //cl.show(screens, Screen.Splash.name());
-        cl.show(screens, Screen.Splash.name());
-
-        // Switch to log in screen after 3 seconds
-        // FIXME: Allow skipping by clicking (maybe move this logic into Splash screen itself?)
-        new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        CardLayout cl = (CardLayout) screens.getLayout();
-                        cl.show(screens, Screen.Login.name());
-                    }
-                },
-                3000
-        );
-
-        // Add screens manager to main window
-        this.add(screens);
-        this.pack();
-
-        // Set main window configuration
-        this.setLocationRelativeTo(null);
-        this.setMinimumSize(new Dimension(1100, 700));
-        this.setMaximumSize(new Dimension(1100, 700));
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    }
-
     public static void main(String[] args) {
         // Create and show window in event loop
-        SwingUtilities.invokeLater(() -> new Main().setVisible(true));
+        SwingUtilities.invokeLater(() -> new Window().setVisible(true));
     }
 }

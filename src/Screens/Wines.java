@@ -21,7 +21,7 @@ public class Wines extends JPanel {
         }
     }
 
-    public Wines(JPanel screens) {
+    public Wines(Window window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         this.setBackground(new Color(0x2b3336)); // slightly lighter color than primary
@@ -31,8 +31,7 @@ public class Wines extends JPanel {
         constraints.gridwidth = 6;
 
         CNavbar navbar = new CNavbar("Wines", event -> {
-            CardLayout cl = (CardLayout) screens.getLayout();
-            cl.show(screens, Screen.Home.name());
+            window.switchTo(new Home(window));
         });
         constraints.gridy = 1;
         constraints.weighty = 0;
@@ -76,27 +75,27 @@ public class Wines extends JPanel {
         mainConstraints.gridx = 1;
         mainConstraints.gridy++;
         CLabel headerName = new CLabel("NAME", 24);
-        headerName.setForeground(Colors.fourth);
+        headerName.setForeground(Colors.blue);
         mainConstraints.anchor = GridBagConstraints.WEST;
         mainConstraints.insets = new Insets(8, 0, 8, 80);
         panelMain.add(headerName, mainConstraints);
 
         mainConstraints.gridx++;
         CLabel headerYear = new CLabel("YEAR", 24);
-        headerYear.setForeground(Colors.fourth);
+        headerYear.setForeground(Colors.blue);
         mainConstraints.anchor = GridBagConstraints.CENTER;
         mainConstraints.insets = new Insets(8, 40, 8, 80);
         panelMain.add(headerYear, mainConstraints);
 
         mainConstraints.gridx++;
         CLabel headerPrice = new CLabel("PRICE", 24);
-        headerPrice.setForeground(Colors.fourth);
+        headerPrice.setForeground(Colors.blue);
         mainConstraints.anchor = GridBagConstraints.CENTER;
         panelMain.add(headerPrice, mainConstraints);
 
         mainConstraints.gridx++;
         CLabel headerStock = new CLabel("STOCK", 24);
-        headerStock.setForeground(Colors.fourth);
+        headerStock.setForeground(Colors.blue);
         mainConstraints.anchor = GridBagConstraints.CENTER;
         mainConstraints.insets = new Insets(8, 40, 8, 120);
         panelMain.add(headerStock, mainConstraints);
@@ -133,10 +132,10 @@ public class Wines extends JPanel {
             panelMain.add(labelStock, mainConstraints);
 
             if (wineEntry.stock == 0) {
-                labelName.setForeground(Colors.tertiary);
-                labelYear.setForeground(Colors.tertiary);
-                labelPrice.setForeground(Colors.tertiary);
-                labelStock.setForeground(Colors.tertiary);
+                labelName.setForeground(Colors.red);
+                labelYear.setForeground(Colors.red);
+                labelPrice.setForeground(Colors.red);
+                labelStock.setForeground(Colors.red);
             }
         }
 

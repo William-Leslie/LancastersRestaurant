@@ -7,9 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Login extends JPanel {
-    public Login(JPanel screens) {
+    public Login(Window window) {
         super(new GridBagLayout());
-        this.setBackground(Colors.primary);
+        this.setBackground(Colors.background);
         GridBagConstraints constraints = new GridBagConstraints(); // Constraints passed to each item
         constraints.fill = GridBagConstraints.HORIZONTAL; // All items stretch horizontally by default
 
@@ -52,8 +52,7 @@ public class Login extends JPanel {
             if (username.equals("lancaster") && password.equals("lancaster")) {
                 fieldUsername.setText("");
                 fieldPassword.setText("");
-                CardLayout cl = (CardLayout) screens.getLayout();
-                cl.show(screens, Screen.Home.name());
+                window.switchTo(new Home(window));
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid login credentials!");
             }

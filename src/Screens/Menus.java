@@ -9,16 +9,15 @@ import java.awt.event.*;
 import java.time.*;
 
 public class Menus extends JPanel {
-    public Menus(JPanel screens) {
+    public Menus(Window window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
-        this.setBackground(Colors.primary);
+        this.setBackground(Colors.background);
         constraints.fill = GridBagConstraints.BOTH;
         constraints.weightx = 1;
 
         CNavbar navbar = new CNavbar("Menus", event -> {
-            CardLayout cl = (CardLayout) screens.getLayout();
-            cl.show(screens, Screen.Home.name());
+            window.switchTo(new Home(window));
         });
         constraints.gridy = 1;
         constraints.weighty = 0;
@@ -43,24 +42,24 @@ public class Menus extends JPanel {
             menuConstraints.weightx = 1;
 
             if (monday.isBefore(today) || monday.isEqual(today)) {
-                panelMenu.setBackground(new Color(100, 165, 180));
-
                 CLabel labelCurrent = new CLabel("Current week");
-                labelCurrent.setForeground(Colors.secondary);
+                labelCurrent.setForeground(Colors.text);
                 menuConstraints.gridx = 1;
                 menuConstraints.gridy = 1;
                 menuConstraints.gridheight = 3;
                 menuConstraints.insets = new Insets(16, 16, 16, 16);
                 menuConstraints.anchor = GridBagConstraints.SOUTHWEST;
                 panelMenu.add(labelCurrent, menuConstraints);
+
+                panelMenu.setBackground(Colors.primary);
             } else {
-                panelMenu.setBackground(new Color(0x455a61));
+                panelMenu.setBackground(Colors.secondary);
             }
 
             // TODO: Show if approved and sent to FOH
 
             CLabel labelDate = new CLabel(CDate.of(monday) + "   -   " + CDate.of(monday.plusDays(6)), 26);
-            labelDate.setForeground(Colors.secondary);
+            labelDate.setForeground(Colors.text);
             menuConstraints.gridx = 1;
             menuConstraints.gridy = 1;
             menuConstraints.gridheight = 3;
@@ -69,7 +68,7 @@ public class Menus extends JPanel {
             panelMenu.add(labelDate, menuConstraints);
 
             CLabel labelAvgPrice = new CLabel("Average Price: " + CPrice.of(24.65), 18);
-            labelAvgPrice.setForeground(Colors.secondary);
+            labelAvgPrice.setForeground(Colors.text);
             menuConstraints.gridx = 2;
             menuConstraints.gridy = 1;
             menuConstraints.gridheight = 1;
@@ -78,7 +77,7 @@ public class Menus extends JPanel {
             panelMenu.add(labelAvgPrice, menuConstraints);
 
             CLabel labelMaxPrice = new CLabel("Maximum Price: " + CPrice.of(35), 18);
-            labelMaxPrice.setForeground(Colors.secondary);
+            labelMaxPrice.setForeground(Colors.text);
             menuConstraints.gridx = 2;
             menuConstraints.gridy = 2;
             menuConstraints.gridheight = 1;
@@ -87,7 +86,7 @@ public class Menus extends JPanel {
             panelMenu.add(labelMaxPrice, menuConstraints);
 
             CLabel labelMinPrice = new CLabel("Minimum Price: " + CPrice.of(7), 18);
-            labelMinPrice.setForeground(Colors.secondary);
+            labelMinPrice.setForeground(Colors.text);
             menuConstraints.gridx = 2;
             menuConstraints.gridy = 3;
             menuConstraints.gridheight = 1;
@@ -98,8 +97,7 @@ public class Menus extends JPanel {
                 @Override // Click menu to go edit it
                 public void mouseClicked(MouseEvent event) {
                     if (event.getButton() == MouseEvent.BUTTON1) {
-                        CardLayout cl = (CardLayout) screens.getLayout();
-                        cl.show(screens, Screen.EditMenu.name());
+                        window.switchTo(new EditMenu(window));
                     }
                 }
 

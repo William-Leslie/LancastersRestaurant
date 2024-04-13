@@ -21,7 +21,7 @@ public class Sales extends JPanel {
     private JFreeChart chart1;
     private JFreeChart chart2;
     private JFreeChart chart3;
-    public Sales(JPanel screens) {
+    public Sales(Window window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         this.setBackground(new Color(0x2b3336));
@@ -29,8 +29,7 @@ public class Sales extends JPanel {
         constraints.weightx = 1;
 
         CNavbar navbar = new CNavbar("Sales", event -> {
-            CardLayout cl = (CardLayout) screens.getLayout();
-            cl.show(screens, Screen.Home.name());
+            window.switchTo(new Home(window));
         });
         constraints.gridy = 1;
         constraints.weighty = 0;

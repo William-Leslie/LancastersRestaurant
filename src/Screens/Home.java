@@ -8,20 +8,19 @@ import java.awt.*;
 import java.io.IOException;
 
 public class Home extends JPanel {
-    public Home(JPanel screens) {
+    public Home(Window window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
-        this.setBackground(Colors.primary);
+        this.setBackground(Colors.background);
 
         // Inner panel with user info, easier to manage
         JPanel panelUser = new JPanel(new GridBagLayout());
         GridBagConstraints userConstraints = new GridBagConstraints();
-        panelUser.setBackground(Colors.primary);
+        panelUser.setBackground(Colors.background);
         userConstraints.fill = GridBagConstraints.BOTH;
 
         CButton buttonLogout = new CButton("Logout", event -> {
-            CardLayout cl = (CardLayout) screens.getLayout();
-            cl.show(screens, Screen.Login.name());
+            window.switchTo(new Home(window));
         });
         buttonLogout.setPreferredSize(new Dimension(150, 0));
         userConstraints.gridx = 1;
@@ -78,54 +77,49 @@ public class Home extends JPanel {
 
         JPanel panelButtons = new JPanel(new GridBagLayout());
         GridBagConstraints buttonConstraints = new GridBagConstraints();
-        panelButtons.setBackground(Colors.primary);
+        panelButtons.setBackground(Colors.background);
         buttonConstraints.fill = GridBagConstraints.BOTH;
         buttonConstraints.weightx = 1;
         buttonConstraints.weighty = 1;
         buttonConstraints.insets = new Insets(10, 0, 10, 0);
 
         CButton buttonStaff = new CButton("Staff", 26, event -> {
-            CardLayout cl = (CardLayout) screens.getLayout();
-            cl.show(screens, Screen.Staff.name());
+            window.switchTo(new Staff(window));
         });
-        buttonStaff.setForeground(Colors.secondary);
-        buttonStaff.setBackground(Colors.primary);
+        buttonStaff.setForeground(Colors.text);
+        buttonStaff.setBackground(Colors.background);
         buttonConstraints.gridy++;
         panelButtons.add(buttonStaff, buttonConstraints);
 
         CButton buttonWines = new CButton("Wines", 26, event -> {
-            CardLayout cl = (CardLayout) screens.getLayout();
-            cl.show(screens, Screen.Wines.name());
+            window.switchTo(new Wines(window));
         });
-        buttonWines.setForeground(Colors.secondary);
-        buttonWines.setBackground(Colors.primary);
+        buttonWines.setForeground(Colors.text);
+        buttonWines.setBackground(Colors.background);
         buttonConstraints.gridy++;
         panelButtons.add(buttonWines, buttonConstraints);
 
         CButton buttonMenus = new CButton("Menus", 26, event -> {
-            CardLayout cl = (CardLayout) screens.getLayout();
-            cl.show(screens, Screen.Menus.name());
+            window.switchTo(new Menus(window));
         });
-        buttonMenus.setForeground(Colors.secondary);
-        buttonMenus.setBackground(Colors.primary);
+        buttonMenus.setForeground(Colors.text);
+        buttonMenus.setBackground(Colors.background);
         buttonConstraints.gridy++;
         panelButtons.add(buttonMenus, buttonConstraints);
 
         CButton buttonInventory = new CButton("Inventory", 26, event -> {
-            CardLayout cl = (CardLayout) screens.getLayout();
-            cl.show(screens, Screen.Inventory.name());
+            window.switchTo(new Inventory(window));
         });
-        buttonInventory.setForeground(Colors.secondary);
-        buttonInventory.setBackground(Colors.primary);
+        buttonInventory.setForeground(Colors.text);
+        buttonInventory.setBackground(Colors.background);
         buttonConstraints.gridy++;
         panelButtons.add(buttonInventory, buttonConstraints);
 
         CButton buttonSales = new CButton("Sales", 26, event -> {
-            CardLayout cl = (CardLayout) screens.getLayout();
-            cl.show(screens, Screen.Sales.name());
+            window.switchTo(new Sales(window));
         });
-        buttonSales.setForeground(Colors.secondary);
-        buttonSales.setBackground(Colors.primary);
+        buttonSales.setForeground(Colors.text);
+        buttonSales.setBackground(Colors.background);
         buttonConstraints.gridy++;
         panelButtons.add(buttonSales, buttonConstraints);
 
@@ -136,8 +130,8 @@ public class Home extends JPanel {
                 e.printStackTrace();
             }
         });
-        buttonPayroll.setForeground(Colors.secondary);
-        buttonPayroll.setBackground(Colors.primary);
+        buttonPayroll.setForeground(Colors.text);
+        buttonPayroll.setBackground(Colors.background);
         buttonConstraints.gridy++;
         panelButtons.add(buttonPayroll, buttonConstraints);
 
