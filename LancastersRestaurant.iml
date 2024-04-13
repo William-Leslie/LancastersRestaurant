@@ -7,6 +7,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="kryshchuk.maven.plugins.jfreechart.plugin" level="project" />
   </component>
 </module>
