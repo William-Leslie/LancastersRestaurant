@@ -3,7 +3,6 @@ package Components;
 import Resources.*;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class CTextField extends JTextField {
     public CTextField(String initialText, int textSize) {

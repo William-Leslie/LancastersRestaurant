@@ -3,7 +3,6 @@ package Components;
 import Resources.*;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class CTextArea extends JTextArea {
     public CTextArea(String initialText, int textSize) {

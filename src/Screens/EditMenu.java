@@ -56,24 +56,24 @@ public class EditMenu extends JPanel {
 
         // FIXME: Dummy data
         Course[] courses = new Course[]{
-            new Course("First Course", new Dish[]{
-                new Dish("Warm Onion Tart", "Quickes Goats Cheese, Worcestershire and Shallots", 12),
-                new Dish("Venison Pâté en Croûte", "Hedgerow Jelly, Mustard Fruit and Pistachio", 13),
-                new Dish("Lasagne of Rabbit Shoulder", "Mushrooms, Riesling and Thyme", 12),
-                new Dish("Grilled Beef Tongue", "Quince, Aged Vinegar and Beetroot", 14),
-            }),
-            new Course("Second Course", new Dish[]{
-                new Dish("Roast Cornish Monkfish", "Cheek, Butternut Squash and Sage", 28),
-                new Dish("Our Iberian Pork", "Jerusalem Artichoke and Pickled Walnuts", 32),
-                new Dish("Wareham Dorset Sika Deer", "Pale Ale, Prune and Spring Onion", 35),
-                new Dish("Short Rib of Red Ruby Beef", "Spinach, Chanterelles and Horseradish", 35),
-            }),
-            new Course("Third Course", new Dish[]{
-                new Dish("Apple Parfait", "Shortbread, Hazelnuts and Sherry", 8),
-                new Dish("Plum Ripple Ice Cream", "Caramelised Pastry, Almond Cream and Camomile", 7),
-                new Dish("Custard Flan", "Quince and Crème Fraîche", 8),
-                new Dish("Selection of Cheese", "Tunworth, Lincolnshire Poacher, Beauvale Blue Crackers and Homemade Chutney", 12),
-            }),
+                new Course("First Course", new Dish[]{
+                        new Dish("Warm Onion Tart", "Quickes Goats Cheese, Worcestershire and Shallots", 12),
+                        new Dish("Venison Pâté en Croûte", "Hedgerow Jelly, Mustard Fruit and Pistachio", 13),
+                        new Dish("Lasagne of Rabbit Shoulder", "Mushrooms, Riesling and Thyme", 12),
+                        new Dish("Grilled Beef Tongue", "Quince, Aged Vinegar and Beetroot", 14),
+                }),
+                new Course("Second Course", new Dish[]{
+                        new Dish("Roast Cornish Monkfish", "Cheek, Butternut Squash and Sage", 28),
+                        new Dish("Our Iberian Pork", "Jerusalem Artichoke and Pickled Walnuts", 32),
+                        new Dish("Wareham Dorset Sika Deer", "Pale Ale, Prune and Spring Onion", 35),
+                        new Dish("Short Rib of Red Ruby Beef", "Spinach, Chanterelles and Horseradish", 35),
+                }),
+                new Course("Third Course", new Dish[]{
+                        new Dish("Apple Parfait", "Shortbread, Hazelnuts and Sherry", 8),
+                        new Dish("Plum Ripple Ice Cream", "Caramelised Pastry, Almond Cream and Camomile", 7),
+                        new Dish("Custard Flan", "Quince and Crème Fraîche", 8),
+                        new Dish("Selection of Cheese", "Tunworth, Lincolnshire Poacher, Beauvale Blue Crackers and Homemade Chutney", 12),
+                }),
         };
 
         for (Course course : courses) {

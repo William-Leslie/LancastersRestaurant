@@ -1,7 +1,7 @@
 package Screens;
 
 import Components.*;
-import Resources.Colors;
+import Resources.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -162,14 +162,14 @@ public class Wines extends JPanel {
         bottomConstraints.anchor = GridBagConstraints.EAST;
         bottomConstraints.insets = new Insets(5, 1, 5, 1);
         CLabel editName = new CLabel("Name: ");
-        editName.setForeground(new Color(33,33,33));
+        editName.setForeground(new Color(33, 33, 33));
         panelBottom.add(editName, bottomConstraints);
 
         bottomConstraints.gridx++;
         bottomConstraints.fill = GridBagConstraints.BOTH;
         bottomConstraints.anchor = GridBagConstraints.WEST;
         CTextField nameText = new CTextField(" Merlot", 16);
-        nameText.setForeground(new Color(33,33,33)); // slightly lighter than black
+        nameText.setForeground(new Color(33, 33, 33)); // slightly lighter than black
         nameText.setPreferredSize(new Dimension(80, 40));
         panelBottom.add(nameText, bottomConstraints);
 
@@ -178,14 +178,14 @@ public class Wines extends JPanel {
         bottomConstraints.fill = GridBagConstraints.VERTICAL;
         bottomConstraints.anchor = GridBagConstraints.EAST;
         CLabel labelHalfHour = new CLabel("Year: ");
-        labelHalfHour.setForeground(new Color(33,33,33));
+        labelHalfHour.setForeground(new Color(33, 33, 33));
         panelBottom.add(labelHalfHour, bottomConstraints);
 
         bottomConstraints.gridx++;
         bottomConstraints.fill = GridBagConstraints.BOTH;
         bottomConstraints.anchor = GridBagConstraints.WEST;
         CTextField yearText = new CTextField(" 2024", 16);
-        yearText.setForeground(new Color(33,33,33));
+        yearText.setForeground(new Color(33, 33, 33));
         yearText.setPreferredSize(new Dimension(10, 40));
         panelBottom.add(yearText, bottomConstraints);
 
@@ -194,14 +194,14 @@ public class Wines extends JPanel {
         bottomConstraints.fill = GridBagConstraints.VERTICAL;
         bottomConstraints.anchor = GridBagConstraints.EAST;
         CLabel labelPreBook = new CLabel("Price: ");
-        labelPreBook.setForeground(new Color(33,33,33));
+        labelPreBook.setForeground(new Color(33, 33, 33));
         panelBottom.add(labelPreBook, bottomConstraints);
 
         bottomConstraints.gridx++;
         bottomConstraints.fill = GridBagConstraints.BOTH;
         bottomConstraints.anchor = GridBagConstraints.WEST;
         CTextField priceText = new CTextField(" 19.99", 16);
-        priceText.setForeground(new Color(33,33,33));
+        priceText.setForeground(new Color(33, 33, 33));
         priceText.setPreferredSize(new Dimension(10, 40));
         panelBottom.add(priceText, bottomConstraints);
 
@@ -210,7 +210,7 @@ public class Wines extends JPanel {
         bottomConstraints.fill = GridBagConstraints.VERTICAL;
         bottomConstraints.anchor = GridBagConstraints.EAST;
         CLabel labelMaxDining = new CLabel("Stock:");
-        labelMaxDining.setForeground(new Color(33,33,33));
+        labelMaxDining.setForeground(new Color(33, 33, 33));
         panelBottom.add(labelMaxDining, bottomConstraints);
 
         bottomConstraints.gridx++;
@@ -231,7 +231,7 @@ public class Wines extends JPanel {
         bottomConstraints.fill = GridBagConstraints.BOTH;
         bottomConstraints.anchor = GridBagConstraints.EAST;
         bottomConstraints.insets = new Insets(5, 100, 5, 50);
-        panelBottom.add(wineButton,  bottomConstraints);
+        panelBottom.add(wineButton, bottomConstraints);
 
         // ADD BOTTOM PANEL
         constraints.gridy++;

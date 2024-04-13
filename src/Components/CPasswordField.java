@@ -3,7 +3,6 @@ package Components;
 import Resources.*;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class CPasswordField extends JPasswordField {
     public CPasswordField(int textSize) {

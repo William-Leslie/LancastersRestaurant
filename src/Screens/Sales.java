@@ -1,26 +1,21 @@
 package Screens;
 
 import Components.*;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.CategoryLabelPositions;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.chart.*;
+import org.jfree.chart.plot.*;
+import org.jfree.data.category.*;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Sales extends JPanel {
-
     private DefaultCategoryDataset dishData;
     private DefaultCategoryDataset takingsData;
     private DefaultCategoryDataset bookingDataCombined;
     private JFreeChart chart1;
     private JFreeChart chart2;
     private JFreeChart chart3;
+
     public Sales(Window window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
@@ -47,7 +42,7 @@ public class Sales extends JPanel {
         takingsData = new DefaultCategoryDataset();
         bookingDataCombined = new DefaultCategoryDataset();
 
-        //Date Set Panel
+        // Date Set Panel
         JPanel buttonPanel = new JPanel(new GridLayout(1, 4));
         buttonPanel.setBackground(new Color(0x2b3336));
 
@@ -124,7 +119,8 @@ public class Sales extends JPanel {
         constraints.insets = new Insets(10, 10, 10, 10);
         this.add(scrollMain, constraints);
     }
-    public void updateData(String date){
+
+    public void updateData(String date) {
         dishData.clear();
         takingsData.clear();
         bookingDataCombined.clear();
@@ -132,7 +128,7 @@ public class Sales extends JPanel {
         // FIXME: USE THE COMMAND "dishData.addValue(value:amount,rowKey:String dishID, columnKey:dishID)" to add data.
         // FIXME: USE THE COMMAND "takingsData.addValue(value:amount,rowKey:takings, columnKey:date)" to add data.
         // FIXME: USE THE COMMAND "bookingDataCombined.addValue(value:amount,rowKey:String type, columnKey:date)" to add data.
-        switch(date) {
+        switch (date) {
             case "day": //Today's Values
                 //Values need to be added from maximum to minimum
                 dishData.addValue(60, "Pasta", "Pasta");

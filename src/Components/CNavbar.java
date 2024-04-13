@@ -1,6 +1,6 @@
 package Components;
 
-import Resources.Colors;
+import Resources.*;
 
 import javax.swing.*;
 import java.awt.*;

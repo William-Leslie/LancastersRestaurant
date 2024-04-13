@@ -34,7 +34,7 @@ public class Inventory extends JPanel {
             {"Flour", "30", "10"},
         };*/
         List<Object[]> data = Database.getIngredientsTable();
-        String[] IngredientsHeader = {"Ingredient Name", "Quantity", "StockLevel","LowStockThreshold","Price"};
+        String[] IngredientsHeader = {"Ingredient Name", "Quantity", "StockLevel", "LowStockThreshold", "Price"};
 
         DefaultTableModel model = new DefaultTableModel(data.toArray(new Object[0][]), IngredientsHeader);
         // FIXME: Theme JTable

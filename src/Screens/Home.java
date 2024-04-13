@@ -1,11 +1,11 @@
 package Screens;
 
 import Components.*;
-import Resources.Colors;
+import Resources.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
+import java.io.*;
 
 public class Home extends JPanel {
     public Home(Window window) {

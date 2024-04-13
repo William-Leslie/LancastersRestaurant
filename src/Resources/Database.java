@@ -4,8 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public  class Database {
+public class Database {
     static String url = "jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2033t30";
     static String username = "in2033t30_a";
     static String password = "ZSsixpPY6cQ";
@@ -35,6 +34,7 @@ public  class Database {
 
         return data;
     }
+
     public static List<Object[]> getDishesTable() {
         List<Object[]> data = new ArrayList<>();
 
@@ -107,6 +107,3 @@ public  class Database {
         return data;
     }
 }
-
-
-
