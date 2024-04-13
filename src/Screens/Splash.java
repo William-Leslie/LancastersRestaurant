@@ -5,6 +5,7 @@ import Resources.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class Splash extends JPanel {
     public Splash(Window window) {
@@ -19,14 +20,38 @@ public class Splash extends JPanel {
         this.add(logo, constraints);
 
         // Switch to log in screen after 3 seconds
-        new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        window.switchTo(new Login(window));
-                    }
-                },
-                3000
-        );
+        java.util.TimerTask timerTask = new java.util.TimerTask() {
+            @Override
+            public void run() {
+                window.switchTo(new Login(window));
+            }
+        };
+        new java.util.Timer().schedule(timerTask, 3000);
+
+        this.addMouseListener(new MouseListener() {
+            @Override // Click to skip splashscreen
+            public void mouseClicked(MouseEvent event) {
+                if (event.getButton() == MouseEvent.BUTTON1) {
+                    timerTask.cancel();
+                    timerTask.run();
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent event) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent event) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent event) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent event) {
+            }
+        });
     }
 }
