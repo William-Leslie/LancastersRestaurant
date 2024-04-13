@@ -131,7 +131,7 @@ public class Home extends JPanel {
 
         CButton buttonPayroll = new CButton("Payroll & HR", 26, event -> {
             try {
-                Desktop.getDesktop().open(new java.io.File("resources/index.html"));
+                Desktop.getDesktop().open(new java.io.File("resources/PayrollHR/index.html"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
