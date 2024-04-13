@@ -1,6 +1,7 @@
 package Screens;
 
 import Components.*;
+import Resources.Colors;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +12,7 @@ public class Menus extends JPanel {
     public Menus(JPanel screens) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
-        this.setBackground(new Color(0x2b3336));
+        this.setBackground(Colors.primary);
         constraints.fill = GridBagConstraints.BOTH;
         constraints.weightx = 1;
 
@@ -42,10 +43,10 @@ public class Menus extends JPanel {
             menuConstraints.weightx = 1;
 
             if (monday.isBefore(today) || monday.isEqual(today)) {
-                panelMenu.setBackground(new Color(0x557b8a));
+                panelMenu.setBackground(new Color(100, 165, 180));
 
-                CLabel labelCurrent = new CLabel("Current Week");
-                labelCurrent.setForeground(new Color(0xcccccc));
+                CLabel labelCurrent = new CLabel("Current week");
+                labelCurrent.setForeground(Colors.secondary);
                 menuConstraints.gridx = 1;
                 menuConstraints.gridy = 1;
                 menuConstraints.gridheight = 3;
@@ -58,8 +59,8 @@ public class Menus extends JPanel {
 
             // TODO: Show if approved and sent to FOH
 
-            CLabel labelDate = new CLabel(CDate.of(monday) + "  to  " + CDate.of(monday.plusDays(6)), 26);
-            labelDate.setForeground(new Color(0xcccccc));
+            CLabel labelDate = new CLabel(CDate.of(monday) + "   -   " + CDate.of(monday.plusDays(6)), 26);
+            labelDate.setForeground(Colors.secondary);
             menuConstraints.gridx = 1;
             menuConstraints.gridy = 1;
             menuConstraints.gridheight = 3;
@@ -68,7 +69,7 @@ public class Menus extends JPanel {
             panelMenu.add(labelDate, menuConstraints);
 
             CLabel labelAvgPrice = new CLabel("Average Price: " + CPrice.of(24.65), 18);
-            labelAvgPrice.setForeground(new Color(0xcccccc));
+            labelAvgPrice.setForeground(Colors.secondary);
             menuConstraints.gridx = 2;
             menuConstraints.gridy = 1;
             menuConstraints.gridheight = 1;
@@ -77,7 +78,7 @@ public class Menus extends JPanel {
             panelMenu.add(labelAvgPrice, menuConstraints);
 
             CLabel labelMaxPrice = new CLabel("Maximum Price: " + CPrice.of(35), 18);
-            labelMaxPrice.setForeground(new Color(0xcccccc));
+            labelMaxPrice.setForeground(Colors.secondary);
             menuConstraints.gridx = 2;
             menuConstraints.gridy = 2;
             menuConstraints.gridheight = 1;
@@ -86,7 +87,7 @@ public class Menus extends JPanel {
             panelMenu.add(labelMaxPrice, menuConstraints);
 
             CLabel labelMinPrice = new CLabel("Minimum Price: " + CPrice.of(7), 18);
-            labelMinPrice.setForeground(new Color(0xcccccc));
+            labelMinPrice.setForeground(Colors.secondary);
             menuConstraints.gridx = 2;
             menuConstraints.gridy = 3;
             menuConstraints.gridheight = 1;

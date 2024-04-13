@@ -1,6 +1,7 @@
 package Screens;
 
 import Components.*;
+import Resources.Colors;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +9,7 @@ import java.awt.*;
 public class Login extends JPanel {
     public Login(JPanel screens) {
         super(new GridBagLayout());
-        this.setBackground(new Color(0x2b3336));
+        this.setBackground(Colors.primary);
         GridBagConstraints constraints = new GridBagConstraints(); // Constraints passed to each item
         constraints.fill = GridBagConstraints.HORIZONTAL; // All items stretch horizontally by default
 

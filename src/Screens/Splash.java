@@ -1,6 +1,7 @@
 package Screens;
 
 import Components.*;
+import Resources.Colors;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +10,7 @@ public class Splash extends JPanel {
     public Splash(JPanel screens) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
-        this.setBackground(new Color(0x2b3336));
+        this.setBackground(Colors.primary);
         constraints.fill = GridBagConstraints.HORIZONTAL;
 
         CLogo logo = new CLogo(400, 400);

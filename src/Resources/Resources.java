@@ -12,7 +12,7 @@ public class Resources {
     public static Image getLogo(int size) {
         try {
             if (Resources.logo == null) {
-                Resources.logo = ImageIO.read(new File("resources/LancastersLogo.jpeg"));
+                Resources.logo = ImageIO.read(new File("resources/LancastersLogo.jpg"));
             }
         } catch (IOException exception) {
             exception.printStackTrace();
