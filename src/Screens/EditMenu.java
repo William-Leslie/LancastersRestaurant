@@ -38,7 +38,7 @@ public class EditMenu extends JPanel {
         constraints.weightx = 1;
 
         CNavbar navbar = new CNavbar("Edit Menu", event -> {
-            // TODO: Track edits, show warning if backing out with edits
+            // FIXME: Track edits, show warning if backing out with edits
             // TODO: Should this go to Home instead? IMO no but maybe?
             window.switchTo(new Menus(window));
         });
@@ -116,8 +116,8 @@ public class EditMenu extends JPanel {
                 dishConstraints.insets = new Insets(16, 16, 16, 0);
                 panelDish.add(labelDishPrice, dishConstraints);
 
-                // FIXME: Add decimals and £ symbol to spinner
-                // FIXME: Theme JSpinner
+                // FIXME: Add decimals
+                // TODO: Theme JSpinner
                 JSpinner spinnerDishPrice = new JSpinner(new SpinnerNumberModel(dish.price, 0, 99, 1));
                 dishConstraints.gridx = 3;
                 dishConstraints.gridwidth = 1;
@@ -126,7 +126,6 @@ public class EditMenu extends JPanel {
                 dishConstraints.insets = new Insets(16, 0, 16, 16);
                 panelDish.add(spinnerDishPrice, dishConstraints);
 
-                // FIXME: For some reason, adding a JTextArea will scroll to the bottom of the whole window
                 CTextArea areaDescription = new CTextArea(dish.description, 16);
                 areaDescription.setRows(2);
                 dishConstraints.gridx = 1;
@@ -136,7 +135,7 @@ public class EditMenu extends JPanel {
                 dishConstraints.insets = new Insets(0, 16, 8, 16);
                 panelDish.add(areaDescription, dishConstraints);
 
-                // TODO: Remove allergens, assign automatically based on ingredients
+                // FIXME: Remove allergens, assign automatically based on ingredients
                 JPanel panelDishAllergens = new JPanel(new GridBagLayout());
                 GridBagConstraints dishAllergenConstraints = new GridBagConstraints();
                 panelDishAllergens.setBackground(new Color(0x557b8a));
@@ -162,6 +161,7 @@ public class EditMenu extends JPanel {
                 dishAllergenConstraints.insets = new Insets(0, 12, 0, 0);
                 panelDishAllergens.add(labelWines, dishAllergenConstraints);
 
+                // FIXME: wine dropdown (only 1 can be selected apparently)
                 CTextField fieldWines = new CTextField("No wines", 16);
                 dishAllergenConstraints.gridx++;
                 dishAllergenConstraints.weightx = 1;

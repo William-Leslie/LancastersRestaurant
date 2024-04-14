@@ -30,6 +30,7 @@ public class Home extends JPanel {
         userConstraints.insets = new Insets(0, 0, 0, 10);
         panelUser.add(buttonLogout, userConstraints);
 
+        // FIXME: use logged in user name
         CLabel labelUser = new CLabel("User: " + "lancaster");
         userConstraints.gridx = 2;
         userConstraints.gridy = 1;
@@ -38,6 +39,7 @@ public class Home extends JPanel {
         userConstraints.insets = new Insets(0, 0, 0, 0);
         panelUser.add(labelUser, userConstraints);
 
+        // FIXME: use logged in user role
         CLabel labelRole = new CLabel("Role: " + "admin");
         userConstraints.gridx = 2;
         userConstraints.gridy = 2;

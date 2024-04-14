@@ -56,7 +56,7 @@ public class Menus extends JPanel {
                 panelMenu.setBackground(Colors.secondary);
             }
 
-            // TODO: Show if approved and sent to FOH
+            // FIXME: Show if approved and received by FOH
 
             CLabel labelDate = new CLabel(CDate.of(monday) + "   -   " + CDate.of(monday.plusDays(6)), 26);
             labelDate.setForeground(Colors.text);
@@ -67,6 +67,7 @@ public class Menus extends JPanel {
             menuConstraints.anchor = GridBagConstraints.NORTHWEST;
             panelMenu.add(labelDate, menuConstraints);
 
+            // FIXME: Dummy data
             CLabel labelAvgPrice = new CLabel("Average Price: " + CPrice.of(24.65), 18);
             labelAvgPrice.setForeground(Colors.text);
             menuConstraints.gridx = 2;

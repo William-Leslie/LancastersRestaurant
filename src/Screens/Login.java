@@ -67,6 +67,8 @@ public class Login extends JPanel {
     private void login() {
         String username = this.fieldUsername.getText();
         String password = new String(this.fieldPassword.getPassword());
+
+        // FIXME: connect to DB for auth
         if (username.equals("lancaster") && password.equals("lancaster")) {
             this.fieldUsername.setText("");
             this.fieldPassword.setText("");

@@ -27,7 +27,7 @@ public class Inventory extends JPanel {
         this.add(navbar, constraints);
 
         // FIXME: Dummy data
-        // TODO: Add units and prices
+        // TODO: Add units and ways to order (maybe redo similar to wines screen)
        /* String[][] ingredientsData = {
             {"Milk", "10", "20"},
             {"Egg", "20", "15"},
@@ -37,7 +37,7 @@ public class Inventory extends JPanel {
         String[] IngredientsHeader = {"Ingredient Name", "Quantity", "StockLevel", "LowStockThreshold", "Price"};
 
         DefaultTableModel model = new DefaultTableModel(data.toArray(new Object[0][]), IngredientsHeader);
-        // FIXME: Theme JTable
+        // TODO: Theme JTable
         JTable tableInventory = new JTable(model);
         tableInventory.setForeground(new Color(0x2b3336));
         tableInventory.setRowHeight(30);
@@ -52,6 +52,7 @@ public class Inventory extends JPanel {
         constraints.insets = new Insets(10, 10, 0, 10);
         this.add(scrollInventory, constraints);
 
+        // FIXME: is this needed? we (would've) gotten ingredients from supplier
         CTextField fieldIngredient = new CTextField();
         constraints.gridx = 1;
         constraints.gridy++;

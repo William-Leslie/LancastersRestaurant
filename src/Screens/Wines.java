@@ -47,7 +47,7 @@ public class Wines extends JPanel {
         mainConstraints.insets = new Insets(48, 96, 16, 8);
         panelMain.add(Box.createVerticalGlue(), mainConstraints);
 
-        // dummy data
+        // FIXME: Dummy data
         WineEntry[] wineEntries = {
                 new WineEntry("Merlot", 2019, 25.99, 10),
                 new WineEntry("Chardonnay", 2020, 19.99, 15),
@@ -101,6 +101,7 @@ public class Wines extends JPanel {
         panelMain.add(headerStock, mainConstraints);
 
         // DATA
+        // FIXME: sort by out of stock and/or in upcoming menus
         for (WineEntry wineEntry : wineEntries) {
             mainConstraints.gridx = 0;
             mainConstraints.weightx = 1.5;
@@ -222,7 +223,7 @@ public class Wines extends JPanel {
 
         // ADD WINE
         CButton wineButton = new CButton("Add wine", event -> {
-            // TODO: Add wine to records, then display
+            // FIXME: Add wine to records, then display
         });
         wineButton.setForeground(new Color(0x2b3336));
         wineButton.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(0x2b3336)));
