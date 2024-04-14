@@ -7,8 +7,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Login extends JPanel {
+    Window window;
+    CTextField fieldUsername;
+    CPasswordField fieldPassword;
+
     public Login(Window window) {
         super(new GridBagLayout());
+        this.window = window;
         this.setBackground(Colors.background);
         GridBagConstraints constraints = new GridBagConstraints(); // Constraints passed to each item
         constraints.fill = GridBagConstraints.HORIZONTAL; // All items stretch horizontally by default
@@ -26,11 +31,13 @@ public class Login extends JPanel {
         this.add(labelUsername, constraints);
 
         // Username field
-        // FIXME: Enter should login
-        CTextField fieldUsername = new CTextField();
+        this.fieldUsername = new CTextField();
+        this.fieldUsername.addActionListener(e -> {
+            this.login();
+        });
         constraints.gridy++;
         constraints.insets = new Insets(0, 0, 0, 0);
-        this.add(fieldUsername, constraints);
+        this.add(this.fieldUsername, constraints);
 
         // Password text
         CLabel labelPassword = new CLabel("PASSWORD", 18);
@@ -39,27 +46,33 @@ public class Login extends JPanel {
         this.add(labelPassword, constraints);
 
         // Password field
-        // FIXME: Enter should login
-        CPasswordField fieldPassword = new CPasswordField();
+        this.fieldPassword = new CPasswordField();
+        this.fieldPassword.addActionListener(e -> {
+            this.login();
+        });
         constraints.gridy++;
         constraints.insets = new Insets(0, 0, 0, 0);
-        this.add(fieldPassword, constraints);
+        this.add(this.fieldPassword, constraints);
 
         // Login button
         CButton buttonLogin = new CButton("Login", 26, event -> {
-            String username = fieldUsername.getText();
-            String password = new String(fieldPassword.getPassword());
-            if (username.equals("lancaster") && password.equals("lancaster")) {
-                fieldUsername.setText("");
-                fieldPassword.setText("");
-                window.switchTo(new Home(window));
-            } else {
-                JOptionPane.showMessageDialog(this, "Invalid login credentials!");
-            }
+            this.login();
         });
         buttonLogin.setPreferredSize(new Dimension(0, 50));
         constraints.gridy++;
         constraints.insets = new Insets(30, 0, 0, 0);
         this.add(buttonLogin, constraints);
+    }
+
+    private void login() {
+        String username = this.fieldUsername.getText();
+        String password = new String(this.fieldPassword.getPassword());
+        if (username.equals("lancaster") && password.equals("lancaster")) {
+            this.fieldUsername.setText("");
+            this.fieldPassword.setText("");
+            this.window.switchTo(new Home(this.window));
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid login credentials!");
+        }
     }
 }
