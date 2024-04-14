@@ -99,7 +99,7 @@ public class Inventory extends JPanel {
             mainConstraints.insets = new Insets(8, 40, 8, 40);
             panelMain.add(labelName, mainConstraints);
 
-            CLabel labelStock = new CLabel(ingredient.stock + "/" + ingredient.threshold);
+            CLabel labelStock = new CLabel(ingredient.stock + "/" + ingredient.threshold + ingredient.unit);
             mainConstraints.gridx++;
             mainConstraints.anchor = GridBagConstraints.CENTER;
             mainConstraints.insets = new Insets(8, 40, 8, 40);

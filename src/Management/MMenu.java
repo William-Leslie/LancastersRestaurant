@@ -78,6 +78,7 @@ public class MMenu {
                 MIngredient ingredient = new MIngredient();
                 ingredient.id = resultSet.getInt("Ingredient.IngredientID");
                 ingredient.name = resultSet.getString("Ingredient.IngredientName");
+                ingredient.unit = resultSet.getString("Ingredient.IngredientUnit");
                 ingredient.stock = resultSet.getInt("Ingredient.StockLevel");
                 ingredient.threshold = resultSet.getInt("Ingredient.lowStockThreshold");
                 ingredient.price = resultSet.getDouble("Ingredient.Price");
