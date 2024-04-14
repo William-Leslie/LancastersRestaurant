@@ -6,7 +6,7 @@ import com.github.lgooddatepicker.components.*;
 import com.github.lgooddatepicker.optionalusertools.*;
 
 public class CDatePicker extends DatePicker {
-    public CDatePicker(DateChangeListener changeAction) {
+    public CDatePicker() {
         super();
         this.setBackground(Colors.background);
         this.setDateToToday();
@@ -19,6 +19,5 @@ public class CDatePicker extends DatePicker {
         settings.setColor(DatePickerSettings.DateArea.BackgroundMonthAndYearMenuLabels, Colors.secondary);
         settings.setColor(DatePickerSettings.DateArea.TextMonthAndYearMenuLabels, Colors.text);
         this.setSettings(settings);
-        this.addDateChangeListener(changeAction);
     }
 }

@@ -6,11 +6,12 @@ import Resources.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.*;
 import java.util.*;
 import java.util.List;
 
 public class Staff extends JPanel {
-    public Staff(CWindow window) {
+    public Staff(CWindow window, LocalDate date) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         this.setBackground(Colors.background);
@@ -25,8 +26,13 @@ public class Staff extends JPanel {
         constraints.insets = new Insets(10, 10, 0, 10);
         this.add(navbar, constraints);
 
-        CDatePicker datePicker = new CDatePicker(e -> {
+        CDatePicker datePicker = new CDatePicker();
+        if (date != null) {
+            datePicker.setDate(date);
+        }
+        datePicker.addDateChangeListener(e -> {
             System.out.println(e.getNewDate());
+            window.switchTo(new Staff(window, e.getNewDate()));
         });
         constraints.gridy++;
         constraints.fill = GridBagConstraints.VERTICAL;

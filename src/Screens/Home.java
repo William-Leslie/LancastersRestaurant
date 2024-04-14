@@ -87,7 +87,7 @@ public class Home extends JPanel {
         buttonConstraints.weighty = 1;
         buttonConstraints.insets = new Insets(10, 0, 10, 0);
 
-        CButton buttonStaff = new CButton("Staff", 26, event -> window.switchTo(new Staff(window)));
+        CButton buttonStaff = new CButton("Staff", 26, event -> window.switchTo(new Staff(window, null)));
         buttonStaff.setForeground(Colors.text);
         buttonStaff.setBackground(Colors.secondary);
         buttonConstraints.gridy++;
