@@ -100,6 +100,17 @@ public class Wines extends JPanel {
             spinnerStock.addChangeListener(e -> {
                 wine.stock = (int) spinnerStock.getValue();
                 wine.saveChanges();
+                if (wine.stock == 0) {
+                    labelName.setForeground(Colors.red);
+                    labelYear.setForeground(Colors.red);
+                    spinnerPrice.setForeground(Colors.red);
+                    spinnerStock.setForeground(Colors.red);
+                } else {
+                    labelName.setForeground(Colors.text);
+                    labelYear.setForeground(Colors.text);
+                    spinnerPrice.setForeground(Colors.background);
+                    spinnerStock.setForeground(Colors.background);
+                }
             });
             mainConstraints.gridx++;
             mainConstraints.anchor = GridBagConstraints.CENTER;
