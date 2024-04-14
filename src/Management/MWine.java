@@ -60,6 +60,26 @@ public class MWine {
         }
     }
 
+    public void saveChanges() {
+        try (Connection conn = Database.connection();
+             PreparedStatement stmt = conn.prepareStatement("""
+                        UPDATE Wine SET
+                        WineName = ?,
+                        WineYear = ?,
+                        StockLevel = ?
+                        WHERE WineID = ?
+                     """)) {
+            stmt.setString(1, this.name);
+            stmt.setString(2, this.year);
+            stmt.setInt(3, this.stock);
+            stmt.setInt(4, this.id);
+            stmt.execute();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public String toString() {
         return this.name + " (" + this.year + ") " + CPrice.of(this.price);

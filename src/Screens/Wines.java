@@ -50,7 +50,7 @@ public class Wines extends JPanel {
         panelMain.add(headerYear, mainConstraints);
 
         mainConstraints.gridx++;
-        CLabel headerPrice = new CLabel("PRICE", 24);
+        CLabel headerPrice = new CLabel("£ PRICE", 24);
         headerPrice.setForeground(Colors.blue);
         mainConstraints.anchor = GridBagConstraints.CENTER;
         panelMain.add(headerPrice, mainConstraints);
@@ -84,23 +84,33 @@ public class Wines extends JPanel {
             mainConstraints.insets = new Insets(8, 40, 8, 80);
             panelMain.add(labelYear, mainConstraints);
 
-            CLabel labelPrice = new CLabel(CPrice.of(wine.price));
+            JSpinner spinnerPrice = new JSpinner(new SpinnerNumberModel(wine.price, 0, 99, 0.50));
+            spinnerPrice.setPreferredSize(new Dimension(75, 0));
+            spinnerPrice.addChangeListener(e -> {
+                wine.price = (Double) spinnerPrice.getValue();
+                wine.saveChanges();
+            });
             mainConstraints.gridx++;
             mainConstraints.anchor = GridBagConstraints.CENTER;
             mainConstraints.insets = new Insets(8, 40, 8, 80);
-            panelMain.add(labelPrice, mainConstraints);
+            panelMain.add(spinnerPrice, mainConstraints);
 
-            CLabel labelStock = new CLabel(Integer.toString(wine.stock));
+            JSpinner spinnerStock = new JSpinner(new SpinnerNumberModel(wine.stock, 0, 99, 1));
+            spinnerStock.setPreferredSize(new Dimension(75, 0));
+            spinnerStock.addChangeListener(e -> {
+                wine.stock = (int) spinnerStock.getValue();
+                wine.saveChanges();
+            });
             mainConstraints.gridx++;
             mainConstraints.anchor = GridBagConstraints.CENTER;
             mainConstraints.insets = new Insets(8, 40, 8, 120);
-            panelMain.add(labelStock, mainConstraints);
+            panelMain.add(spinnerStock, mainConstraints);
 
             if (wine.stock == 0) {
                 labelName.setForeground(Colors.red);
                 labelYear.setForeground(Colors.red);
-                labelPrice.setForeground(Colors.red);
-                labelStock.setForeground(Colors.red);
+                spinnerPrice.setForeground(Colors.red);
+                spinnerStock.setForeground(Colors.red);
             }
         }
 
@@ -165,7 +175,7 @@ public class Wines extends JPanel {
         bottomConstraints.gridx++;
         bottomConstraints.fill = GridBagConstraints.BOTH;
         bottomConstraints.anchor = GridBagConstraints.WEST;
-        JSpinner spinnerPrice = new JSpinner(new SpinnerNumberModel(19.99, 0, 999, 0.50));
+        JSpinner spinnerPrice = new JSpinner(new SpinnerNumberModel(19.99, 0, 99, 0.50));
         spinnerPrice.setForeground(new Color(33, 33, 33));
         spinnerPrice.setPreferredSize(new Dimension(10, 40));
         panelBottom.add(spinnerPrice, bottomConstraints);
