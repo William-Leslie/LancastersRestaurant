@@ -6,6 +6,7 @@ import Resources.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.*;
 import java.util.*;
 import java.util.List;
 
@@ -182,7 +183,23 @@ public class Inventory extends JPanel {
         panelBottom.add(selectNoneButton, bottomConstraints);
 
         CButton orderButton = new CButton("Order Selected", event -> {
-            // FIXME: create order
+            MOrder order = new MOrder();
+            order.ordered = LocalDate.now();
+            order.arrival = order.ordered.plusDays(7);
+            order.items = new HashMap<>();
+            for (HashMap.Entry<MIngredient, JCheckBox> entry : checkboxes.entrySet()) {
+                if (entry.getValue().isSelected()) {
+                    order.items.put(entry.getKey(), entry.getKey().threshold);
+                    entry.getValue().setSelected(false);
+                    entry.getValue().setForeground(Colors.text);
+                }
+            }
+            if (order.items.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Nothing selected to order!");
+                return;
+            }
+            order.addToDB();
+            JOptionPane.showMessageDialog(this, "Ordered successfully!");
         });
         orderButton.setForeground(Colors.background);
         orderButton.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Colors.background));
