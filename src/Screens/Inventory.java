@@ -24,7 +24,6 @@ public class Inventory extends JPanel {
         constraints.insets = new Insets(10, 10, 0, 10);
         this.add(navbar, constraints);
 
-        // FIXME: Dummy data
         // FIXME: Add units and ways to order (maybe redo similar to wines screen)
         List<Object[]> data = Database.getIngredientsTable();
         String[] IngredientsHeader = {"Ingredient Name", "Quantity", "StockLevel", "LowStockThreshold", "Price"};

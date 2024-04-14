@@ -65,7 +65,7 @@ public class Wines extends JPanel {
         List<MWine> wines = MWine.getCellar();
 
         // DATA
-        // FIXME: sort by out of stock and/or in upcoming menus
+        // TODO: sort by out of stock and/or in upcoming menus
         for (MWine wine : wines) {
             mainConstraints.gridx = 0;
             mainConstraints.weightx = 1.5;

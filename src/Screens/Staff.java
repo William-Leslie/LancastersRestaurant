@@ -19,7 +19,6 @@ public class Staff extends JPanel {
         this.setBackground(Colors.background);
         constraints.weightx = 1;
         constraints.gridx = 1;
-        constraints.gridwidth = 7;
 
         CNavbar navbar = new CNavbar("Staff", e -> {
             if (this.saveButton.isEnabled()) {
@@ -32,6 +31,7 @@ public class Staff extends JPanel {
         });
         constraints.gridy = 1;
         constraints.weighty = 0;
+        constraints.gridwidth = 7;
         constraints.fill = GridBagConstraints.BOTH;
         constraints.insets = new Insets(10, 10, 0, 10);
         this.add(navbar, constraints);
@@ -44,14 +44,10 @@ public class Staff extends JPanel {
             window.switchTo(new Staff(window, e.getNewDate()));
         });
         constraints.gridy++;
+        constraints.gridwidth = 7;
         constraints.fill = GridBagConstraints.VERTICAL;
         constraints.insets = new Insets(10, 0, 10, 0);
         this.add(datePicker, constraints);
-
-        // panel for employees
-        JPanel panelMain = new JPanel(new GridBagLayout());
-        GridBagConstraints mainConstraints = new GridBagConstraints();
-        panelMain.setBackground(Colors.background);
 
         List<MStaffMember> staff = MStaffMember.getStaff();
         List<MHoliday> holidays = MHoliday.getOnDate(datePicker.getDate());
@@ -73,6 +69,59 @@ public class Staff extends JPanel {
         }
 
         // FIXME: Allow adding holidays
+
+        // Holidays on top
+        constraints.weighty = 0;
+        constraints.gridy++;
+        constraints.gridx = -1;
+        constraints.gridwidth = 1;
+
+        CDatePicker holidayFrom = new CDatePicker();
+        CDatePicker holidayTo = new CDatePicker();
+        JComboBox<MStaffMember> comboStaff = new JComboBox<>(staff.toArray(new MStaffMember[0]));
+        CButton addHoliday = new CButton("Add Holiday", event -> {
+            if (holidayFrom.getDate().isAfter(holidayTo.getDate())) {
+                JOptionPane.showMessageDialog(this, "Start date must be before end date!");
+                return;
+            }
+            MStaffMember member = (MStaffMember) comboStaff.getSelectedItem();
+            if (member == null) {
+                JOptionPane.showMessageDialog(this, "Please select a member first!");
+                return;
+            }
+
+            MHoliday holiday = new MHoliday();
+            holiday.staffID = member.id;
+            holiday.start = holidayFrom.getDate();
+            holiday.end = holidayTo.getDate();
+            holiday.addToDB();
+            window.switchTo(new Staff(window, datePicker.getDate()));
+        });
+        addHoliday.setPreferredSize(new Dimension(140, 0));
+        constraints.fill = GridBagConstraints.VERTICAL;
+        constraints.gridx += 2;
+        constraints.anchor = GridBagConstraints.EAST;
+        this.add(addHoliday, constraints);
+
+        constraints.fill = GridBagConstraints.VERTICAL;
+        constraints.gridx += 2;
+        constraints.anchor = GridBagConstraints.CENTER;
+        this.add(holidayFrom, constraints);
+
+        constraints.fill = GridBagConstraints.VERTICAL;
+        constraints.gridx += 2;
+        constraints.anchor = GridBagConstraints.CENTER;
+        this.add(holidayTo, constraints);
+
+        constraints.fill = GridBagConstraints.VERTICAL;
+        constraints.gridx += 2;
+        constraints.anchor = GridBagConstraints.WEST;
+        this.add(comboStaff, constraints);
+
+        // panel for employees
+        JPanel panelMain = new JPanel(new GridBagLayout());
+        GridBagConstraints mainConstraints = new GridBagConstraints();
+        panelMain.setBackground(Colors.background);
 
         // ON HOLIDAY
         mainConstraints.gridx = 1;
@@ -161,6 +210,7 @@ public class Staff extends JPanel {
         constraints.weightx = 1;
         constraints.gridy++;
         constraints.weighty = 1;
+        constraints.gridwidth = 7;
         constraints.fill = GridBagConstraints.BOTH;
         constraints.insets = new Insets(10, 20, 10, 20);
         this.add(scrollMain, constraints);

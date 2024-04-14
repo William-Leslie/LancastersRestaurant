@@ -38,4 +38,22 @@ public class MHoliday {
 
         return null;
     }
+
+    public void addToDB() {
+        try (Connection conn = Database.connection();
+             PreparedStatement stmt = conn.prepareStatement("""
+                         INSERT INTO Holiday 
+                         (StaffID, FromDate, ToDate)
+                         VALUES
+                         (?, ?, ?)
+                     """)) {
+            stmt.setInt(1, this.staffID);
+            stmt.setDate(2, java.sql.Date.valueOf(this.start));
+            stmt.setDate(3, java.sql.Date.valueOf(this.end));
+            stmt.execute();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
