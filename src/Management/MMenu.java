@@ -14,12 +14,13 @@ public class MMenu {
     public static MMenu getOnDate(LocalDateTime date) {
         try (Connection conn = Database.connection();
              PreparedStatement stmt = conn.prepareStatement("""
-                         SELECT * FROM `Menu`
-                         LEFT JOIN `Course_Menu` ON Menu.MenuID = Course_Menu.MenuID
-                         LEFT JOIN `Dish_Course` ON Course_Menu.CourseID = Dish_Course.CourseID
-                         LEFT JOIN `Dish` ON Dish_Course.DishID = Dish.DishID
-                         LEFT JOIN `Ingredient_Dish` ON Dish.DishID = Ingredient_Dish.DishID
-                         LEFT JOIN `Ingredient` ON Ingredient_Dish.IngredientID = Ingredient.IngredientID
+                         SELECT * FROM Menu
+                         LEFT JOIN Course_Menu ON Menu.MenuID = Course_Menu.MenuID
+                         LEFT JOIN Dish_Course ON Course_Menu.CourseID = Dish_Course.CourseID
+                         LEFT JOIN Dish ON Dish_Course.DishID = Dish.DishID
+                         LEFT JOIN Ingredient_Dish ON Dish.DishID = Ingredient_Dish.DishID
+                         LEFT JOIN Ingredient ON Ingredient_Dish.IngredientID = Ingredient.IngredientID
+                         LEFT JOIN Wine ON Dish.WineID = Wine.WineID
                          WHERE Menu.MenuDate = ?
                      """)) {
             stmt.setDate(1, java.sql.Date.valueOf(date.toLocalDate()));
@@ -53,7 +54,16 @@ public class MMenu {
                     dish.name = resultSet.getString("Dish.DishName");
                     dish.description = resultSet.getString("Dish.Description");
                     dish.price = resultSet.getDouble("Dish.Price");
-                    // FIXME: get suggested wine
+                    int wineID = resultSet.getInt("Dish.WineID");
+                    if (wineID != 0) {
+                        MWine wine = new MWine();
+                        wine.id = wineID;
+                        wine.name = resultSet.getString("Wine.WineName");
+                        wine.year = resultSet.getString("Wine.WineYear");
+                        wine.price = resultSet.getDouble("Wine.Price");
+                        wine.stock = resultSet.getInt("Wine.StockLevel");
+                        dish.wine = wine;
+                    }
                     dish.ingredients = new HashMap<>();
                     course.dishes.add(dish);
                 } else {

@@ -16,7 +16,7 @@ public class MDish {
     public void saveChanges() {
         try (Connection conn = Database.connection();
              PreparedStatement stmt = conn.prepareStatement("""
-                        UPDATE `Dish` SET
+                        UPDATE Dish SET
                         Dish.DishName = ?,
                         Dish.Description = ?,
                         Dish.Price = ?
