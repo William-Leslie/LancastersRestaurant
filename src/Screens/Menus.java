@@ -30,11 +30,11 @@ public class Menus extends JPanel {
         mainConstraints.weightx = 1;
         mainConstraints.insets = new Insets(16, 16, 16, 16);
 
-        LocalDateTime today = LocalDate.now().atStartOfDay(); // Midnight
-        LocalDateTime monday = today.minusDays(today.getDayOfWeek().getValue() - 1); // Find Monday, getValue() does +1
+        LocalDate today = LocalDate.now();
+        LocalDate monday = today.minusDays(today.getDayOfWeek().getValue() - 1); // Find Monday, getValue() does +1
 
         // Get current and next 4 weeks
-        for (LocalDateTime stop = monday.plusWeeks(5); monday.isBefore(stop); monday = monday.plusWeeks(1)) {
+        for (LocalDate stop = monday.plusWeeks(5); monday.isBefore(stop); monday = monday.plusWeeks(1)) {
             JPanel panelMenu = new JPanel(new GridBagLayout());
             GridBagConstraints menuConstraints = new GridBagConstraints();
             panelMenu.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));

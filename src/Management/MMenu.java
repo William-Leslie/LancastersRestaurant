@@ -11,7 +11,7 @@ public class MMenu {
     public LocalDate date;
     public List<MCourse> courses;
 
-    public static MMenu getOnDate(LocalDateTime date) {
+    public static MMenu getOnDate(LocalDate date) {
         try (Connection conn = Database.connection();
              PreparedStatement stmt = conn.prepareStatement("""
                          SELECT * FROM Menu
@@ -23,7 +23,7 @@ public class MMenu {
                          LEFT JOIN Wine ON Dish.WineID = Wine.WineID
                          WHERE Menu.MenuDate = ?
                      """)) {
-            stmt.setDate(1, java.sql.Date.valueOf(date.toLocalDate()));
+            stmt.setDate(1, java.sql.Date.valueOf(date));
             ResultSet resultSet = stmt.executeQuery();
             MMenu menu = null;
 
