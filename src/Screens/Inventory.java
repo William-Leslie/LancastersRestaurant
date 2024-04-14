@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.List;
 
 public class Inventory extends JPanel {
-    public Inventory(Window window) {
+    public Inventory(CWindow window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         this.setBackground(new Color(0x2b3336));

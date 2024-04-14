@@ -16,7 +16,7 @@ public class Sales extends JPanel {
     private JFreeChart chart2;
     private JFreeChart chart3;
 
-    public Sales(Window window) {
+    public Sales(CWindow window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         this.setBackground(new Color(0x2b3336));

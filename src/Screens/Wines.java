@@ -21,7 +21,7 @@ public class Wines extends JPanel {
         }
     }
 
-    public Wines(Window window) {
+    public Wines(CWindow window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         this.setBackground(new Color(0x2b3336)); // slightly lighter color than primary

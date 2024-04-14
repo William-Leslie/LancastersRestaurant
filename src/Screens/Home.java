@@ -8,7 +8,7 @@ import java.awt.*;
 import java.io.*;
 
 public class Home extends JPanel {
-    public Home(Window window) {
+    public Home(CWindow window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         this.setBackground(Colors.background);

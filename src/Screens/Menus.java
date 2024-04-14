@@ -9,7 +9,7 @@ import java.awt.event.*;
 import java.time.*;
 
 public class Menus extends JPanel {
-    public Menus(Window window) {
+    public Menus(CWindow window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         this.setBackground(Colors.background);

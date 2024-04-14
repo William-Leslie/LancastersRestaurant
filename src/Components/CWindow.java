@@ -1,13 +1,15 @@
-package Screens;
+package Components;
+
+import Screens.Splash;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Window extends JFrame {
+public class CWindow extends JFrame {
     private final JPanel viewport;
     private JPanel screen;
 
-    public Window() {
+    public CWindow() {
         // Initialize window with title
         super("Lancaster's Restaurant");
 

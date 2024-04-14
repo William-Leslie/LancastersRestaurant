@@ -7,11 +7,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Login extends JPanel {
-    Window window;
+    CWindow window;
     CTextField fieldUsername;
     CPasswordField fieldPassword;
 
-    public Login(Window window) {
+    public Login(CWindow window) {
         super(new GridBagLayout());
         this.window = window;
         this.setBackground(Colors.background);

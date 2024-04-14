@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Splash extends JPanel {
-    public Splash(Window window) {
+    public Splash(CWindow window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         this.setBackground(Colors.background);

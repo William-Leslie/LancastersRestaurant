@@ -30,7 +30,7 @@ public class EditMenu extends JPanel {
         }
     }
 
-    public EditMenu(Window window) {
+    public EditMenu(CWindow window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         this.setBackground(new Color(0x2b3336));

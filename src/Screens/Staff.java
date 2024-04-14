@@ -83,7 +83,7 @@ public class Staff extends JPanel {
         return sc;
     }
 
-    public Staff(Window window) {
+    public Staff(CWindow window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         this.setBackground(new Color(0x2b3336));
