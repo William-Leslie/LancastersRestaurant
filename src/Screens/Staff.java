@@ -11,13 +11,15 @@ import java.util.*;
 import java.util.List;
 
 public class Staff extends JPanel {
+    CButton saveButton;
+
     public Staff(CWindow window, LocalDate date) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         this.setBackground(Colors.background);
         constraints.weightx = 1;
         constraints.gridx = 1;
-        constraints.gridwidth = 6;
+        constraints.gridwidth = 7;
 
         CNavbar navbar = new CNavbar("Staff", event -> window.switchTo(new Home(window)));
         constraints.gridy = 1;
@@ -163,6 +165,8 @@ public class Staff extends JPanel {
         constraints.gridx = 0;
         constraints.gridwidth = 1;
 
+        MBookingCapacity capacity = MBookingCapacity.getOnDate(datePicker.getDate());
+
         CLabel labelHalfHour = new CLabel("Half Hour Limit");
         constraints.gridx++;
         constraints.fill = GridBagConstraints.VERTICAL;
@@ -171,7 +175,11 @@ public class Staff extends JPanel {
         this.add(labelHalfHour, constraints);
 
         // TODO: Theme JSpinner
-        JSpinner spinnerHalfHour = new JSpinner(new SpinnerNumberModel(6, 0, 99, 1));
+        JSpinner spinnerHalfHour = new JSpinner(new SpinnerNumberModel(capacity.halfHourLimit, 0, 99, 1));
+        spinnerHalfHour.addChangeListener(e -> {
+            capacity.halfHourLimit = (int) spinnerHalfHour.getValue();
+            saveButton.setEnabled(true);
+        });
         constraints.gridx++;
         constraints.fill = GridBagConstraints.BOTH;
         spinnerHalfHour.setPreferredSize(new Dimension(10, 40));
@@ -184,7 +192,11 @@ public class Staff extends JPanel {
         constraints.anchor = GridBagConstraints.EAST;
         this.add(labelPreBook, constraints);
 
-        JSpinner spinnerPreBook = new JSpinner(new SpinnerNumberModel(10, 0, 99, 1));
+        JSpinner spinnerPreBook = new JSpinner(new SpinnerNumberModel(capacity.preBookLimit, 0, 99, 1));
+        spinnerPreBook.addChangeListener(e -> {
+            capacity.preBookLimit = (int) spinnerPreBook.getValue();
+            saveButton.setEnabled(true);
+        });
         constraints.gridx++;
         constraints.fill = GridBagConstraints.BOTH;
         spinnerPreBook.setPreferredSize(new Dimension(10, 40));
@@ -197,12 +209,25 @@ public class Staff extends JPanel {
         constraints.anchor = GridBagConstraints.EAST;
         this.add(labelMaxDining, constraints);
 
-        JSpinner spinnerMaxDining = new JSpinner(new SpinnerNumberModel(18, 0, 99, 1));
+        JSpinner spinnerMaxDining = new JSpinner(new SpinnerNumberModel(capacity.maxDiningLimit, 0, 99, 1));
+        spinnerMaxDining.addChangeListener(e -> {
+            capacity.maxDiningLimit = (int) spinnerMaxDining.getValue();
+            saveButton.setEnabled(true);
+        });
         constraints.gridx++;
         constraints.fill = GridBagConstraints.BOTH;
         spinnerMaxDining.setPreferredSize(new Dimension(10, 40));
         constraints.insets = new Insets(10, 8, 10, 70);
         constraints.anchor = GridBagConstraints.WEST;
         this.add(spinnerMaxDining, constraints);
+
+        this.saveButton = new CButton("Save changes", event -> {
+            capacity.saveChanges();
+            this.saveButton.setEnabled(false);
+        });
+        this.saveButton.setEnabled(false);
+        constraints.gridx++;
+        constraints.fill = GridBagConstraints.BOTH;
+        this.add(saveButton, constraints);
     }
 }
