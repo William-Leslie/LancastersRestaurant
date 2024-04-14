@@ -1,6 +1,6 @@
 package ManagementToFOH;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 public interface Course {
     /** Get the unique identifier for this course
@@ -11,5 +11,5 @@ public interface Course {
     /** Get the Dish objects part of this course
      * @return The HashSet of Dish objects contained in this Course
      */
-    public HashSet<Dish> getDishes();
+    public ArrayList<Dish> getDishes();
 }

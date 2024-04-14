@@ -1,6 +1,6 @@
 package ManagementToFOH;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public interface Menu {
@@ -13,12 +13,12 @@ public interface Menu {
      * @return the HashSet of all Dish objects contained in this Menu
      * @apiNote Effectively redundant as this is the sum of all Dish objects of each Course object in the Menu
      */
-    public HashSet<Dish> getDishList();
+    public ArrayList<Dish> getDishList();
 
     /** Get the list of courses that are part of this menu
      * @return the HashSet of Course objects contained in this Menu
      */
-    public HashSet<Course> getCourses();
+    public ArrayList<Course> getCourses();
 
     /** Get the wine pairings for the dishes in this menu
      * @return the HashMap of Dish objects to paired Wine objects
