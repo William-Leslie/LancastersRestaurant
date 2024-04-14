@@ -15,7 +15,7 @@ public class MOrder {
     public void addToDB() {
         try (Connection conn = Database.connection();
              PreparedStatement stmt = conn.prepareStatement("""
-                                 INSERT INTO Orders 
+                                 INSERT INTO Orders
                                  (OrderedDate, ArrivalDate)
                                  VALUES
                                  (?, ?)
@@ -34,7 +34,7 @@ public class MOrder {
 
             for (HashMap.Entry<MIngredient, Integer> entry : this.items.entrySet()) {
                 try (PreparedStatement stmt2 = conn.prepareStatement("""
-                            INSERT INTO Ingredient_Order 
+                            INSERT INTO Ingredient_Order
                             (IngredientID, OrderID, Quantity)
                             VALUES
                             (?, ?, ?)

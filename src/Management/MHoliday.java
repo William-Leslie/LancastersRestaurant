@@ -42,7 +42,7 @@ public class MHoliday {
     public void addToDB() {
         try (Connection conn = Database.connection();
              PreparedStatement stmt = conn.prepareStatement("""
-                         INSERT INTO Holiday 
+                         INSERT INTO Holiday
                          (StaffID, FromDate, ToDate)
                          VALUES
                          (?, ?, ?)

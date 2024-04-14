@@ -76,20 +76,7 @@ public class MMenu {
                     continue;
                 }
 
-                MIngredient ingredient = new MIngredient();
-                ingredient.id = resultSet.getInt("Ingredient.IngredientID");
-                ingredient.name = resultSet.getString("Ingredient.IngredientName");
-                ingredient.unit = resultSet.getString("Ingredient.IngredientUnit");
-                ingredient.stock = resultSet.getInt("Ingredient.StockLevel");
-                ingredient.threshold = resultSet.getInt("Ingredient.lowStockThreshold");
-                ingredient.price = resultSet.getDouble("Ingredient.Price");
-                int allergenID = resultSet.getInt("Ingredient.AllergenID");
-                if (allergenID != 0) {
-                    ingredient.allergen = new MAllergen();
-                    ingredient.allergen.id = allergenID;
-                    ingredient.allergen.name = resultSet.getString("Allergens.AllergenName");
-                }
-
+                MIngredient ingredient = MIngredient.fromSql(resultSet);
                 dish.ingredients.put(ingredient, quantity);
             }
 

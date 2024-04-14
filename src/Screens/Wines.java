@@ -63,6 +63,7 @@ public class Wines extends JPanel {
         panelMain.add(headerStock, mainConstraints);
 
         List<MWine> wines = MWine.getCellar();
+        assert wines != null;
 
         // DATA
         // TODO: sort by out of stock and/or in upcoming menus

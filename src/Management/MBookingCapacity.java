@@ -22,7 +22,7 @@ public class MBookingCapacity {
             stmt.setDate(1, java.sql.Date.valueOf(date));
             ResultSet resultSet = stmt.executeQuery();
 
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 capacity.date = resultSet.getDate("CapacityDay").toLocalDate();
                 capacity.halfHourLimit = resultSet.getInt("HalfHourLimit");
                 capacity.preBookLimit = resultSet.getInt("PreBookLimit");
@@ -57,7 +57,7 @@ public class MBookingCapacity {
             stmt.setDate(4, java.sql.Date.valueOf(this.date));
             if (stmt.executeUpdate() < 1) {
                 try (PreparedStatement stmt2 = conn.prepareStatement("""
-                            INSERT INTO BookingCapacity 
+                            INSERT INTO BookingCapacity
                             (CapacityDay, HalfHourLimit, PreBookLimit, MaxDiningLimit)
                             VALUES
                             (?, ?, ?, ?)

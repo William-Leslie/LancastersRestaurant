@@ -44,7 +44,7 @@ public class MWine {
     public void addToDB() {
         try (Connection conn = Database.connection();
              PreparedStatement stmt = conn.prepareStatement("""
-                         INSERT INTO Wine 
+                         INSERT INTO Wine
                          (WineName, WineYear, Price, StockLevel)
                          VALUES
                          (?, ?, ?, ?)

@@ -23,7 +23,7 @@ public class MAuthUser {
             stmt.setString(2, password);
             ResultSet resultSet = stmt.executeQuery();
 
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 MAuthUser.username = resultSet.getString("AuthUser.Username");
                 MAuthUser.role = resultSet.getString("AuthUser.Role");
                 MAuthUser.loggedIn = true;

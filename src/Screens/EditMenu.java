@@ -42,6 +42,7 @@ public class EditMenu extends JPanel {
         mainConstraints.insets = new Insets(16, 16, 16, 16);
 
         List<MWine> cellar = MWine.getCellar();
+        assert cellar != null;
         cellar.add(0, null); // Allow unselecting the wine
         MWine[] wines = cellar.toArray(new MWine[0]);
 

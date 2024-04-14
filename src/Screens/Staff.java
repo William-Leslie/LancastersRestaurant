@@ -40,9 +40,7 @@ public class Staff extends JPanel {
         if (date != null) {
             datePicker.setDate(date);
         }
-        datePicker.addDateChangeListener(e -> {
-            window.switchTo(new Staff(window, e.getNewDate()));
-        });
+        datePicker.addDateChangeListener(e -> window.switchTo(new Staff(window, e.getNewDate())));
         constraints.gridy++;
         constraints.gridwidth = 7;
         constraints.fill = GridBagConstraints.VERTICAL;
@@ -50,7 +48,9 @@ public class Staff extends JPanel {
         this.add(datePicker, constraints);
 
         List<MStaffMember> staff = MStaffMember.getStaff();
+        assert staff != null;
         List<MHoliday> holidays = MHoliday.getOnDate(datePicker.getDate());
+        assert holidays != null;
         List<MStaffMember> staffHoliday = new ArrayList<>();
         List<MStaffMember> staffAvailable = new ArrayList<>();
         for (MStaffMember member : staff) {

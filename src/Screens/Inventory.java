@@ -72,8 +72,10 @@ public class Inventory extends JPanel {
         panelMain.add(headerAllergen, mainConstraints);
 
         List<MIngredient> ingredients = MIngredient.getInventory();
+        assert ingredients != null;
         HashMap<MIngredient, JCheckBox> checkboxes = new HashMap<>();
         List<MAllergen> allergenList = MAllergen.getAll();
+        assert allergenList != null;
         allergenList.add(0, null); // Allow unselecting the allergen
         MAllergen[] allergens = allergenList.toArray(new MAllergen[0]);
 

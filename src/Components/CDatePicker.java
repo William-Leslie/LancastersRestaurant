@@ -3,7 +3,6 @@ package Components;
 import Resources.*;
 
 import com.github.lgooddatepicker.components.*;
-import com.github.lgooddatepicker.optionalusertools.*;
 
 public class CDatePicker extends DatePicker {
     public CDatePicker() {
