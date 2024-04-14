@@ -10,7 +10,7 @@ public class MDish {
     public String name;
     public String description;
     public double price;
-    public Wine wine;
+    public MWine wine;
     public Map<MIngredient, Integer> ingredients;
 
     public void saveChanges() {
