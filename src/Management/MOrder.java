@@ -15,13 +15,13 @@ public class MOrder {
     public void addToDB() {
         try (Connection conn = Database.connection();
              PreparedStatement stmt = conn.prepareStatement("""
-                         INSERT INTO Orders 
-                         (OrderedDate, ArrivalDate)
-                         VALUES
-                         (?, ?)
-                     """,
+                                 INSERT INTO Orders 
+                                 (OrderedDate, ArrivalDate)
+                                 VALUES
+                                 (?, ?)
+                             """,
                      Statement.RETURN_GENERATED_KEYS
-                     )) {
+             )) {
             stmt.setDate(1, java.sql.Date.valueOf(this.ordered));
             stmt.setDate(2, java.sql.Date.valueOf(this.arrival));
             stmt.executeUpdate();
@@ -32,13 +32,13 @@ public class MOrder {
                 throw new SQLException();
             }
 
-            for(HashMap.Entry<MIngredient, Integer> entry : this.items.entrySet()) {
+            for (HashMap.Entry<MIngredient, Integer> entry : this.items.entrySet()) {
                 try (PreparedStatement stmt2 = conn.prepareStatement("""
-                                 INSERT INTO Ingredient_Order 
-                                 (IngredientID, OrderID, Quantity)
-                                 VALUES
-                                 (?, ?, ?)
-                             """)) {
+                            INSERT INTO Ingredient_Order 
+                            (IngredientID, OrderID, Quantity)
+                            VALUES
+                            (?, ?, ?)
+                        """)) {
                     stmt2.setInt(1, entry.getKey().id);
                     stmt2.setInt(2, this.id);
                     stmt2.setInt(3, entry.getValue());

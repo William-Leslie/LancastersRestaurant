@@ -80,9 +80,11 @@ public class EditMenu extends JPanel {
                     public void changedUpdate(DocumentEvent e) {
                         this.edited();
                     }
+
                     public void removeUpdate(DocumentEvent e) {
                         this.edited();
                     }
+
                     public void insertUpdate(DocumentEvent e) {
                         this.edited();
                     }
@@ -127,9 +129,11 @@ public class EditMenu extends JPanel {
                     public void changedUpdate(DocumentEvent e) {
                         this.edited();
                     }
+
                     public void removeUpdate(DocumentEvent e) {
                         this.edited();
                     }
+
                     public void insertUpdate(DocumentEvent e) {
                         this.edited();
                     }
