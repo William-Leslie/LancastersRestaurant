@@ -68,8 +68,6 @@ public class Staff extends JPanel {
             }
         }
 
-        // FIXME: Allow adding holidays
-
         // Holidays on top
         constraints.weighty = 0;
         constraints.gridy++;
