@@ -1,27 +1,15 @@
 package Screens;
 
 import Components.*;
+import Management.*;
 import Resources.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 public class Staff extends JPanel {
-    // FIXME: Dummy data
-    private static class Employee {
-        public String name;
-        public int employeeID;
-        public String role;
-        public boolean onHoliday;
-
-        private Employee(String name, int employeeID, String role, boolean onHoliday) {
-            this.name = name;
-            this.employeeID = employeeID;
-            this.role = role;
-            this.onHoliday = onHoliday;
-        }
-    }
-
     public Staff(CWindow window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
@@ -50,145 +38,108 @@ public class Staff extends JPanel {
         GridBagConstraints mainConstraints = new GridBagConstraints();
         panelMain.setBackground(new Color(0x2b3336)); // slightly lighter color than primary
 
-        // FIXME: Rework holiday handling
-        // FIXME: Dummy data
-        Employee[] employees = new Employee[]{
-                new Employee("Luis J. Burrus", 32487, "FOH", false),
-                new Employee("Richard K. Moreno", 35396, "FOH", true),
-                new Employee("Edward J. Villacorta", 21487, "FOH", false),
-                new Employee("Cecelia D. Nolasco", 79521, "Kitchen", false),
-                new Employee("John V. Roe", 52437, "Kitchen", false),
-                new Employee("Bessie D. Fisk", 32187, "Kitchen", true),
-                new Employee("Jolene K. Lang", 67687, "Management", false),
-                new Employee("Gregg T. Edwards", 32454, "Management", true),
-                new Employee("Luis J. Burrus", 32484, "FOH", false),
-                new Employee("Richard K. Moreno", 46287, "FOH", true),
-                new Employee("Edward J. Villacorta", 55587, "FOH", false),
-                new Employee("Cecelia D. Nolasco", 33287, "Kitchen", false),
-                new Employee("John V. Roe", 21481, "Kitchen", false),
-                new Employee("Bessie D. Fisk", 23483, "Kitchen", true),
-                new Employee("Jolene K. Lang", 65486, "Management", false),
-                new Employee("Gregg T. Edwards", 35485, "Management", true),
-                new Employee("Luis J. Burrus", 32547, "FOH", false),
-                new Employee("Richard K. Moreno", 12487, "FOH", true),
-                new Employee("Edward J. Villacorta", 21485, "FOH", false),
-                new Employee("Cecelia D. Nolasco", 32406, "Kitchen", false),
-                new Employee("John V. Roe", 12451, "Kitchen", false),
-                new Employee("Bessie D. Fisk", 34876, "Kitchen", true),
-                new Employee("Jolene K. Lang", 55487, "Management", false),
-                new Employee("Gregg T. Edwards", 31287, "Management", true),
-                new Employee("Luis J. Burrus", 12453, "FOH", false),
-                new Employee("Richard K. Moreno", 12437, "FOH", true),
-                new Employee("Edward J. Villacorta", 24227, "FOH", false),
-                new Employee("Cecelia D. Nolasco", 31498, "Kitchen", false),
-                new Employee("John V. Roe", 32657, "Kitchen", false),
-                new Employee("Bessie D. Fisk", 82287, "Kitchen", true),
-                new Employee("Jolene K. Lang", 90537, "Management", false),
-                new Employee("Gregg T. Edwards", 30437, "Management", true),
-                new Employee("Luis J. Burrus", 25486, "FOH", false),
-                new Employee("Richard K. Moreno", 38484, "FOH", true),
-                new Employee("Edward J. Villacorta", 37487, "FOH", false),
-                new Employee("Cecelia D. Nolasco", 32248, "Kitchen", false),
-                new Employee("John V. Roe", 50687, "Kitchen", false),
-                new Employee("Bessie D. Fisk", 32047, "Kitchen", true),
-                new Employee("Jolene K. Lang", 10487, "Management", false),
-                new Employee("Gregg T. Edwards", 21247, "Management", true),
-                new Employee("Luis J. Burrus", 66485, "FOH", false),
-                new Employee("Richard K. Moreno", 32406, "FOH", true),
-                new Employee("Edward J. Villacorta", 44667, "FOH", false),
-                new Employee("Cecelia D. Nolasco", 32466, "Kitchen", false),
-                new Employee("John V. Roe", 88548, "Kitchen", false),
-                new Employee("Bessie D. Fisk", 66489, "Kitchen", true),
-                new Employee("Jolene K. Lang", 32997, "Management", false),
-                new Employee("Gregg T. Edwards", 20386, "Management", true),
-        };
+        List<MStaffMember> staff = MStaffMember.getStaff();
+        List<MHoliday> holidays = MHoliday.getOnDate(datePicker.getDate());
+        List<MStaffMember> staffHoliday = new ArrayList<>();
+        List<MStaffMember> staffAvailable = new ArrayList<>();
+        for (MStaffMember member : staff) {
+            boolean onHoliday = false;
+            for (MHoliday holiday : holidays) {
+                if (member.id == holiday.staffID) {
+                    onHoliday = true;
+                    break;
+                }
+            }
+            if (onHoliday) {
+                staffHoliday.add(member);
+            } else {
+                staffAvailable.add(member);
+            }
+        }
+
+        // FIXME: Allow adding holidays
 
         // ON HOLIDAY
-        mainConstraints.gridx = 0;
+        mainConstraints.gridx = 1;
         mainConstraints.gridy = 0;
-        mainConstraints.weighty = 4;
         mainConstraints.anchor = GridBagConstraints.WEST;
         mainConstraints.insets = new Insets(8, 16, 8, 0);
         CLabel labelHoliday = new CLabel("ON HOLIDAY", 24);
         labelHoliday.setForeground(Colors.red);
         panelMain.add(labelHoliday, mainConstraints);
 
-        for (Employee employee : employees) {
-            if (employee.onHoliday) {
-                mainConstraints.gridx = 0;
-                mainConstraints.gridy++;
-                mainConstraints.weighty = 1;
+        for (MStaffMember member : staffHoliday) {
+            mainConstraints.gridx = 0;
+            mainConstraints.gridy++;
 
-                CLabel labelName = new CLabel(employee.name);
-                mainConstraints.gridx++;
-                mainConstraints.weightx = 1.5;
-                mainConstraints.anchor = GridBagConstraints.WEST;
-                mainConstraints.insets = new Insets(8, 0, 8, 80);
-                panelMain.add(labelName, mainConstraints);
+            CLabel labelName = new CLabel(member.name);
+            mainConstraints.gridx++;
+            mainConstraints.weightx = 1.5;
+            mainConstraints.anchor = GridBagConstraints.WEST;
+            mainConstraints.insets = new Insets(8, 80, 8, 40);
+            panelMain.add(labelName, mainConstraints);
 
-                CLabel labelID = new CLabel(Integer.toString(employee.employeeID));
-                mainConstraints.gridx++;
-                mainConstraints.anchor = GridBagConstraints.CENTER;
-                mainConstraints.insets = new Insets(8, 40, 8, 80);
-                panelMain.add(labelID, mainConstraints);
+            CLabel labelRole = new CLabel(member.role);
+            mainConstraints.gridx++;
+            mainConstraints.anchor = GridBagConstraints.CENTER;
+            mainConstraints.insets = new Insets(8, 40, 8, 40);
+            panelMain.add(labelRole, mainConstraints);
 
-                CLabel labelRole = new CLabel(employee.role);
-                mainConstraints.gridx++;
-                mainConstraints.anchor = GridBagConstraints.EAST;
-                mainConstraints.insets = new Insets(8, 40, 8, 120);
-                panelMain.add(labelRole, mainConstraints);
-            }
+            CLabel labelDob = new CLabel(CDate.of(member.dateOfBirth));
+            mainConstraints.gridx++;
+            mainConstraints.anchor = GridBagConstraints.CENTER;
+            mainConstraints.insets = new Insets(8, 40, 8, 40);
+            panelMain.add(labelDob, mainConstraints);
+
+            CLabel labelAddress = new CLabel(member.address);
+            mainConstraints.gridx++;
+            mainConstraints.anchor = GridBagConstraints.EAST;
+            mainConstraints.insets = new Insets(8, 40, 8, 80);
+            panelMain.add(labelAddress, mainConstraints);
         }
 
         // NOT ON HOLIDAY
-        mainConstraints.gridx = 0;
+        mainConstraints.gridx = 1;
         mainConstraints.gridy++;
-        mainConstraints.weighty = 16;
         mainConstraints.anchor = GridBagConstraints.WEST;
         mainConstraints.insets = new Insets(8, 16, 8, 0);
         CLabel labelNotHoliday = new CLabel("WORKING", 24);
         labelNotHoliday.setForeground(Colors.blue);
         panelMain.add(labelNotHoliday, mainConstraints);
 
-        for (Employee employee2 : employees) {
-            if (!employee2.onHoliday) {
-                mainConstraints.gridx = 0;
-                mainConstraints.gridy++;
-                mainConstraints.weighty = 1;
+        for (MStaffMember member : staffAvailable) {
+            mainConstraints.gridx = 0;
+            mainConstraints.gridy++;
 
-                CLabel labelName = new CLabel(employee2.name);
-                mainConstraints.gridx++;
-                mainConstraints.weightx = 1.5;
-                mainConstraints.anchor = GridBagConstraints.WEST;
-                mainConstraints.insets = new Insets(8, 0, 8, 80);
-                panelMain.add(labelName, mainConstraints);
+            CLabel labelName = new CLabel(member.name);
+            mainConstraints.gridx++;
+            mainConstraints.weightx = 1.5;
+            mainConstraints.anchor = GridBagConstraints.WEST;
+            mainConstraints.insets = new Insets(8, 80, 8, 40);
+            panelMain.add(labelName, mainConstraints);
 
-                CLabel labelID = new CLabel(Integer.toString(employee2.employeeID));
-                mainConstraints.gridx++;
-                mainConstraints.anchor = GridBagConstraints.CENTER;
-                mainConstraints.insets = new Insets(8, 40, 8, 80);
-                panelMain.add(labelID, mainConstraints);
+            CLabel labelRole = new CLabel(member.role);
+            mainConstraints.gridx++;
+            mainConstraints.anchor = GridBagConstraints.CENTER;
+            mainConstraints.insets = new Insets(8, 40, 8, 40);
+            panelMain.add(labelRole, mainConstraints);
 
-                CLabel labelRole = new CLabel(employee2.role);
-                mainConstraints.gridx++;
-                mainConstraints.anchor = GridBagConstraints.EAST;
-                mainConstraints.insets = new Insets(8, 40, 8, 120);
-                panelMain.add(labelRole, mainConstraints);
-            }
+            CLabel labelDob = new CLabel(CDate.of(member.dateOfBirth));
+            mainConstraints.gridx++;
+            mainConstraints.anchor = GridBagConstraints.CENTER;
+            mainConstraints.insets = new Insets(8, 40, 8, 40);
+            panelMain.add(labelDob, mainConstraints);
+
+            CLabel labelAddress = new CLabel(member.address);
+            mainConstraints.gridx++;
+            mainConstraints.anchor = GridBagConstraints.EAST;
+            mainConstraints.insets = new Insets(8, 40, 8, 80);
+            panelMain.add(labelAddress, mainConstraints);
         }
 
-        // I left the code for the checkbox as comments, just in case
-        /*
-        JCheckBox checkboxHoliday = new JCheckBox("On Holiday", employee.onHoliday);
-        checkboxHoliday.setForeground(new Color(0xaaaaaa));
-        checkboxHoliday.setBackground(new Color(0x2b3336));
-        checkboxHoliday.setFont(Resources.getFont(20));
-        checkboxHoliday.setFocusPainted(false);
-        checkboxHoliday.addActionListener(event -> employee.onHoliday = checkboxHoliday.isSelected());
-        mainConstraints.gridx++;
-        mainConstraints.anchor = GridBagConstraints.EAST;
-        panelMain.add(checkboxHoliday, mainConstraints);
-        */
+        mainConstraints.gridy++;
+        mainConstraints.weighty = 1;
+        panelMain.add(Box.createVerticalGlue(), mainConstraints);
 
         CScroll scrollMain = new CScroll(panelMain);
         constraints.gridx = 1;
