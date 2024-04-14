@@ -1,6 +1,7 @@
 package Screens;
 
 import Components.*;
+import Management.*;
 import Resources.*;
 
 import javax.swing.*;
@@ -62,8 +63,7 @@ public class Login extends JPanel {
         String username = this.fieldUsername.getText();
         String password = new String(this.fieldPassword.getPassword());
 
-        // FIXME: connect to DB for auth
-        if (username.equals("lancaster") && password.equals("lancaster")) {
+        if (MAuthUser.login(username, password)) {
             this.fieldUsername.setText("");
             this.fieldPassword.setText("");
             this.window.switchTo(new Home(this.window));

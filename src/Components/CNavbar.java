@@ -1,5 +1,6 @@
 package Components;
 
+import Management.*;
 import Resources.*;
 
 import javax.swing.*;
@@ -57,8 +58,7 @@ public class CNavbar extends JPanel {
         constraints.fill = GridBagConstraints.VERTICAL;
         this.add(Box.createHorizontalGlue(), constraints);
 
-        // FIXME: use logged in user name
-        CLabel labelUser = new CLabel("User: " + "lancaster");
+        CLabel labelUser = new CLabel("User: " + MAuthUser.username);
         constraints.gridx++;
         constraints.gridy = 1;
         constraints.gridheight = 1;
@@ -68,8 +68,7 @@ public class CNavbar extends JPanel {
         constraints.anchor = GridBagConstraints.EAST;
         this.add(labelUser, constraints);
 
-        // FIXME: use logged in user role
-        CLabel labelRole = new CLabel("Role: " + "admin");
+        CLabel labelRole = new CLabel("Role: " + MAuthUser.role);
         constraints.gridy = 2;
         constraints.gridheight = 1;
         constraints.weightx = 0;

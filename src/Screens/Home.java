@@ -1,6 +1,7 @@
 package Screens;
 
 import Components.*;
+import Management.*;
 import Resources.*;
 
 import javax.swing.*;
@@ -19,7 +20,10 @@ public class Home extends JPanel {
         panelUser.setBackground(Colors.background);
         userConstraints.fill = GridBagConstraints.BOTH;
 
-        CButton buttonLogout = new CButton("Logout", event -> window.switchTo(new Login(window)));
+        CButton buttonLogout = new CButton("Logout", e -> {
+            MAuthUser.logout();
+            window.switchTo(new Login(window));
+        });
         buttonLogout.setPreferredSize(new Dimension(150, 0));
         userConstraints.gridx = 1;
         userConstraints.gridy = 1;
@@ -28,8 +32,7 @@ public class Home extends JPanel {
         userConstraints.insets = new Insets(0, 0, 0, 10);
         panelUser.add(buttonLogout, userConstraints);
 
-        // FIXME: use logged in user name
-        CLabel labelUser = new CLabel("User: " + "lancaster");
+        CLabel labelUser = new CLabel("User: " + MAuthUser.username);
         userConstraints.gridx = 2;
         userConstraints.gridy = 1;
         userConstraints.gridheight = 1;
@@ -37,8 +40,7 @@ public class Home extends JPanel {
         userConstraints.insets = new Insets(0, 0, 0, 0);
         panelUser.add(labelUser, userConstraints);
 
-        // FIXME: use logged in user role
-        CLabel labelRole = new CLabel("Role: " + "admin");
+        CLabel labelRole = new CLabel("Role: " + MAuthUser.role);
         userConstraints.gridx = 2;
         userConstraints.gridy = 2;
         userConstraints.gridheight = 1;
@@ -74,6 +76,8 @@ public class Home extends JPanel {
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.CENTER;
         this.add(logo, constraints);
+
+        // TODO: add cog icon to add new login users and change password
 
         JPanel panelButtons = new JPanel(new GridBagLayout());
         GridBagConstraints buttonConstraints = new GridBagConstraints();
