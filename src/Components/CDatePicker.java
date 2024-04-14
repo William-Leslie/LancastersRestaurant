@@ -1,0 +1,23 @@
+package Components;
+
+import Resources.Colors;
+import com.github.lgooddatepicker.components.*;
+import com.github.lgooddatepicker.optionalusertools.DateChangeListener;
+
+public class CDatePicker extends DatePicker {
+    public CDatePicker(DateChangeListener changeAction) {
+        super();
+        this.setBackground(Colors.background);
+        this.setDateToToday();
+        DatePickerSettings settings = new DatePickerSettings();
+        settings.setAllowEmptyDates(false);
+        settings.setVisibleTodayButton(false);
+        settings.setAllowKeyboardEditing(false);
+        // TODO: more date picker theming (font, colors...)
+        settings.setColor(DatePickerSettings.DateArea.BackgroundOverallCalendarPanel, Colors.secondary);
+        settings.setColor(DatePickerSettings.DateArea.BackgroundMonthAndYearMenuLabels, Colors.secondary);
+        settings.setColor(DatePickerSettings.DateArea.TextMonthAndYearMenuLabels, Colors.text);
+        this.setSettings(settings);
+        this.addDateChangeListener(changeAction);
+    }
+}

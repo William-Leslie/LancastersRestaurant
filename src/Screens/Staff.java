@@ -2,18 +2,9 @@ package Screens;
 
 import Components.*;
 import Resources.*;
-import javafx.embed.swing.JFXPanel;
-import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
-import javafx.geometry.HPos;
 
 import javax.swing.*;
 import java.awt.*;
-import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 
 public class Staff extends JPanel {
     // FIXME: Dummy data
@@ -31,63 +22,10 @@ public class Staff extends JPanel {
         }
     }
 
-    private Scene createScene() {
-        // create pane for scene
-        GridPane gridpane = new GridPane();
-
-        // set column sizing for gridPane
-        ColumnConstraints column0 = new ColumnConstraints();
-        column0.setPercentWidth(45);
-        gridpane.getColumnConstraints().add(column0); // second column gets 55% of width
-
-        // create date picker
-        DatePicker datePicker = new DatePicker();
-        datePicker.setOnAction(e -> {
-            LocalDate date = datePicker.getValue();
-            System.out.println("Selected date: " + date); // return selected date
-        });
-
-        // set placeholder/default value to today's date
-        LocalDate today = LocalDate.now();
-        datePicker.setValue(today);
-
-        // misc.
-        datePicker.setPrefWidth(200);
-        datePicker.setPrefHeight(40);
-        datePicker.setShowWeekNumbers(false);
-
-        // unsure what this does, but seems to be necessary
-        LocalDate localDate = datePicker.getValue();
-        ChronoLocalDate chronoDate =
-                ((localDate != null) ? datePicker.getChronology().date(localDate) : null);
-        System.out.println("Selected date: " + chronoDate); // return selected date
-
-        // equivalent to JavaSwing label
-        Text text = new Text();
-        text.setText("Select date:");
-
-        // add nodes (text, datepicker) to gridPane
-        gridpane.add(text, 0, 0); // first column
-        gridpane.add(datePicker, 1, 0); // second column
-
-        // positioning of nodes within gridPane
-        GridPane.setHalignment(text, HPos.RIGHT);
-        GridPane.setHalignment(datePicker, HPos.LEFT);
-        javafx.geometry.Insets gridInsets = new javafx.geometry.Insets(0, 10, 0, 10);
-        GridPane.setMargin(text, gridInsets);
-        GridPane.setMargin(datePicker, gridInsets);
-
-        // create scene with the completed gridPane
-        Scene sc = new Scene(gridpane, 100, 40);
-        sc.getStylesheets().add("CSS/staff.css"); // add CSS styling
-        return sc;
-    }
-
     public Staff(CWindow window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
-        this.setBackground(new Color(0x2b3336));
-        constraints.fill = GridBagConstraints.BOTH;
+        this.setBackground(Colors.background);
         constraints.weightx = 1;
         constraints.gridx = 1;
         constraints.gridwidth = 6;
@@ -95,20 +33,17 @@ public class Staff extends JPanel {
         CNavbar navbar = new CNavbar("Staff", event -> window.switchTo(new Home(window)));
         constraints.gridy = 1;
         constraints.weighty = 0;
+        constraints.fill = GridBagConstraints.BOTH;
         constraints.insets = new Insets(10, 10, 0, 10);
         this.add(navbar, constraints);
 
-        // create a datePicker panel, then run the datePicker scene in a new thread
-        // FIXME: doesn't work well when creating screen multiple times on the fly
-        JFXPanel panelDate = new JFXPanel();
-        new Thread(() -> {
-            Scene scene = createScene();
-            panelDate.setScene(scene);
-        }).start();
-
+        CDatePicker datePicker = new CDatePicker(e -> {
+            System.out.println(e.getNewDate());
+        });
         constraints.gridy++;
+        constraints.fill = GridBagConstraints.VERTICAL;
         constraints.insets = new Insets(10, 0, 10, 0);
-        this.add(panelDate, constraints);
+        this.add(datePicker, constraints);
 
         // panel for employees
         JPanel panelMain = new JPanel(new GridBagLayout());
@@ -260,6 +195,7 @@ public class Staff extends JPanel {
         constraints.weightx = 1;
         constraints.gridy++;
         constraints.weighty = 1;
+        constraints.fill = GridBagConstraints.BOTH;
         constraints.insets = new Insets(10, 20, 10, 20);
         this.add(scrollMain, constraints);
 
