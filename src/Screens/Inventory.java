@@ -64,8 +64,18 @@ public class Inventory extends JPanel {
         mainConstraints.insets = new Insets(8, 40, 8, 80);
         panelMain.add(headerPrice, mainConstraints);
 
+        mainConstraints.gridx++;
+        CLabel headerAllergen = new CLabel("ALLERGEN", 24);
+        headerAllergen.setForeground(Colors.blue);
+        mainConstraints.anchor = GridBagConstraints.CENTER;
+        mainConstraints.insets = new Insets(8, 40, 8, 80);
+        panelMain.add(headerAllergen, mainConstraints);
+
         List<MIngredient> ingredients = MIngredient.getInventory();
         HashMap<MIngredient, JCheckBox> checkboxes = new HashMap<>();
+        List<MAllergen> allergenList = MAllergen.getAll();
+        allergenList.add(0, null); // Allow unselecting the allergen
+        MAllergen[] allergens = allergenList.toArray(new MAllergen[0]);
 
         // DATA
         // TODO: sort by out of stock and/or in upcoming menus
@@ -90,25 +100,25 @@ public class Inventory extends JPanel {
             checkboxes.put(ingredient, boxOrder);
             mainConstraints.gridx++;
             mainConstraints.anchor = GridBagConstraints.WEST;
-            mainConstraints.insets = new Insets(8, 80, 8, 40);
+            mainConstraints.insets = new Insets(8, 40, 8, 20);
             panelMain.add(boxOrder, mainConstraints);
 
             CLabel labelName = new CLabel(ingredient.name);
             mainConstraints.gridx++;
             mainConstraints.anchor = GridBagConstraints.CENTER;
-            mainConstraints.insets = new Insets(8, 40, 8, 40);
+            mainConstraints.insets = new Insets(8, 20, 8, 20);
             panelMain.add(labelName, mainConstraints);
 
             CLabel labelStock = new CLabel(ingredient.stock + "/" + ingredient.threshold + ingredient.unit);
             mainConstraints.gridx++;
             mainConstraints.anchor = GridBagConstraints.CENTER;
-            mainConstraints.insets = new Insets(8, 40, 8, 40);
+            mainConstraints.insets = new Insets(8, 20, 8, 20);
             panelMain.add(labelStock, mainConstraints);
 
             CLabel labelPrice = new CLabel(CPrice.of(ingredient.price));
             mainConstraints.gridx++;
             mainConstraints.anchor = GridBagConstraints.CENTER;
-            mainConstraints.insets = new Insets(8, 40, 8, 80);
+            mainConstraints.insets = new Insets(8, 20, 8, 20);
             panelMain.add(labelPrice, mainConstraints);
 
             if (ingredient.stock < ingredient.threshold) {
@@ -116,6 +126,25 @@ public class Inventory extends JPanel {
                 labelStock.setForeground(Colors.red);
                 labelPrice.setForeground(Colors.red);
             }
+
+            JComboBox<MAllergen> comboAllergen = new JComboBox<>(allergens);
+            comboAllergen.setSelectedIndex(0);
+            if (ingredient.allergen != null) {
+                for (int i = 1; i < allergens.length; i++) {
+                    if (allergens[i].id == ingredient.allergen.id) {
+                        comboAllergen.setSelectedIndex(i);
+                        break;
+                    }
+                }
+            }
+            comboAllergen.addActionListener(e -> {
+                ingredient.allergen = (MAllergen) comboAllergen.getSelectedItem();
+                ingredient.saveChanges();
+            });
+            mainConstraints.gridx++;
+            mainConstraints.anchor = GridBagConstraints.CENTER;
+            mainConstraints.insets = new Insets(8, 20, 8, 40);
+            panelMain.add(comboAllergen, mainConstraints);
         }
 
         CScroll scrollMain = new CScroll(panelMain);

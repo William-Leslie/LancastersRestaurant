@@ -160,7 +160,17 @@ public class EditMenu extends JPanel {
                 dishAllergenConstraints.insets = new Insets(0, 0, 0, 0);
                 panelDishAllergens.add(labelDishAllergens, dishAllergenConstraints);
 
-                CTextField fieldDishAllergens = new CTextField("No allergens", 16);
+                StringBuilder allergens = new StringBuilder();
+                for (MIngredient ingredient : dish.ingredients.keySet()) {
+                    if (ingredient.allergen != null) {
+                        if (!allergens.isEmpty()) {
+                            allergens.append(", ");
+                        }
+                        allergens.append(ingredient.allergen);
+                    }
+                }
+                CTextField fieldDishAllergens = new CTextField(allergens.toString(), 16);
+                fieldDishAllergens.setEnabled(false);
                 dishAllergenConstraints.gridx++;
                 dishAllergenConstraints.weightx = 1;
                 dishAllergenConstraints.insets = new Insets(0, 6, 0, 0);

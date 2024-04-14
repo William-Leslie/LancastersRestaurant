@@ -20,6 +20,7 @@ public class MMenu {
                          LEFT JOIN Dish ON Dish_Course.DishID = Dish.DishID
                          LEFT JOIN Ingredient_Dish ON Dish.DishID = Ingredient_Dish.DishID
                          LEFT JOIN Ingredient ON Ingredient_Dish.IngredientID = Ingredient.IngredientID
+                         LEFT JOIN Allergens ON Ingredient.AllergenID = Allergens.AllergenID
                          LEFT JOIN Wine ON Dish.WineID = Wine.WineID
                          WHERE Menu.MenuDate = ?
                      """)) {
@@ -82,6 +83,12 @@ public class MMenu {
                 ingredient.stock = resultSet.getInt("Ingredient.StockLevel");
                 ingredient.threshold = resultSet.getInt("Ingredient.lowStockThreshold");
                 ingredient.price = resultSet.getDouble("Ingredient.Price");
+                int allergenID = resultSet.getInt("Ingredient.AllergenID");
+                if (allergenID != 0) {
+                    ingredient.allergen = new MAllergen();
+                    ingredient.allergen.id = allergenID;
+                    ingredient.allergen.name = resultSet.getString("Allergens.AllergenName");
+                }
 
                 dish.ingredients.put(ingredient, quantity);
             }
