@@ -25,7 +25,7 @@ public class Menus extends JPanel {
 
         JPanel panelMain = new JPanel(new GridBagLayout());
         GridBagConstraints mainConstraints = new GridBagConstraints();
-        panelMain.setBackground(new Color(0x2b3336));
+        panelMain.setBackground(Colors.background);
         mainConstraints.fill = GridBagConstraints.BOTH;
         mainConstraints.weightx = 1;
         mainConstraints.insets = new Insets(16, 16, 16, 16);

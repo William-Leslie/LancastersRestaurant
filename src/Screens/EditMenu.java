@@ -2,6 +2,7 @@ package Screens;
 
 import Components.*;
 import Management.*;
+import Resources.*;
 
 import javax.swing.*;
 import javax.swing.event.*;
@@ -14,7 +15,7 @@ public class EditMenu extends JPanel {
     public EditMenu(CWindow window, MMenu menu) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
-        this.setBackground(new Color(0x2b3336));
+        this.setBackground(Colors.background);
         constraints.fill = GridBagConstraints.BOTH;
         constraints.weightx = 1;
 
@@ -35,7 +36,7 @@ public class EditMenu extends JPanel {
 
         JPanel panelMain = new JPanel(new GridBagLayout());
         GridBagConstraints mainConstraints = new GridBagConstraints();
-        panelMain.setBackground(new Color(0x2b3336));
+        panelMain.setBackground(Colors.background);
         mainConstraints.fill = GridBagConstraints.BOTH;
         mainConstraints.weightx = 1;
         mainConstraints.insets = new Insets(16, 16, 16, 16);

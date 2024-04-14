@@ -12,7 +12,7 @@ public class Inventory extends JPanel {
     public Inventory(CWindow window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
-        this.setBackground(new Color(0x2b3336));
+        this.setBackground(Colors.background);
         constraints.fill = GridBagConstraints.BOTH;
         constraints.weightx = 1;
 
@@ -32,7 +32,7 @@ public class Inventory extends JPanel {
         DefaultTableModel model = new DefaultTableModel(data.toArray(new Object[0][]), IngredientsHeader);
         // TODO: Theme JTable
         JTable tableInventory = new JTable(model);
-        tableInventory.setForeground(new Color(0x2b3336));
+        tableInventory.setForeground(Colors.background);
         tableInventory.setRowHeight(30);
         tableInventory.setFont(Resources.getFont(20));
 

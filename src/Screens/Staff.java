@@ -51,7 +51,7 @@ public class Staff extends JPanel {
         // panel for employees
         JPanel panelMain = new JPanel(new GridBagLayout());
         GridBagConstraints mainConstraints = new GridBagConstraints();
-        panelMain.setBackground(new Color(0x2b3336)); // slightly lighter color than primary
+        panelMain.setBackground(Colors.background);
 
         List<MStaffMember> staff = MStaffMember.getStaff();
         List<MHoliday> holidays = MHoliday.getOnDate(datePicker.getDate());

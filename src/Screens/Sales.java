@@ -1,6 +1,7 @@
 package Screens;
 
 import Components.*;
+import Resources.*;
 import org.jfree.chart.*;
 import org.jfree.chart.plot.*;
 import org.jfree.data.category.*;
@@ -16,7 +17,7 @@ public class Sales extends JPanel {
     public Sales(CWindow window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
-        this.setBackground(new Color(0x2b3336));
+        this.setBackground(Colors.background);
         constraints.fill = GridBagConstraints.BOTH;
         constraints.weightx = 1;
 
@@ -28,7 +29,7 @@ public class Sales extends JPanel {
 
         JPanel panelMain = new JPanel(new GridBagLayout());
         GridBagConstraints mainConstraints = new GridBagConstraints();
-        panelMain.setBackground(new Color(0x2b3336));
+        panelMain.setBackground(Colors.background);
         mainConstraints.fill = GridBagConstraints.BOTH;
         mainConstraints.weightx = 1;
         mainConstraints.insets = new Insets(16, 16, 16, 16);
@@ -39,7 +40,7 @@ public class Sales extends JPanel {
 
         // Date Set Panel
         JPanel buttonPanel = new JPanel(new GridLayout(1, 4));
-        buttonPanel.setBackground(new Color(0x2b3336));
+        buttonPanel.setBackground(Colors.background);
 
         CButton day = new CButton("Day", e -> updateData("day"));
         buttonPanel.add(day);

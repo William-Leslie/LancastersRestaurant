@@ -12,7 +12,7 @@ public class Wines extends JPanel {
     public Wines(CWindow window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
-        this.setBackground(new Color(0x2b3336)); // slightly lighter color than primary
+        this.setBackground(Colors.background);
         constraints.fill = GridBagConstraints.BOTH;
         constraints.weightx = 1;
         constraints.gridx = 1;
@@ -26,7 +26,7 @@ public class Wines extends JPanel {
 
         JPanel panelMain = new JPanel(new GridBagLayout());
         GridBagConstraints mainConstraints = new GridBagConstraints();
-        panelMain.setBackground(new Color(0x2b3336));
+        panelMain.setBackground(Colors.background);
         mainConstraints.weightx = 1;
         mainConstraints.weighty = 1;
         mainConstraints.fill = GridBagConstraints.BOTH;
@@ -158,7 +158,7 @@ public class Wines extends JPanel {
         bottomConstraints.gridx++;
         bottomConstraints.fill = GridBagConstraints.VERTICAL;
         bottomConstraints.anchor = GridBagConstraints.EAST;
-        CLabel labelPreBook = new CLabel("Price: ");
+        CLabel labelPreBook = new CLabel("Price: £");
         labelPreBook.setForeground(new Color(33, 33, 33));
         panelBottom.add(labelPreBook, bottomConstraints);
 
@@ -189,8 +189,8 @@ public class Wines extends JPanel {
         CButton wineButton = new CButton("Add wine", event -> {
             // FIXME: Add wine to records, then display
         });
-        wineButton.setForeground(new Color(0x2b3336));
-        wineButton.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(0x2b3336)));
+        wineButton.setForeground(Colors.background);
+        wineButton.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Colors.background));
 
         bottomConstraints.gridx++;
         bottomConstraints.fill = GridBagConstraints.BOTH;
