@@ -147,7 +147,6 @@ public class EditMenu extends JPanel {
                 dishConstraints.insets = new Insets(0, 16, 8, 16);
                 panelDish.add(areaDescription, dishConstraints);
 
-                // FIXME: Remove allergens, assign automatically based on ingredients
                 JPanel panelDishAllergens = new JPanel(new GridBagLayout());
                 GridBagConstraints dishAllergenConstraints = new GridBagConstraints();
                 panelDishAllergens.setBackground(new Color(0x557b8a));
