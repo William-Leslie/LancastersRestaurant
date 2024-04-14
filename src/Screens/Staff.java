@@ -21,7 +21,15 @@ public class Staff extends JPanel {
         constraints.gridx = 1;
         constraints.gridwidth = 7;
 
-        CNavbar navbar = new CNavbar("Staff", event -> window.switchTo(new Home(window)));
+        CNavbar navbar = new CNavbar("Staff", e -> {
+            if (this.saveButton.isEnabled()) {
+                int confirm = JOptionPane.showConfirmDialog(this, "You have unsaved changes! Discard them?");
+                if (confirm != JOptionPane.YES_OPTION) {
+                    return;
+                }
+            }
+            window.switchTo(new Home(window));
+        });
         constraints.gridy = 1;
         constraints.weighty = 0;
         constraints.fill = GridBagConstraints.BOTH;
@@ -33,7 +41,6 @@ public class Staff extends JPanel {
             datePicker.setDate(date);
         }
         datePicker.addDateChangeListener(e -> {
-            System.out.println(e.getNewDate());
             window.switchTo(new Staff(window, e.getNewDate()));
         });
         constraints.gridy++;
@@ -159,7 +166,6 @@ public class Staff extends JPanel {
         this.add(scrollMain, constraints);
 
         // Parameters on bottom
-        // FIXME: Limit parameters should be date based
         constraints.weighty = 0;
         constraints.gridy++;
         constraints.gridx = 0;
