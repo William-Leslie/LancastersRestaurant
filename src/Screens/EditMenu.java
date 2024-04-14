@@ -1,36 +1,13 @@
 package Screens;
 
 import Components.*;
+import Management.*;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class EditMenu extends JPanel {
-    // FIXME: Dummy data
-    private static class Dish {
-        public String name;
-        public String description;
-        public int price;
-
-        private Dish(String name, String description, int price) {
-            this.name = name;
-            this.description = description;
-            this.price = price;
-        }
-    }
-
-    // FIXME: Dummy data
-    private static class Course {
-        public String name;
-        public Dish[] dishes;
-
-        private Course(String name, Dish[] dishes) {
-            this.name = name;
-            this.dishes = dishes;
-        }
-    }
-
-    public EditMenu(CWindow window) {
+    public EditMenu(CWindow window, MMenu menu) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         this.setBackground(new Color(0x2b3336));
@@ -54,29 +31,8 @@ public class EditMenu extends JPanel {
         mainConstraints.weightx = 1;
         mainConstraints.insets = new Insets(16, 16, 16, 16);
 
-        // FIXME: Dummy data
-        Course[] courses = new Course[]{
-                new Course("First Course", new Dish[]{
-                        new Dish("Warm Onion Tart", "Quickes Goats Cheese, Worcestershire and Shallots", 12),
-                        new Dish("Venison Pâté en Croûte", "Hedgerow Jelly, Mustard Fruit and Pistachio", 13),
-                        new Dish("Lasagne of Rabbit Shoulder", "Mushrooms, Riesling and Thyme", 12),
-                        new Dish("Grilled Beef Tongue", "Quince, Aged Vinegar and Beetroot", 14),
-                }),
-                new Course("Second Course", new Dish[]{
-                        new Dish("Roast Cornish Monkfish", "Cheek, Butternut Squash and Sage", 28),
-                        new Dish("Our Iberian Pork", "Jerusalem Artichoke and Pickled Walnuts", 32),
-                        new Dish("Wareham Dorset Sika Deer", "Pale Ale, Prune and Spring Onion", 35),
-                        new Dish("Short Rib of Red Ruby Beef", "Spinach, Chanterelles and Horseradish", 35),
-                }),
-                new Course("Third Course", new Dish[]{
-                        new Dish("Apple Parfait", "Shortbread, Hazelnuts and Sherry", 8),
-                        new Dish("Plum Ripple Ice Cream", "Caramelised Pastry, Almond Cream and Camomile", 7),
-                        new Dish("Custard Flan", "Quince and Crème Fraîche", 8),
-                        new Dish("Selection of Cheese", "Tunworth, Lincolnshire Poacher, Beauvale Blue Crackers and Homemade Chutney", 12),
-                }),
-        };
-
-        for (Course course : courses) {
+        int iCourse = 0;
+        for (MCourse course : menu.courses) {
             JPanel panelCourse = new JPanel(new GridBagLayout());
             GridBagConstraints courseConstraints = new GridBagConstraints();
             panelCourse.setBackground(new Color(0x455a61));
@@ -85,13 +41,19 @@ public class EditMenu extends JPanel {
             courseConstraints.weightx = 1;
             courseConstraints.anchor = GridBagConstraints.NORTHWEST;
 
-            CLabel labelCourseName = new CLabel(course.name, 26);
+            String courseName = switch (iCourse++) {
+                case 0 -> "First Course";
+                case 1 -> "Second Course";
+                case 2 -> "Third Course";
+                default -> iCourse + "th Course";
+            };
+            CLabel labelCourseName = new CLabel(courseName, 26);
             labelCourseName.setForeground(new Color(0xcccccc));
             courseConstraints.gridy++;
             courseConstraints.insets = new Insets(16, 16, 16, 16);
             panelCourse.add(labelCourseName, courseConstraints);
 
-            for (Dish dish : course.dishes) {
+            for (MDish dish : course.dishes) {
                 JPanel panelDish = new JPanel(new GridBagLayout());
                 GridBagConstraints dishConstraints = new GridBagConstraints();
                 panelDish.setBackground(new Color(0x557b8a));

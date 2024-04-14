@@ -1,6 +1,7 @@
 package Screens;
 
 import Components.*;
+import Management.*;
 import Resources.*;
 
 import javax.swing.*;
@@ -41,6 +42,12 @@ public class Menus extends JPanel {
             panelMenu.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xffffff)));
             menuConstraints.weightx = 1;
 
+            MMenu menu = MMenu.getOnDate(monday);
+            if (menu == null) {
+                // TODO: warn that menu isn't ready from kitchen
+                continue;
+            }
+
             if (monday.isBefore(today) || monday.isEqual(today)) {
                 CLabel labelCurrent = new CLabel("Current week");
                 labelCurrent.setForeground(Colors.text);
@@ -67,8 +74,26 @@ public class Menus extends JPanel {
             menuConstraints.anchor = GridBagConstraints.NORTHWEST;
             panelMenu.add(labelDate, menuConstraints);
 
-            // FIXME: Dummy data
-            CLabel labelAvgPrice = new CLabel("Average Price: " + CPrice.of(24.65), 18);
+            // Calculate menu stats
+            int dishCount = 0;
+            double dishPriceSum = 0;
+            double dishPriceMax = 0;
+            double dishPriceMin = 0;
+            for (MCourse course : menu.courses) {
+                for (MDish dish : course.dishes) {
+                    dishCount++;
+                    dishPriceSum += dish.price;
+                    dishPriceMax = Math.max(dishPriceMax, dish.price);
+                    if (dishPriceMin == 0) {
+                        dishPriceMin = dish.price;
+                    } else {
+                        dishPriceMin = Math.min(dishPriceMin, dish.price);
+                    }
+                }
+            }
+            double dishPriceAvg = dishPriceSum / dishCount;
+
+            CLabel labelAvgPrice = new CLabel("Average Price: " + CPrice.of(dishPriceAvg), 18);
             labelAvgPrice.setForeground(Colors.text);
             menuConstraints.gridx = 2;
             menuConstraints.gridy = 1;
@@ -77,7 +102,7 @@ public class Menus extends JPanel {
             menuConstraints.anchor = GridBagConstraints.EAST;
             panelMenu.add(labelAvgPrice, menuConstraints);
 
-            CLabel labelMaxPrice = new CLabel("Maximum Price: " + CPrice.of(35), 18);
+            CLabel labelMaxPrice = new CLabel("Maximum Price: " + CPrice.of(dishPriceMax), 18);
             labelMaxPrice.setForeground(Colors.text);
             menuConstraints.gridx = 2;
             menuConstraints.gridy = 2;
@@ -86,7 +111,7 @@ public class Menus extends JPanel {
             menuConstraints.anchor = GridBagConstraints.EAST;
             panelMenu.add(labelMaxPrice, menuConstraints);
 
-            CLabel labelMinPrice = new CLabel("Minimum Price: " + CPrice.of(7), 18);
+            CLabel labelMinPrice = new CLabel("Minimum Price: " + CPrice.of(dishPriceMin), 18);
             labelMinPrice.setForeground(Colors.text);
             menuConstraints.gridx = 2;
             menuConstraints.gridy = 3;
@@ -98,7 +123,7 @@ public class Menus extends JPanel {
                 @Override // Click menu to go edit it
                 public void mouseClicked(MouseEvent event) {
                     if (event.getButton() == MouseEvent.BUTTON1) {
-                        window.switchTo(new EditMenu(window));
+                        window.switchTo(new EditMenu(window, menu));
                     }
                 }
 
