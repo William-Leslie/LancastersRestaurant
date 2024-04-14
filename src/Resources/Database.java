@@ -9,9 +9,8 @@ public class Database {
     static String username = "in2033t30_a";
     static String password = "ZSsixpPY6cQ";
 
-    public static Statement prepareQuery() throws SQLException {
-        Connection connection = DriverManager.getConnection(url, username, password);
-        return connection.createStatement();
+    public static Connection connection() throws SQLException {
+        return DriverManager.getConnection(url, username, password);
     }
 
     public static List<Object[]> getIngredientsTable() {

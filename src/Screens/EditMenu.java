@@ -201,7 +201,8 @@ public class EditMenu extends JPanel {
         this.add(scrollMain, constraints);
 
         this.saveButton = new CButton("Save changes", event -> {
-            // FIXME: save
+            menu.saveChanges();
+            this.saveButton.setEnabled(false);
         });
         this.saveButton.setEnabled(false);
 

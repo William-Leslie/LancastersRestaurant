@@ -12,8 +12,8 @@ public class MMenu {
     public List<MCourse> courses;
 
     public static MMenu getOnDate(LocalDateTime date) {
-        try (Statement stmt = Database.prepareQuery();
-             PreparedStatement prepStmt = stmt.getConnection().prepareStatement("""
+        try (Connection conn = Database.connection();
+             PreparedStatement stmt = conn.prepareStatement("""
                          SELECT * FROM `Menu`
                          LEFT JOIN `Course_Menu` ON Menu.MenuID = Course_Menu.MenuID
                          LEFT JOIN `Dish_Course` ON Course_Menu.CourseID = Dish_Course.CourseID
@@ -22,8 +22,8 @@ public class MMenu {
                          LEFT JOIN `Ingredient` ON Ingredient_Dish.IngredientID = Ingredient.IngredientID
                          WHERE Menu.MenuDate = ?
                      """)) {
-            prepStmt.setDate(1, java.sql.Date.valueOf(date.toLocalDate()));
-            ResultSet resultSet = prepStmt.executeQuery();
+            stmt.setDate(1, java.sql.Date.valueOf(date.toLocalDate()));
+            ResultSet resultSet = stmt.executeQuery();
             MMenu menu = null;
 
             while (resultSet.next()) {
@@ -51,10 +51,10 @@ public class MMenu {
                     dish = new MDish();
                     dish.id = dishID;
                     dish.name = resultSet.getString("Dish.DishName");
-                    dish.price = resultSet.getDouble("Dish.Price");
                     dish.description = resultSet.getString("Dish.Description");
-                    dish.ingredients = new HashMap<>();
+                    dish.price = resultSet.getDouble("Dish.Price");
                     // FIXME: get suggested wine
+                    dish.ingredients = new HashMap<>();
                     course.dishes.add(dish);
                 } else {
                     dish = course.dishes.get(course.dishes.size() - 1);
@@ -84,5 +84,11 @@ public class MMenu {
         }
 
         return null;
+    }
+
+    public void saveChanges() {
+        for (MCourse course : courses) {
+            course.saveChanges();
+        }
     }
 }
