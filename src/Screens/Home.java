@@ -89,7 +89,7 @@ public class Home extends JPanel {
             window.switchTo(new Staff(window));
         });
         buttonStaff.setForeground(Colors.text);
-        buttonStaff.setBackground(Colors.background);
+        buttonStaff.setBackground(Colors.secondary);
         buttonConstraints.gridy++;
         panelButtons.add(buttonStaff, buttonConstraints);
 
@@ -97,7 +97,7 @@ public class Home extends JPanel {
             window.switchTo(new Wines(window));
         });
         buttonWines.setForeground(Colors.text);
-        buttonWines.setBackground(Colors.background);
+        buttonWines.setBackground(Colors.secondary);
         buttonConstraints.gridy++;
         panelButtons.add(buttonWines, buttonConstraints);
 
@@ -105,7 +105,7 @@ public class Home extends JPanel {
             window.switchTo(new Menus(window));
         });
         buttonMenus.setForeground(Colors.text);
-        buttonMenus.setBackground(Colors.background);
+        buttonMenus.setBackground(Colors.secondary);
         buttonConstraints.gridy++;
         panelButtons.add(buttonMenus, buttonConstraints);
 
@@ -113,7 +113,7 @@ public class Home extends JPanel {
             window.switchTo(new Inventory(window));
         });
         buttonInventory.setForeground(Colors.text);
-        buttonInventory.setBackground(Colors.background);
+        buttonInventory.setBackground(Colors.secondary);
         buttonConstraints.gridy++;
         panelButtons.add(buttonInventory, buttonConstraints);
 
@@ -121,7 +121,7 @@ public class Home extends JPanel {
             window.switchTo(new Sales(window));
         });
         buttonSales.setForeground(Colors.text);
-        buttonSales.setBackground(Colors.background);
+        buttonSales.setBackground(Colors.secondary);
         buttonConstraints.gridy++;
         panelButtons.add(buttonSales, buttonConstraints);
 
@@ -133,7 +133,7 @@ public class Home extends JPanel {
             }
         });
         buttonPayroll.setForeground(Colors.text);
-        buttonPayroll.setBackground(Colors.background);
+        buttonPayroll.setBackground(Colors.secondary);
         buttonConstraints.gridy++;
         panelButtons.add(buttonPayroll, buttonConstraints);
 
