@@ -6,6 +6,7 @@ import Management.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
+import java.util.List;
 
 public class EditMenu extends JPanel {
     CButton saveButton;
@@ -38,6 +39,10 @@ public class EditMenu extends JPanel {
         mainConstraints.fill = GridBagConstraints.BOTH;
         mainConstraints.weightx = 1;
         mainConstraints.insets = new Insets(16, 16, 16, 16);
+
+        List<MWine> cellar = MWine.getCellar();
+        cellar.add(0, null); // Allow unselecting the wine
+        MWine[] wines = cellar.toArray(new MWine[0]);
 
         int iCourse = 0;
         for (MCourse course : menu.courses) {
@@ -160,19 +165,32 @@ public class EditMenu extends JPanel {
                 dishAllergenConstraints.insets = new Insets(0, 6, 0, 0);
                 panelDishAllergens.add(fieldDishAllergens, dishAllergenConstraints);
 
-                CLabel labelWines = new CLabel("Wines: ", 18);
-                labelWines.setForeground(new Color(0xcccccc));
+                CLabel labelWine = new CLabel("Wine: ", 18);
+                labelWine.setForeground(new Color(0xcccccc));
                 dishAllergenConstraints.gridx++;
                 dishAllergenConstraints.weightx = 0;
                 dishAllergenConstraints.insets = new Insets(0, 12, 0, 0);
-                panelDishAllergens.add(labelWines, dishAllergenConstraints);
+                panelDishAllergens.add(labelWine, dishAllergenConstraints);
 
-                // FIXME: wine dropdown (only 1 can be selected apparently)
-                CTextField fieldWines = new CTextField("No wines", 16);
+                // TODO: theme JComboBox
+                JComboBox<MWine> comboWine = new JComboBox<>(wines);
+                comboWine.setSelectedIndex(0);
+                if (dish.wine != null) {
+                    for (int i = 1; i < wines.length; i++) {
+                        if (wines[i].id == dish.wine.id) {
+                            comboWine.setSelectedIndex(i);
+                            break;
+                        }
+                    }
+                }
+                comboWine.addActionListener(e -> {
+                    dish.wine = (MWine) comboWine.getSelectedItem();
+                    this.saveButton.setEnabled(true);
+                });
                 dishAllergenConstraints.gridx++;
                 dishAllergenConstraints.weightx = 1;
                 dishAllergenConstraints.insets = new Insets(0, 6, 0, 0);
-                panelDishAllergens.add(fieldWines, dishAllergenConstraints);
+                panelDishAllergens.add(comboWine, dishAllergenConstraints);
 
                 dishConstraints.gridx = 1;
                 dishConstraints.gridwidth = 3;

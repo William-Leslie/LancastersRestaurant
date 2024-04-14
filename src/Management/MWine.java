@@ -1,5 +1,6 @@
 package Management;
 
+import Components.*;
 import Resources.*;
 
 import java.sql.*;
@@ -12,13 +13,13 @@ public class MWine {
     public double price;
     public int stock;
 
-    public static MWine[] getCellar() {
+    public static List<MWine> getCellar() {
         try (Connection conn = Database.connection();
              PreparedStatement stmt = conn.prepareStatement("""
                          SELECT * FROM Wine
                      """)) {
             ResultSet resultSet = stmt.executeQuery();
-            List<MWine> cellar = new LinkedList<>();
+            List<MWine> cellar = new ArrayList<>();
 
             while (resultSet.next()) {
                 MWine wine = new MWine();
@@ -31,12 +32,17 @@ public class MWine {
                 cellar.add(wine);
             }
 
-            return cellar.toArray(new MWine[0]);
+            return cellar;
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return this.name + " (" + this.year + ") " + CPrice.of(this.price);
     }
 }

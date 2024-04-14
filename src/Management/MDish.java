@@ -19,15 +19,20 @@ public class MDish {
                         UPDATE Dish SET
                         Dish.DishName = ?,
                         Dish.Description = ?,
-                        Dish.Price = ?
+                        Dish.Price = ?,
+                        Dish.WineID = ?
                         WHERE Dish.DishID = ?
                      """)) {
             stmt.setString(1, this.name);
             stmt.setString(2, this.description);
             stmt.setDouble(3, this.price);
-            stmt.setInt(4, this.id);
-            boolean res = stmt.execute();
-            System.out.println(res);
+            if (this.wine != null) {
+                stmt.setInt(4, this.wine.id);
+            } else {
+                stmt.setNull(4, Types.INTEGER);
+            }
+            stmt.setInt(5, this.id);
+            stmt.execute();
 
         } catch (Exception e) {
             e.printStackTrace();
