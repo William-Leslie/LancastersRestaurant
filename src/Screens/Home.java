@@ -20,7 +20,7 @@ public class Home extends JPanel {
         userConstraints.fill = GridBagConstraints.BOTH;
 
         CButton buttonLogout = new CButton("Logout", event -> {
-            window.switchTo(new Home(window));
+            window.switchTo(new Login(window));
         });
         buttonLogout.setPreferredSize(new Dimension(150, 0));
         userConstraints.gridx = 1;
