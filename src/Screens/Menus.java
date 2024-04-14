@@ -17,9 +17,7 @@ public class Menus extends JPanel {
         constraints.fill = GridBagConstraints.BOTH;
         constraints.weightx = 1;
 
-        CNavbar navbar = new CNavbar("Menus", event -> {
-            window.switchTo(new Home(window));
-        });
+        CNavbar navbar = new CNavbar("Menus", event -> window.switchTo(new Home(window)));
         constraints.gridy = 1;
         constraints.weighty = 0;
         constraints.insets = new Insets(10, 10, 0, 10);

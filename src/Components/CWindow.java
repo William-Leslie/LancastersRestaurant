@@ -1,6 +1,6 @@
 package Components;
 
-import Screens.Splash;
+import Screens.*;
 
 import javax.swing.*;
 import java.awt.*;

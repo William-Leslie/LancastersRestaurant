@@ -32,9 +32,7 @@ public class Login extends JPanel {
 
         // Username field
         this.fieldUsername = new CTextField();
-        this.fieldUsername.addActionListener(e -> {
-            this.login();
-        });
+        this.fieldUsername.addActionListener(e -> this.login());
         constraints.gridy++;
         constraints.insets = new Insets(0, 0, 0, 0);
         this.add(this.fieldUsername, constraints);
@@ -47,17 +45,13 @@ public class Login extends JPanel {
 
         // Password field
         this.fieldPassword = new CPasswordField();
-        this.fieldPassword.addActionListener(e -> {
-            this.login();
-        });
+        this.fieldPassword.addActionListener(e -> this.login());
         constraints.gridy++;
         constraints.insets = new Insets(0, 0, 0, 0);
         this.add(this.fieldPassword, constraints);
 
         // Login button
-        CButton buttonLogin = new CButton("Login", 26, event -> {
-            this.login();
-        });
+        CButton buttonLogin = new CButton("Login", 26, event -> this.login());
         buttonLogin.setPreferredSize(new Dimension(0, 50));
         constraints.gridy++;
         constraints.insets = new Insets(30, 0, 0, 0);

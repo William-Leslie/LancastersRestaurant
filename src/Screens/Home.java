@@ -19,9 +19,7 @@ public class Home extends JPanel {
         panelUser.setBackground(Colors.background);
         userConstraints.fill = GridBagConstraints.BOTH;
 
-        CButton buttonLogout = new CButton("Logout", event -> {
-            window.switchTo(new Login(window));
-        });
+        CButton buttonLogout = new CButton("Logout", event -> window.switchTo(new Login(window)));
         buttonLogout.setPreferredSize(new Dimension(150, 0));
         userConstraints.gridx = 1;
         userConstraints.gridy = 1;
@@ -85,41 +83,31 @@ public class Home extends JPanel {
         buttonConstraints.weighty = 1;
         buttonConstraints.insets = new Insets(10, 0, 10, 0);
 
-        CButton buttonStaff = new CButton("Staff", 26, event -> {
-            window.switchTo(new Staff(window));
-        });
+        CButton buttonStaff = new CButton("Staff", 26, event -> window.switchTo(new Staff(window)));
         buttonStaff.setForeground(Colors.text);
         buttonStaff.setBackground(Colors.secondary);
         buttonConstraints.gridy++;
         panelButtons.add(buttonStaff, buttonConstraints);
 
-        CButton buttonWines = new CButton("Wines", 26, event -> {
-            window.switchTo(new Wines(window));
-        });
+        CButton buttonWines = new CButton("Wines", 26, event -> window.switchTo(new Wines(window)));
         buttonWines.setForeground(Colors.text);
         buttonWines.setBackground(Colors.secondary);
         buttonConstraints.gridy++;
         panelButtons.add(buttonWines, buttonConstraints);
 
-        CButton buttonMenus = new CButton("Menus", 26, event -> {
-            window.switchTo(new Menus(window));
-        });
+        CButton buttonMenus = new CButton("Menus", 26, event -> window.switchTo(new Menus(window)));
         buttonMenus.setForeground(Colors.text);
         buttonMenus.setBackground(Colors.secondary);
         buttonConstraints.gridy++;
         panelButtons.add(buttonMenus, buttonConstraints);
 
-        CButton buttonInventory = new CButton("Inventory", 26, event -> {
-            window.switchTo(new Inventory(window));
-        });
+        CButton buttonInventory = new CButton("Inventory", 26, event -> window.switchTo(new Inventory(window)));
         buttonInventory.setForeground(Colors.text);
         buttonInventory.setBackground(Colors.secondary);
         buttonConstraints.gridy++;
         panelButtons.add(buttonInventory, buttonConstraints);
 
-        CButton buttonSales = new CButton("Sales", 26, event -> {
-            window.switchTo(new Sales(window));
-        });
+        CButton buttonSales = new CButton("Sales", 26, event -> window.switchTo(new Sales(window)));
         buttonSales.setForeground(Colors.text);
         buttonSales.setBackground(Colors.secondary);
         buttonConstraints.gridy++;

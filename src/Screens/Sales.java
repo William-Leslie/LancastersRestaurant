@@ -9,12 +9,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Sales extends JPanel {
-    private DefaultCategoryDataset dishData;
-    private DefaultCategoryDataset takingsData;
-    private DefaultCategoryDataset bookingDataCombined;
-    private JFreeChart chart1;
-    private JFreeChart chart2;
-    private JFreeChart chart3;
+    private final DefaultCategoryDataset dishData;
+    private final DefaultCategoryDataset takingsData;
+    private final DefaultCategoryDataset bookingDataCombined;
 
     public Sales(CWindow window) {
         super(new GridBagLayout());
@@ -23,9 +20,7 @@ public class Sales extends JPanel {
         constraints.fill = GridBagConstraints.BOTH;
         constraints.weightx = 1;
 
-        CNavbar navbar = new CNavbar("Sales", event -> {
-            window.switchTo(new Home(window));
-        });
+        CNavbar navbar = new CNavbar("Sales", event -> window.switchTo(new Home(window)));
         constraints.gridy = 1;
         constraints.weighty = 0;
         constraints.insets = new Insets(10, 10, 0, 10);
@@ -67,7 +62,7 @@ public class Sales extends JPanel {
         updateData("day");
 
         // Create charts
-        chart1 = ChartFactory.createBarChart(
+        JFreeChart chart1 = ChartFactory.createBarChart(
                 "Most Popular Dishes",
                 "Amount",
                 "Dish",
@@ -75,7 +70,7 @@ public class Sales extends JPanel {
                 PlotOrientation.VERTICAL,
                 true, true, false);
 
-        chart2 = ChartFactory.createBarChart(
+        JFreeChart chart2 = ChartFactory.createBarChart(
                 "Takings",
                 "Date",
                 "Amount",
@@ -83,7 +78,7 @@ public class Sales extends JPanel {
                 PlotOrientation.VERTICAL,
                 true, true, false);
 
-        chart3 = ChartFactory.createBarChart(
+        JFreeChart chart3 = ChartFactory.createBarChart(
                 "Booking Combined",
                 "Date",
                 "Amount",
@@ -188,7 +183,7 @@ public class Sales extends JPanel {
                 takingsData.addValue(120, "Takings", "November");
                 takingsData.addValue(120, "Takings", "December");
 
-                //If labels are touching too much use this to rotatename labels:
+                //If labels are touching too much use this to rotate name labels:
                 //CategoryPlot plot2 = (CategoryPlot) chart2.getPlot();
                 //CategoryAxis xAxis2 = plot2.getDomainAxis();
                 //xAxis2.setCategoryLabelPositions(CategoryLabelPositions.UP_90);

@@ -12,17 +12,16 @@ public class MMenu {
     public List<MCourse> courses;
 
     public static MMenu getOnDate(LocalDateTime date) {
-        try {
-            Statement stmt = Database.prepareQuery();
-            PreparedStatement prepStmt = stmt.getConnection().prepareStatement("""
-                SELECT * FROM `Menu` 
-                LEFT JOIN `Course_Menu` ON Menu.MenuID = Course_Menu.MenuID
-                LEFT JOIN `Dish_Course` ON Course_Menu.CourseID = Dish_Course.CourseID
-                LEFT JOIN `Dish` ON Dish_Course.DishID = Dish.DishID
-                LEFT JOIN `Ingredient_Dish` ON Dish.DishID = Ingredient_Dish.DishID
-                LEFT JOIN `Ingredient` ON Ingredient_Dish.IngredientID = Ingredient.IngredientID
-                WHERE Menu.MenuDate = ?
-            """);
+        try (Statement stmt = Database.prepareQuery();
+             PreparedStatement prepStmt = stmt.getConnection().prepareStatement("""
+                         SELECT * FROM `Menu`
+                         LEFT JOIN `Course_Menu` ON Menu.MenuID = Course_Menu.MenuID
+                         LEFT JOIN `Dish_Course` ON Course_Menu.CourseID = Dish_Course.CourseID
+                         LEFT JOIN `Dish` ON Dish_Course.DishID = Dish.DishID
+                         LEFT JOIN `Ingredient_Dish` ON Dish.DishID = Ingredient_Dish.DishID
+                         LEFT JOIN `Ingredient` ON Ingredient_Dish.IngredientID = Ingredient.IngredientID
+                         WHERE Menu.MenuDate = ?
+                     """)) {
             prepStmt.setDate(1, java.sql.Date.valueOf(date.toLocalDate()));
             ResultSet resultSet = prepStmt.executeQuery();
             MMenu menu = null;

@@ -11,7 +11,7 @@ public class CScroll extends JScrollPane {
         super(content);
         this.setPreferredSize(new Dimension(0, 0));
         this.setBorder(null);
-        this.getVerticalScrollBar().setUnitIncrement(8);
+        this.getVerticalScrollBar().setUnitIncrement(16);
         this.getVerticalScrollBar().setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Colors.frame));
         this.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
             @Override

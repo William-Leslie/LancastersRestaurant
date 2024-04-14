@@ -22,7 +22,6 @@ public class Database {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM Ingredient");
             while (resultSet.next()) {
                 // Extract data from the result set
-                int ingredientID = resultSet.getInt("IngredientID");
                 String ingredientName = resultSet.getString("IngredientName");
                 int quantity = resultSet.getInt("Quantity");
                 int stockLevel = resultSet.getInt("StockLevel");

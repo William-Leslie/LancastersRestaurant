@@ -16,9 +16,7 @@ public class Inventory extends JPanel {
         constraints.fill = GridBagConstraints.BOTH;
         constraints.weightx = 1;
 
-        CNavbar navbar = new CNavbar("Inventory", event -> {
-            window.switchTo(new Home(window));
-        });
+        CNavbar navbar = new CNavbar("Inventory", event -> window.switchTo(new Home(window)));
         constraints.gridx = 1;
         constraints.gridy++;
         constraints.weighty = 0;
@@ -28,11 +26,6 @@ public class Inventory extends JPanel {
 
         // FIXME: Dummy data
         // TODO: Add units and ways to order (maybe redo similar to wines screen)
-       /* String[][] ingredientsData = {
-            {"Milk", "10", "20"},
-            {"Egg", "20", "15"},
-            {"Flour", "30", "10"},
-        };*/
         List<Object[]> data = Database.getIngredientsTable();
         String[] IngredientsHeader = {"Ingredient Name", "Quantity", "StockLevel", "LowStockThreshold", "Price"};
 

@@ -30,9 +30,7 @@ public class Wines extends JPanel {
         constraints.gridx = 1;
         constraints.gridwidth = 6;
 
-        CNavbar navbar = new CNavbar("Wines", event -> {
-            window.switchTo(new Home(window));
-        });
+        CNavbar navbar = new CNavbar("Wines", event -> window.switchTo(new Home(window)));
         constraints.gridy = 1;
         constraints.weighty = 0;
         constraints.insets = new Insets(10, 10, 0, 10);
