@@ -1,11 +1,12 @@
 package Screens;
 
 import Components.*;
+import Management.*;
 import Resources.*;
 
 import javax.swing.*;
-import javax.swing.table.*;
 import java.awt.*;
+import java.util.*;
 import java.util.List;
 
 public class Inventory extends JPanel {
@@ -15,51 +16,185 @@ public class Inventory extends JPanel {
         this.setBackground(Colors.background);
         constraints.fill = GridBagConstraints.BOTH;
         constraints.weightx = 1;
+        constraints.gridx = 1;
+        constraints.gridwidth = 6;
 
         CNavbar navbar = new CNavbar("Inventory", event -> window.switchTo(new Home(window)));
-        constraints.gridx = 1;
-        constraints.gridy++;
+        constraints.gridy = 1;
         constraints.weighty = 0;
-        constraints.gridwidth = 2;
         constraints.insets = new Insets(10, 10, 0, 10);
         this.add(navbar, constraints);
 
-        // FIXME: Add units and ways to order (maybe redo similar to wines screen)
-        List<Object[]> data = Database.getIngredientsTable();
-        String[] IngredientsHeader = {"Ingredient Name", "Quantity", "StockLevel", "LowStockThreshold", "Price"};
+        JPanel panelMain = new JPanel(new GridBagLayout());
+        GridBagConstraints mainConstraints = new GridBagConstraints();
+        panelMain.setBackground(Colors.background);
+        mainConstraints.weightx = 1;
+        mainConstraints.weighty = 1;
+        mainConstraints.fill = GridBagConstraints.BOTH;
+        mainConstraints.insets = new Insets(48, 96, 16, 8);
 
-        DefaultTableModel model = new DefaultTableModel(data.toArray(new Object[0][]), IngredientsHeader);
-        // TODO: Theme JTable
-        JTable tableInventory = new JTable(model);
-        tableInventory.setForeground(Colors.background);
-        tableInventory.setRowHeight(30);
-        tableInventory.setFont(Resources.getFont(20));
+        // HEADERS
+        mainConstraints.gridx = 1;
+        mainConstraints.gridy++;
+        CLabel headerOrder = new CLabel("ORDER", 24);
+        headerOrder.setForeground(Colors.blue);
+        mainConstraints.anchor = GridBagConstraints.WEST;
+        mainConstraints.insets = new Insets(8, 80, 8, 40);
+        panelMain.add(headerOrder, mainConstraints);
 
-        CScroll scrollInventory = new CScroll(tableInventory);
-        scrollInventory.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0xaaaaaa)));
-        constraints.gridx = 1;
-        constraints.gridy++;
+        mainConstraints.gridx++;
+        CLabel headerName = new CLabel("NAME", 24);
+        headerName.setForeground(Colors.blue);
+        mainConstraints.anchor = GridBagConstraints.CENTER;
+        mainConstraints.insets = new Insets(8, 40, 8, 40);
+        panelMain.add(headerName, mainConstraints);
+
+        mainConstraints.gridx++;
+        CLabel headerStock = new CLabel("STOCK", 24);
+        headerStock.setForeground(Colors.blue);
+        mainConstraints.anchor = GridBagConstraints.CENTER;
+        mainConstraints.insets = new Insets(8, 40, 8, 40);
+        panelMain.add(headerStock, mainConstraints);
+
+        mainConstraints.gridx++;
+        CLabel headerPrice = new CLabel("PRICE", 24);
+        headerPrice.setForeground(Colors.blue);
+        mainConstraints.anchor = GridBagConstraints.CENTER;
+        mainConstraints.insets = new Insets(8, 40, 8, 80);
+        panelMain.add(headerPrice, mainConstraints);
+
+        List<MIngredient> ingredients = MIngredient.getInventory();
+        HashMap<MIngredient, JCheckBox> checkboxes = new HashMap<>();
+
+        // DATA
+        // TODO: sort by out of stock and/or in upcoming menus
+        for (MIngredient ingredient : ingredients) {
+            mainConstraints.gridx = 0;
+            mainConstraints.weightx = 1.5;
+            mainConstraints.gridy++;
+            mainConstraints.weighty = 1;
+
+            JCheckBox boxOrder = new JCheckBox("Add to order", false);
+            boxOrder.setBackground(Colors.background);
+            boxOrder.setForeground(Colors.text);
+            boxOrder.setFocusPainted(false);
+            boxOrder.setFont(Resources.getFont(18));
+            boxOrder.addActionListener(e -> {
+                if (boxOrder.isSelected()) {
+                    boxOrder.setForeground(Colors.primary);
+                } else {
+                    boxOrder.setForeground(Colors.text);
+                }
+            });
+            checkboxes.put(ingredient, boxOrder);
+            mainConstraints.gridx++;
+            mainConstraints.anchor = GridBagConstraints.WEST;
+            mainConstraints.insets = new Insets(8, 80, 8, 40);
+            panelMain.add(boxOrder, mainConstraints);
+
+            CLabel labelName = new CLabel(ingredient.name);
+            mainConstraints.gridx++;
+            mainConstraints.anchor = GridBagConstraints.CENTER;
+            mainConstraints.insets = new Insets(8, 40, 8, 40);
+            panelMain.add(labelName, mainConstraints);
+
+            CLabel labelStock = new CLabel(ingredient.stock + "/" + ingredient.threshold);
+            mainConstraints.gridx++;
+            mainConstraints.anchor = GridBagConstraints.CENTER;
+            mainConstraints.insets = new Insets(8, 40, 8, 40);
+            panelMain.add(labelStock, mainConstraints);
+
+            CLabel labelPrice = new CLabel(CPrice.of(ingredient.price));
+            mainConstraints.gridx++;
+            mainConstraints.anchor = GridBagConstraints.CENTER;
+            mainConstraints.insets = new Insets(8, 40, 8, 80);
+            panelMain.add(labelPrice, mainConstraints);
+
+            if (ingredient.stock < ingredient.threshold) {
+                labelName.setForeground(Colors.red);
+                labelStock.setForeground(Colors.red);
+                labelPrice.setForeground(Colors.red);
+            }
+        }
+
+        CScroll scrollMain = new CScroll(panelMain);
+        constraints.gridy = 2;
         constraints.weighty = 1;
-        constraints.gridwidth = 2;
-        constraints.insets = new Insets(10, 10, 0, 10);
-        this.add(scrollInventory, constraints);
+        constraints.insets = new Insets(10, 10, 10, 10);
+        this.add(scrollMain, constraints);
 
-        // FIXME: is this needed? we (would've) gotten ingredients from supplier
-        CTextField fieldIngredient = new CTextField();
+        // Parameters on bottom
         constraints.gridx = 1;
         constraints.gridy++;
-        constraints.weightx = 6;
         constraints.weighty = 0;
         constraints.gridwidth = 1;
-        constraints.insets = new Insets(10, 10, 10, 10);
-        this.add(fieldIngredient, constraints);
 
-        CButton buttonAdd = new CButton("Add", null);
-        constraints.gridx = 2;
-        constraints.weightx = 1;
-        constraints.weighty = 0;
-        constraints.gridwidth = 1;
-        constraints.insets = new Insets(10, 0, 10, 10);
-        this.add(buttonAdd, constraints);
+        JPanel panelBottom = new JPanel(new GridBagLayout());
+        GridBagConstraints bottomConstraints = new GridBagConstraints();
+        bottomConstraints.gridx = 0;
+        bottomConstraints.weightx = 1;
+
+        CButton selectLowButton = new CButton("Select Low Stock", event -> {
+            for (HashMap.Entry<MIngredient, JCheckBox> entry : checkboxes.entrySet()) {
+                boolean selected = entry.getKey().stock < entry.getKey().threshold;
+                entry.getValue().setSelected(selected);
+                if (selected) {
+                    entry.getValue().setForeground(Colors.primary);
+                } else {
+                    entry.getValue().setForeground(Colors.text);
+                }
+            }
+        });
+        selectLowButton.setForeground(Colors.background);
+        selectLowButton.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Colors.background));
+        bottomConstraints.gridx++;
+        bottomConstraints.fill = GridBagConstraints.BOTH;
+        bottomConstraints.anchor = GridBagConstraints.EAST;
+        bottomConstraints.insets = new Insets(5, 80, 5, 40);
+        panelBottom.add(selectLowButton, bottomConstraints);
+
+        CButton selectAllButton = new CButton("Select All", event -> {
+            for (HashMap.Entry<MIngredient, JCheckBox> entry : checkboxes.entrySet()) {
+                entry.getValue().setSelected(true);
+                entry.getValue().setForeground(Colors.primary);
+            }
+        });
+        selectAllButton.setForeground(Colors.background);
+        selectAllButton.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Colors.background));
+        bottomConstraints.gridx++;
+        bottomConstraints.fill = GridBagConstraints.BOTH;
+        bottomConstraints.anchor = GridBagConstraints.EAST;
+        bottomConstraints.insets = new Insets(5, 40, 5, 40);
+        panelBottom.add(selectAllButton, bottomConstraints);
+
+        CButton selectNoneButton = new CButton("Unselect All", event -> {
+            for (HashMap.Entry<MIngredient, JCheckBox> entry : checkboxes.entrySet()) {
+                entry.getValue().setSelected(false);
+                entry.getValue().setForeground(Colors.text);
+            }
+        });
+        selectNoneButton.setForeground(Colors.background);
+        selectNoneButton.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Colors.background));
+        bottomConstraints.gridx++;
+        bottomConstraints.fill = GridBagConstraints.BOTH;
+        bottomConstraints.anchor = GridBagConstraints.EAST;
+        bottomConstraints.insets = new Insets(5, 40, 5, 40);
+        panelBottom.add(selectNoneButton, bottomConstraints);
+
+        CButton orderButton = new CButton("Order Selected", event -> {
+            // FIXME: create order
+        });
+        orderButton.setForeground(Colors.background);
+        orderButton.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Colors.background));
+        bottomConstraints.gridx++;
+        bottomConstraints.fill = GridBagConstraints.BOTH;
+        bottomConstraints.anchor = GridBagConstraints.EAST;
+        bottomConstraints.insets = new Insets(5, 40, 5, 80);
+        panelBottom.add(orderButton, bottomConstraints);
+
+        // ADD BOTTOM PANEL
+        constraints.gridy++;
+        constraints.insets = new Insets(0, 0, 0, 0);
+        this.add(panelBottom, constraints);
     }
 }
