@@ -4,9 +4,12 @@ import Components.*;
 import Management.*;
 
 import javax.swing.*;
+import javax.swing.event.*;
 import java.awt.*;
 
 public class EditMenu extends JPanel {
+    CButton saveButton;
+
     public EditMenu(CWindow window, MMenu menu) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
@@ -15,7 +18,12 @@ public class EditMenu extends JPanel {
         constraints.weightx = 1;
 
         CNavbar navbar = new CNavbar("Edit Menu", event -> {
-            // FIXME: Track edits, show warning if backing out with edits
+            if (this.saveButton.isEnabled()) {
+                int confirm = JOptionPane.showConfirmDialog(this, "You have unsaved changes! Discard them?");
+                if (confirm != JOptionPane.YES_OPTION) {
+                    return;
+                }
+            }
             // TODO: Should this go to Home instead? IMO no but maybe?
             window.switchTo(new Menus(window));
         });
@@ -62,6 +70,22 @@ public class EditMenu extends JPanel {
                 dishConstraints.anchor = GridBagConstraints.NORTHWEST;
 
                 CTextField fieldDishName = new CTextField(dish.name, 22);
+                fieldDishName.getDocument().addDocumentListener(new DocumentListener() {
+                    public void changedUpdate(DocumentEvent e) {
+                        this.edited();
+                    }
+                    public void removeUpdate(DocumentEvent e) {
+                        this.edited();
+                    }
+                    public void insertUpdate(DocumentEvent e) {
+                        this.edited();
+                    }
+
+                    public void edited() {
+                        dish.name = fieldDishName.getText();
+                        saveButton.setEnabled(true);
+                    }
+                });
                 dishConstraints.gridx = 1;
                 dishConstraints.gridwidth = 1;
                 dishConstraints.weightx = 1;
@@ -78,9 +102,13 @@ public class EditMenu extends JPanel {
                 dishConstraints.insets = new Insets(16, 16, 16, 0);
                 panelDish.add(labelDishPrice, dishConstraints);
 
-                // FIXME: Add decimals
                 // TODO: Theme JSpinner
-                JSpinner spinnerDishPrice = new JSpinner(new SpinnerNumberModel(dish.price, 0, 99, 1));
+                JSpinner spinnerDishPrice = new JSpinner(new SpinnerNumberModel(dish.price, 0, 99, 0.50));
+                spinnerDishPrice.setPreferredSize(new Dimension(75, 0));
+                spinnerDishPrice.addChangeListener(e -> {
+                    dish.price = (Double) spinnerDishPrice.getValue();
+                    this.saveButton.setEnabled(true);
+                });
                 dishConstraints.gridx = 3;
                 dishConstraints.gridwidth = 1;
                 dishConstraints.weightx = 0;
@@ -89,6 +117,22 @@ public class EditMenu extends JPanel {
                 panelDish.add(spinnerDishPrice, dishConstraints);
 
                 CTextArea areaDescription = new CTextArea(dish.description, 16);
+                areaDescription.getDocument().addDocumentListener(new DocumentListener() {
+                    public void changedUpdate(DocumentEvent e) {
+                        this.edited();
+                    }
+                    public void removeUpdate(DocumentEvent e) {
+                        this.edited();
+                    }
+                    public void insertUpdate(DocumentEvent e) {
+                        this.edited();
+                    }
+
+                    public void edited() {
+                        dish.description = areaDescription.getText();
+                        saveButton.setEnabled(true);
+                    }
+                });
                 areaDescription.setRows(2);
                 dishConstraints.gridx = 1;
                 dishConstraints.gridwidth = 3;
@@ -156,9 +200,10 @@ public class EditMenu extends JPanel {
         constraints.insets = new Insets(10, 10, 10, 10);
         this.add(scrollMain, constraints);
 
-        CButton saveButton = new CButton("Save changes", event -> {
+        this.saveButton = new CButton("Save changes", event -> {
             // FIXME: save
         });
+        this.saveButton.setEnabled(false);
 
         constraints.gridy++;
         constraints.weighty = 0.05;

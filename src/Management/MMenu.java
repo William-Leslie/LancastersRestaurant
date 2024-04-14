@@ -71,10 +71,11 @@ public class MMenu {
                 ingredient.stock = resultSet.getInt("Ingredient.StockLevel");
                 ingredient.threshold = resultSet.getInt("Ingredient.lowStockThreshold");
                 ingredient.price = resultSet.getDouble("Ingredient.Price");
-                System.out.println(ingredient.name);
 
                 dish.ingredients.put(ingredient, quantity);
             }
+
+            // FIXME: fetch and compare from kitchen
 
             return menu;
 
