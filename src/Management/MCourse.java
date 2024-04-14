@@ -1,6 +1,6 @@
 package Management;
 
-import java.util.List;
+import java.util.*;
 
 public class MCourse {
     public int id;

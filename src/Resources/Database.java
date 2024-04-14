@@ -1,8 +1,7 @@
 package Resources;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Database {
     static String url = "jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2033t30";
