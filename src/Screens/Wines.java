@@ -1,26 +1,14 @@
 package Screens;
 
 import Components.*;
+import Management.*;
 import Resources.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class Wines extends JPanel {
-    private static class WineEntry {
-        public String name;
-        public int year;
-        public double price;
-        public int stock;
-
-        private WineEntry(String name, int year, double price, int stock) {
-            this.name = name;
-            this.year = year;
-            this.price = price;
-            this.stock = stock;
-        }
-    }
-
     public Wines(CWindow window) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
@@ -44,30 +32,6 @@ public class Wines extends JPanel {
         mainConstraints.fill = GridBagConstraints.BOTH;
         mainConstraints.insets = new Insets(48, 96, 16, 8);
         panelMain.add(Box.createVerticalGlue(), mainConstraints);
-
-        // FIXME: Dummy data
-        WineEntry[] wineEntries = {
-                new WineEntry("Merlot", 2019, 25.99, 10),
-                new WineEntry("Chardonnay", 2020, 19.99, 15),
-                new WineEntry("Cabernet Sauvignon", 2018, 29.99, 8),
-                new WineEntry("Pinot Noir", 2017, 35.99, 0),
-                new WineEntry("Zinfandel", 2021, 22.99, 12),
-                new WineEntry("Zinfandel", 2016, 27.99, 7),
-                new WineEntry("Malbec", 2022, 31.99, 9),
-                new WineEntry("Syrah", 2015, 39.99, 0),
-                new WineEntry("Riesling", 2023, 17.99, 20),
-                new WineEntry("Grenache", 2014, 33.99, 6),
-                new WineEntry("Tempranillo", 2024, 28.99, 11),
-                new WineEntry("Malbec", 2013, 24.99, 14),
-                new WineEntry("Merlot", 2024, 21.99, 18),
-                new WineEntry("Moscato", 2012, 19.99, 0),
-                new WineEntry("Merlot", 2024, 45.99, 4),
-                new WineEntry("Shiraz", 2023, 29.99, 16),
-                new WineEntry("Prosecco", 2024, 23.99, 9),
-                new WineEntry("Barolo", 2018, 49.99, 0),
-                new WineEntry("Shiraz", 2016, 37.99, 11),
-                new WineEntry("Prosecco", 2017, 28.99, 14)
-        };
 
         // HEADERS
         mainConstraints.gridx = 1;
@@ -98,39 +62,41 @@ public class Wines extends JPanel {
         mainConstraints.insets = new Insets(8, 40, 8, 120);
         panelMain.add(headerStock, mainConstraints);
 
+        List<MWine> wines = MWine.getCellar();
+
         // DATA
         // FIXME: sort by out of stock and/or in upcoming menus
-        for (WineEntry wineEntry : wineEntries) {
+        for (MWine wine : wines) {
             mainConstraints.gridx = 0;
             mainConstraints.weightx = 1.5;
             mainConstraints.gridy++;
             mainConstraints.weighty = 1;
 
-            CLabel labelName = new CLabel(wineEntry.name);
+            CLabel labelName = new CLabel(wine.name);
             mainConstraints.gridx++;
             mainConstraints.anchor = GridBagConstraints.WEST;
             mainConstraints.insets = new Insets(8, 0, 8, 80);
             panelMain.add(labelName, mainConstraints);
 
-            CLabel labelYear = new CLabel(Integer.toString(wineEntry.year));
+            CLabel labelYear = new CLabel(wine.year);
             mainConstraints.gridx++;
             mainConstraints.anchor = GridBagConstraints.CENTER;
             mainConstraints.insets = new Insets(8, 40, 8, 80);
             panelMain.add(labelYear, mainConstraints);
 
-            CLabel labelPrice = new CLabel(Double.toString(wineEntry.price));
+            CLabel labelPrice = new CLabel(CPrice.of(wine.price));
             mainConstraints.gridx++;
             mainConstraints.anchor = GridBagConstraints.CENTER;
             mainConstraints.insets = new Insets(8, 40, 8, 80);
             panelMain.add(labelPrice, mainConstraints);
 
-            CLabel labelStock = new CLabel(Integer.toString(wineEntry.stock));
+            CLabel labelStock = new CLabel(Integer.toString(wine.stock));
             mainConstraints.gridx++;
             mainConstraints.anchor = GridBagConstraints.CENTER;
             mainConstraints.insets = new Insets(8, 40, 8, 120);
             panelMain.add(labelStock, mainConstraints);
 
-            if (wineEntry.stock == 0) {
+            if (wine.stock == 0) {
                 labelName.setForeground(Colors.red);
                 labelYear.setForeground(Colors.red);
                 labelPrice.setForeground(Colors.red);
