@@ -133,7 +133,7 @@ public class Wines extends JPanel {
         bottomConstraints.gridx++;
         bottomConstraints.fill = GridBagConstraints.BOTH;
         bottomConstraints.anchor = GridBagConstraints.WEST;
-        CTextField nameText = new CTextField(" Merlot", 16);
+        CTextField nameText = new CTextField("Merlot", 16);
         nameText.setForeground(new Color(33, 33, 33)); // slightly lighter than black
         nameText.setPreferredSize(new Dimension(80, 40));
         panelBottom.add(nameText, bottomConstraints);
@@ -149,7 +149,7 @@ public class Wines extends JPanel {
         bottomConstraints.gridx++;
         bottomConstraints.fill = GridBagConstraints.BOTH;
         bottomConstraints.anchor = GridBagConstraints.WEST;
-        CTextField yearText = new CTextField(" 2024", 16);
+        CTextField yearText = new CTextField("2024", 16);
         yearText.setForeground(new Color(33, 33, 33));
         yearText.setPreferredSize(new Dimension(10, 40));
         panelBottom.add(yearText, bottomConstraints);
@@ -165,10 +165,10 @@ public class Wines extends JPanel {
         bottomConstraints.gridx++;
         bottomConstraints.fill = GridBagConstraints.BOTH;
         bottomConstraints.anchor = GridBagConstraints.WEST;
-        CTextField priceText = new CTextField(" 19.99", 16);
-        priceText.setForeground(new Color(33, 33, 33));
-        priceText.setPreferredSize(new Dimension(10, 40));
-        panelBottom.add(priceText, bottomConstraints);
+        JSpinner spinnerPrice = new JSpinner(new SpinnerNumberModel(19.99, 0, 999, 0.50));
+        spinnerPrice.setForeground(new Color(33, 33, 33));
+        spinnerPrice.setPreferredSize(new Dimension(10, 40));
+        panelBottom.add(spinnerPrice, bottomConstraints);
 
         // STOCK
         bottomConstraints.gridx++;
@@ -181,13 +181,19 @@ public class Wines extends JPanel {
         bottomConstraints.gridx++;
         bottomConstraints.fill = GridBagConstraints.BOTH;
         bottomConstraints.anchor = GridBagConstraints.WEST;
-        JSpinner spinnerMaxDining = new JSpinner(new SpinnerNumberModel(1, 0, 99, 1));
-        spinnerMaxDining.setPreferredSize(new Dimension(1, 1));
-        panelBottom.add(spinnerMaxDining, bottomConstraints);
+        JSpinner spinnerStock = new JSpinner(new SpinnerNumberModel(1, 0, 99, 1));
+        spinnerStock.setPreferredSize(new Dimension(1, 1));
+        panelBottom.add(spinnerStock, bottomConstraints);
 
         // ADD WINE
         CButton wineButton = new CButton("Add wine", event -> {
-            // FIXME: Add wine to records, then display
+            MWine wine = new MWine();
+            wine.name = nameText.getText();
+            wine.year = yearText.getText();
+            wine.price = (double) spinnerPrice.getValue();
+            wine.stock = (int) spinnerStock.getValue();
+            wine.addToDB();
+            window.switchTo(new Wines(window));
         });
         wineButton.setForeground(Colors.background);
         wineButton.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Colors.background));

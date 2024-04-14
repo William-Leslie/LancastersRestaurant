@@ -41,6 +41,25 @@ public class MWine {
         return null;
     }
 
+    public void addToDB() {
+        try (Connection conn = Database.connection();
+             PreparedStatement stmt = conn.prepareStatement("""
+                         INSERT INTO Wine 
+                         (WineName, WineYear, Price, StockLevel)
+                         VALUES
+                         (?, ?, ?, ?)
+                     """)) {
+            stmt.setString(1, this.name);
+            stmt.setString(2, this.year);
+            stmt.setDouble(3, this.price);
+            stmt.setInt(4, this.stock);
+            stmt.execute();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public String toString() {
         return this.name + " (" + this.year + ") " + CPrice.of(this.price);
