@@ -8,6 +8,7 @@ public class CTextArea extends JTextArea {
     public CTextArea(String initialText, int textSize) {
         super(initialText);
         this.setForeground(Colors.background);
+        this.setDisabledTextColor(Colors.frame);
         this.setBackground(Colors.white);
         this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Colors.frame));
         this.setFont(Resources.getFont(textSize));
