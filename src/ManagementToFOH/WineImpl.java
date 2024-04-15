@@ -1,5 +1,3 @@
-package ManagementToFOH;
-
 public class WineImpl implements Wine {
     private final int wineID;
     private final String name;

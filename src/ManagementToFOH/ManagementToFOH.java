@@ -1,6 +1,3 @@
-package ManagementToFOH;
-
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public interface ManagementToFOH {

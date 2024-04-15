@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ManagementToFOH:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ManagementToFOH_jar</output-path>
+    <root id="archive" name="ManagementToFOH.jar">
+      <element id="module-output" name="ManagementToFOH" />
+    </root>
+  </artifact>
+</component>

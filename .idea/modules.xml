@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LancastersRestaurant.iml" filepath="$PROJECT_DIR$/LancastersRestaurant.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/ManagementToFOH/ManagementToFOH.iml" filepath="$PROJECT_DIR$/src/ManagementToFOH/ManagementToFOH.iml" />
     </modules>
   </component>
 </project>
