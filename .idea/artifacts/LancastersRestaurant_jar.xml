@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LancastersRestaurant:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LancastersRestaurant_jar</output-path>
+    <root id="archive" name="LancastersRestaurant.jar">
+      <element id="module-output" name="LancastersRestaurant" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jfreechart/jcommon-1.0.23.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jfreechart/jfreechart-1.0.19.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/LGoodDatePicker/LGoodDatePicker-11.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/mysql-connector-j/mysql-connector-j-8.3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/FOHtoManagement.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
