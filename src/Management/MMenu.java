@@ -12,6 +12,8 @@ public class MMenu {
     public List<MCourse> courses;
 
     public static MMenu getOnDate(LocalDate date) {
+        // NOTE: This should have connected to Kitchen to get new Menu, but we were never given an API
+
         try (Connection conn = Database.connection();
              PreparedStatement stmt = conn.prepareStatement("""
                          SELECT * FROM Menu
@@ -79,8 +81,6 @@ public class MMenu {
                 MIngredient ingredient = MIngredient.fromSql(resultSet);
                 dish.ingredients.put(ingredient, quantity);
             }
-
-            // FIXME: fetch and compare from kitchen
 
             return menu;
 
