@@ -25,6 +25,7 @@ public class DeliveryOrderImpl implements DeliveryOrder {
     public Date getOrderDate() {
         return orderDate;
     }
+
     public String getOrderStatus() {
         return orderStatus;
     }
