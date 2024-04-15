@@ -36,16 +36,33 @@ public class Staff extends JPanel {
         constraints.insets = new Insets(10, 10, 0, 10);
         this.add(navbar, constraints);
 
+        JPanel panelDate = new JPanel(new GridBagLayout());
+        GridBagConstraints dateConstraints = new GridBagConstraints();
+        panelDate.setBackground(Colors.background);
+        dateConstraints.insets = new Insets(10, 5, 10, 10);
+
+        CLabel labelDate = new CLabel("Date:");
+        dateConstraints.fill = GridBagConstraints.VERTICAL;
+        dateConstraints.gridx++;
+        panelDate.add(labelDate, dateConstraints);
+
         CDatePicker datePicker = new CDatePicker();
         if (date != null) {
             datePicker.setDate(date);
         }
         datePicker.addDateChangeListener(e -> window.switchTo(new Staff(window, e.getNewDate())));
+        dateConstraints.gridx++;
+        dateConstraints.fill = GridBagConstraints.VERTICAL;
+        panelDate.add(datePicker, dateConstraints);
+
+        constraints.gridx = 1;
+        constraints.weightx = 1;
         constraints.gridy++;
+        constraints.weighty = 0;
         constraints.gridwidth = 7;
-        constraints.fill = GridBagConstraints.VERTICAL;
-        constraints.insets = new Insets(10, 0, 10, 0);
-        this.add(datePicker, constraints);
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.insets = new Insets(10, 20, 10, 20);
+        this.add(panelDate, constraints);
 
         List<MStaffMember> staff = MStaffMember.getStaff();
         assert staff != null;
@@ -69,14 +86,31 @@ public class Staff extends JPanel {
         }
 
         // Holidays on top
-        constraints.weighty = 0;
-        constraints.gridy++;
-        constraints.gridx = -1;
-        constraints.gridwidth = 1;
+        JPanel panelHoliday = new JPanel(new GridBagLayout());
+        GridBagConstraints holidayConstraints = new GridBagConstraints();
+        panelHoliday.setBackground(Colors.background);
+        holidayConstraints.insets = new Insets(10, 5, 10, 10);
+
+        CLabel labelAddHoliday = new CLabel("Add new staff holiday:");
+        holidayConstraints.fill = GridBagConstraints.VERTICAL;
+        holidayConstraints.gridx++;
+        panelHoliday.add(labelAddHoliday, holidayConstraints);
 
         CDatePicker holidayFrom = new CDatePicker();
+        holidayConstraints.fill = GridBagConstraints.VERTICAL;
+        holidayConstraints.gridx++;
+        panelHoliday.add(holidayFrom, holidayConstraints);
+
         CDatePicker holidayTo = new CDatePicker();
+        holidayConstraints.fill = GridBagConstraints.VERTICAL;
+        holidayConstraints.gridx++;
+        panelHoliday.add(holidayTo, holidayConstraints);
+
         JComboBox<MStaffMember> comboStaff = new JComboBox<>(staff.toArray(new MStaffMember[0]));
+        holidayConstraints.fill = GridBagConstraints.VERTICAL;
+        holidayConstraints.gridx++;
+        panelHoliday.add(comboStaff, holidayConstraints);
+
         CButton addHoliday = new CButton("Add Holiday", event -> {
             if (holidayFrom.getDate().isAfter(holidayTo.getDate())) {
                 JOptionPane.showMessageDialog(this, "Start date must be before end date!");
@@ -96,25 +130,18 @@ public class Staff extends JPanel {
             window.switchTo(new Staff(window, datePicker.getDate()));
         });
         addHoliday.setPreferredSize(new Dimension(140, 0));
-        constraints.fill = GridBagConstraints.VERTICAL;
-        constraints.gridx += 2;
-        constraints.anchor = GridBagConstraints.EAST;
-        this.add(addHoliday, constraints);
+        holidayConstraints.fill = GridBagConstraints.VERTICAL;
+        holidayConstraints.gridx++;
+        panelHoliday.add(addHoliday, holidayConstraints);
 
-        constraints.fill = GridBagConstraints.VERTICAL;
-        constraints.gridx += 2;
-        constraints.anchor = GridBagConstraints.CENTER;
-        this.add(holidayFrom, constraints);
-
-        constraints.fill = GridBagConstraints.VERTICAL;
-        constraints.gridx += 2;
-        constraints.anchor = GridBagConstraints.CENTER;
-        this.add(holidayTo, constraints);
-
-        constraints.fill = GridBagConstraints.VERTICAL;
-        constraints.gridx += 2;
-        constraints.anchor = GridBagConstraints.WEST;
-        this.add(comboStaff, constraints);
+        constraints.gridx = 1;
+        constraints.weightx = 1;
+        constraints.gridy++;
+        constraints.weighty = 0;
+        constraints.gridwidth = 7;
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.insets = new Insets(10, 20, 10, 20);
+        this.add(panelHoliday, constraints);
 
         // panel for employees
         JPanel panelMain = new JPanel(new GridBagLayout());
