@@ -121,11 +121,14 @@ public class Home extends JPanel {
             try {
                 Path tempDir = Files.createTempDirectory("Lancasters-PayrollHR-");
                 Path html = tempDir.resolve("index.html");
+                Path gif = tempDir.resolve("cog.gif");
                 Path css = tempDir.resolve("index.css");
                 Files.write(html, Resources.class.getResourceAsStream("/assets/PayrollHR/index.html").readAllBytes());
+                Files.write(gif, Resources.class.getResourceAsStream("/assets/PayrollHR/cog.gif").readAllBytes());
                 Files.write(css, Resources.class.getResourceAsStream("/assets/PayrollHR/index.css").readAllBytes());
                 Desktop.getDesktop().open(html.toFile());
                 html.toFile().deleteOnExit();
+                gif.toFile().deleteOnExit();
                 css.toFile().deleteOnExit();
                 tempDir.toFile().deleteOnExit();
             } catch (Exception e) {
