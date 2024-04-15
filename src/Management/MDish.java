@@ -13,6 +13,27 @@ public class MDish {
     public MWine wine;
     public Map<MIngredient, Integer> ingredients;
 
+    public static Map<Integer, String> getDishNames() {
+        try (Connection conn = Database.connection();
+             PreparedStatement stmt = conn.prepareStatement("""
+                         SELECT DishID, DishName FROM Dish
+                     """)) {
+            ResultSet resultSet = stmt.executeQuery();
+            Map<Integer, String> dishNames = new HashMap<>();
+
+            while (resultSet.next()) {
+                dishNames.put(resultSet.getInt("DishID"), resultSet.getString("DishName"));
+            }
+
+            return dishNames;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public void saveChanges() {
         try (Connection conn = Database.connection();
              PreparedStatement stmt = conn.prepareStatement("""
