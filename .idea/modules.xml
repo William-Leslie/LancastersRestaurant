@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LancastersRestaurant.iml" filepath="$PROJECT_DIR$/LancastersRestaurant.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/ManagementToFOH/ManagementToFOH.iml" filepath="$PROJECT_DIR$/src/ManagementToFOH/ManagementToFOH.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/ManagementToKitchen/ManagementToKitchen.iml" filepath="$PROJECT_DIR$/src/ManagementToKitchen/ManagementToKitchen.iml" />
     </modules>
   </component>
 </project>
