@@ -6,7 +6,7 @@ import Resources.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
+import java.nio.file.*;
 
 public class Home extends JPanel {
     public Home(CWindow window) {
@@ -119,8 +119,16 @@ public class Home extends JPanel {
 
         CButton buttonPayroll = new CButton("Payroll & HR", 26, event -> {
             try {
-                Desktop.getDesktop().open(new java.io.File("resources/PayrollHR/index.html"));
-            } catch (IOException e) {
+                Path tempDir = Files.createTempDirectory("Lancasters-PayrollHR");
+                Path html = tempDir.resolve("index.html");
+                Path css = tempDir.resolve("index.css");
+                Files.write(html, Resources.class.getResourceAsStream("/assets/PayrollHR/index.html").readAllBytes());
+                Files.write(css, Resources.class.getResourceAsStream("/assets/PayrollHR/index.css").readAllBytes());
+                Desktop.getDesktop().open(html.toFile());
+                html.toFile().deleteOnExit();
+                css.toFile().deleteOnExit();
+                tempDir.toFile().deleteOnExit();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });

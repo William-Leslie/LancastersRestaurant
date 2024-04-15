@@ -12,7 +12,7 @@ public class Resources {
     public static Image getLogo(int size) {
         try {
             if (Resources.logo == null) {
-                Resources.logo = ImageIO.read(new File("resources/LancastersLogo.jpg"));
+                Resources.logo = ImageIO.read(Resources.class.getResourceAsStream("/assets/LancastersLogo.jpg"));
             }
         } catch (IOException exception) {
             exception.printStackTrace();
@@ -24,7 +24,7 @@ public class Resources {
     public static Font getFont(float size) {
         try {
             if (Resources.font == null) {
-                Resources.font = Font.createFont(Font.TRUETYPE_FONT, new File("resources/AbrilFatface-Regular.ttf"));
+                Resources.font = Font.createFont(Font.TRUETYPE_FONT, Resources.class.getResourceAsStream("/assets/AbrilFatface-Regular.ttf"));
             }
         } catch (IOException | FontFormatException exception) {
             exception.printStackTrace();
