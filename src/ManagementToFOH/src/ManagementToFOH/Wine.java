@@ -1,3 +1,5 @@
+package ManagementToFOH;
+
 public interface Wine {
     /** Get the unique identifier for this wine
      * @return The integer value of this Wine's identifier
