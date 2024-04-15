@@ -169,8 +169,11 @@ public class Sales extends JPanel {
 
             case "week": {
                 HashMap<Integer, Integer> dishPurchases = new HashMap<>();
+                LocalDate today = LocalDate.now();
+                // Calculate the date of the Monday of the previous week
+                LocalDate mondayOfCurrentWeek = today.minusDays(today.getDayOfWeek().getValue() - 1);
                 for (int iDay = 0; iDay < 7; iDay++) {
-                    LocalDate day = LocalDate.now().minusDays(iDay);
+                    LocalDate day = mondayOfCurrentWeek.plusDays(iDay);
 
                     double takings = 0;
                     HashSet<SalesToManagement> sales = foh.getSales(day);
