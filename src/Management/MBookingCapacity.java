@@ -36,9 +36,9 @@ public class MBookingCapacity {
         }
 
         capacity.date = date;
-        capacity.halfHourLimit = 0;
-        capacity.preBookLimit = 0;
-        capacity.maxDiningLimit = 0;
+        capacity.halfHourLimit = 6;
+        capacity.preBookLimit = 10;
+        capacity.maxDiningLimit = 30;
         return capacity;
     }
 
