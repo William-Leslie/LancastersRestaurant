@@ -66,13 +66,15 @@ public class MWine {
                         UPDATE Wine SET
                         WineName = ?,
                         WineYear = ?,
+                        Price = ?,
                         StockLevel = ?
                         WHERE WineID = ?
                      """)) {
             stmt.setString(1, this.name);
             stmt.setString(2, this.year);
-            stmt.setInt(3, this.stock);
-            stmt.setInt(4, this.id);
+            stmt.setDouble(3, this.price);
+            stmt.setInt(4, this.stock);
+            stmt.setInt(5, this.id);
             stmt.execute();
 
         } catch (Exception e) {
