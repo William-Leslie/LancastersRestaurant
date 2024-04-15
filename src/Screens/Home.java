@@ -119,7 +119,7 @@ public class Home extends JPanel {
 
         CButton buttonPayroll = new CButton("Payroll & HR", 26, event -> {
             try {
-                Path tempDir = Files.createTempDirectory("Lancasters-PayrollHR");
+                Path tempDir = Files.createTempDirectory("Lancasters-PayrollHR-");
                 Path html = tempDir.resolve("index.html");
                 Path css = tempDir.resolve("index.css");
                 Files.write(html, Resources.class.getResourceAsStream("/assets/PayrollHR/index.html").readAllBytes());
