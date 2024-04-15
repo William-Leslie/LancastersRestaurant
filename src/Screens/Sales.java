@@ -123,59 +123,17 @@ public class Sales extends JPanel {
         takingsData.clear();
         bookingDataCombined.clear();
 
-        FOHtoManagement foh = new FOHtoManagementImpl();
-        Map<Integer, String> dishNames = MDish.getDishNames();
+        try {
 
-        switch (date) {
-            case "day": { //Today's Values
-                LocalDate day = LocalDate.now();
+            FOHtoManagement foh = new FOHtoManagementImpl();
+            Map<Integer, String> dishNames = MDish.getDishNames();
 
-                double takings = 0;
-                HashMap<Integer, Integer> dishPurchases = new HashMap<>();
-                HashSet<SalesToManagement> sales = foh.getSales(day);
-                for (SalesToManagement sale : sales) {
-                    takings += sale.getTotal();
-                    for (int dishID : sale.getDishList()) {
-                        if (dishPurchases.containsKey(dishID)) {
-                            dishPurchases.put(dishID, dishPurchases.get(dishID) + 1);
-                        } else {
-                            dishPurchases.put(dishID, 1);
-                        }
-                    }
-                }
-                HashMap<String, Integer> bookingAmounts = new HashMap<>();
-                HashSet<BookingsToManagement> bookings = foh.getBookings(day);
-                for (BookingsToManagement booking : bookings) {
-                    String type = booking.getType();
-                    if (bookingAmounts.containsKey(type)) {
-                        bookingAmounts.put(type, bookingAmounts.get(type) + 1);
-                    } else {
-                        bookingAmounts.put(type, 1);
-                    }
-                }
-
-                for (HashMap.Entry<Integer, Integer> entry : dishPurchases.entrySet()) {
-                    String name = dishNames.get(entry.getKey());
-                    dishData.addValue(entry.getValue(), name, name);
-                }
-
-                takingsData.addValue(takings, "Takings", "Today");
-
-                for (HashMap.Entry<String, Integer> entry : bookingAmounts.entrySet()) {
-                    bookingDataCombined.addValue(entry.getValue(), entry.getKey(), "Today");
-                }
-                break;
-            }
-
-            case "week": {
-                HashMap<Integer, Integer> dishPurchases = new HashMap<>();
-                LocalDate today = LocalDate.now();
-                // Calculate the date of the Monday of the previous week
-                LocalDate mondayOfCurrentWeek = today.minusDays(today.getDayOfWeek().getValue() - 1);
-                for (int iDay = 0; iDay < 7; iDay++) {
-                    LocalDate day = mondayOfCurrentWeek.plusDays(iDay);
+            switch (date) {
+                case "day": { //Today's Values
+                    LocalDate day = LocalDate.now();
 
                     double takings = 0;
+                    HashMap<Integer, Integer> dishPurchases = new HashMap<>();
                     HashSet<SalesToManagement> sales = foh.getSales(day);
                     for (SalesToManagement sale : sales) {
                         takings += sale.getTotal();
@@ -198,29 +156,28 @@ public class Sales extends JPanel {
                         }
                     }
 
-                    takingsData.addValue(takings, "Takings", day.getDayOfWeek().toString());
+                    for (HashMap.Entry<Integer, Integer> entry : dishPurchases.entrySet()) {
+                        String name = dishNames.get(entry.getKey());
+                        dishData.addValue(entry.getValue(), name, name);
+                    }
+
+                    takingsData.addValue(takings, "Takings", "Today");
 
                     for (HashMap.Entry<String, Integer> entry : bookingAmounts.entrySet()) {
-                        bookingDataCombined.addValue(entry.getValue(), entry.getKey(), day.getDayOfWeek().toString());
+                        bookingDataCombined.addValue(entry.getValue(), entry.getKey(), "Today");
                     }
+                    break;
                 }
 
-                for (HashMap.Entry<Integer, Integer> entry : dishPurchases.entrySet()) {
-                    String name = dishNames.get(entry.getKey());
-                    dishData.addValue(entry.getValue(), name, name);
-                }
-
-                break;
-            }
-
-            case "month": { //Instead of doing Week 1 etc. could do starting day of week e.g. 08/04/2024 - 14/04/2024
-                HashMap<Integer, Integer> dishPurchases = new HashMap<>();
-                for (int iWeek = 0; iWeek < 4; iWeek++) {
-                    double takings = 0;
-                    HashMap<String, Integer> bookingAmounts = new HashMap<>();
+                case "week": {
+                    HashMap<Integer, Integer> dishPurchases = new HashMap<>();
+                    LocalDate today = LocalDate.now();
+                    // Calculate the date of the Monday of the previous week
+                    LocalDate mondayOfCurrentWeek = today.minusDays(today.getDayOfWeek().getValue() - 1);
                     for (int iDay = 0; iDay < 7; iDay++) {
-                        LocalDate day = LocalDate.now().minusDays(iWeek * 7 + iDay);
+                        LocalDate day = mondayOfCurrentWeek.plusDays(iDay);
 
+                        double takings = 0;
                         HashSet<SalesToManagement> sales = foh.getSales(day);
                         for (SalesToManagement sale : sales) {
                             takings += sale.getTotal();
@@ -232,6 +189,7 @@ public class Sales extends JPanel {
                                 }
                             }
                         }
+                        HashMap<String, Integer> bookingAmounts = new HashMap<>();
                         HashSet<BookingsToManagement> bookings = foh.getBookings(day);
                         for (BookingsToManagement booking : bookings) {
                             String type = booking.getType();
@@ -241,25 +199,72 @@ public class Sales extends JPanel {
                                 bookingAmounts.put(type, 1);
                             }
                         }
+
+                        takingsData.addValue(takings, "Takings", day.getDayOfWeek().toString());
+
+                        for (HashMap.Entry<String, Integer> entry : bookingAmounts.entrySet()) {
+                            bookingDataCombined.addValue(entry.getValue(), entry.getKey(), day.getDayOfWeek().toString());
+                        }
                     }
 
-                    takingsData.addValue(takings, "Takings", "Week " + (iWeek + 1));
-
-                    for (HashMap.Entry<String, Integer> entry : bookingAmounts.entrySet()) {
-                        bookingDataCombined.addValue(entry.getValue(), entry.getKey(), "Week " + (iWeek + 1));
+                    for (HashMap.Entry<Integer, Integer> entry : dishPurchases.entrySet()) {
+                        String name = dishNames.get(entry.getKey());
+                        dishData.addValue(entry.getValue(), name, name);
                     }
+
+                    break;
                 }
 
-                for (HashMap.Entry<Integer, Integer> entry : dishPurchases.entrySet()) {
-                    String name = dishNames.get(entry.getKey());
-                    dishData.addValue(entry.getValue(), name, name);
+                case "month": { //Instead of doing Week 1 etc. could do starting day of week e.g. 08/04/2024 - 14/04/2024
+                    HashMap<Integer, Integer> dishPurchases = new HashMap<>();
+                    for (int iWeek = 0; iWeek < 4; iWeek++) {
+                        double takings = 0;
+                        HashMap<String, Integer> bookingAmounts = new HashMap<>();
+                        for (int iDay = 0; iDay < 7; iDay++) {
+                            LocalDate day = LocalDate.now().minusDays(iWeek * 7 + iDay);
+
+                            HashSet<SalesToManagement> sales = foh.getSales(day);
+                            for (SalesToManagement sale : sales) {
+                                takings += sale.getTotal();
+                                for (int dishID : sale.getDishList()) {
+                                    if (dishPurchases.containsKey(dishID)) {
+                                        dishPurchases.put(dishID, dishPurchases.get(dishID) + 1);
+                                    } else {
+                                        dishPurchases.put(dishID, 1);
+                                    }
+                                }
+                            }
+                            HashSet<BookingsToManagement> bookings = foh.getBookings(day);
+                            for (BookingsToManagement booking : bookings) {
+                                String type = booking.getType();
+                                if (bookingAmounts.containsKey(type)) {
+                                    bookingAmounts.put(type, bookingAmounts.get(type) + 1);
+                                } else {
+                                    bookingAmounts.put(type, 1);
+                                }
+                            }
+                        }
+
+                        takingsData.addValue(takings, "Takings", "Week " + (iWeek + 1));
+
+                        for (HashMap.Entry<String, Integer> entry : bookingAmounts.entrySet()) {
+                            bookingDataCombined.addValue(entry.getValue(), entry.getKey(), "Week " + (iWeek + 1));
+                        }
+                    }
+
+                    for (HashMap.Entry<Integer, Integer> entry : dishPurchases.entrySet()) {
+                        String name = dishNames.get(entry.getKey());
+                        dishData.addValue(entry.getValue(), name, name);
+                    }
+
+                    break;
                 }
 
-                break;
+                default:
+                    break;
             }
-
-            default:
-                break;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Could not contact FOH for sales!");
         }
     }
 }
