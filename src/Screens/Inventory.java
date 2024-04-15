@@ -40,35 +40,35 @@ public class Inventory extends JPanel {
         CLabel headerOrder = new CLabel("ORDER", 24);
         headerOrder.setForeground(Colors.blue);
         mainConstraints.anchor = GridBagConstraints.WEST;
-        mainConstraints.insets = new Insets(8, 80, 8, 40);
+        mainConstraints.insets = new Insets(8, 60, 8, 0);
         panelMain.add(headerOrder, mainConstraints);
 
         mainConstraints.gridx++;
         CLabel headerName = new CLabel("NAME", 24);
         headerName.setForeground(Colors.blue);
         mainConstraints.anchor = GridBagConstraints.CENTER;
-        mainConstraints.insets = new Insets(8, 40, 8, 40);
+        mainConstraints.insets = new Insets(8, 22, 8, 0);
         panelMain.add(headerName, mainConstraints);
 
         mainConstraints.gridx++;
         CLabel headerStock = new CLabel("STOCK", 24);
         headerStock.setForeground(Colors.blue);
         mainConstraints.anchor = GridBagConstraints.CENTER;
-        mainConstraints.insets = new Insets(8, 40, 8, 40);
+        mainConstraints.insets = new Insets(8, 20, 8, 0);
         panelMain.add(headerStock, mainConstraints);
 
         mainConstraints.gridx++;
         CLabel headerPrice = new CLabel("PRICE", 24);
         headerPrice.setForeground(Colors.blue);
         mainConstraints.anchor = GridBagConstraints.CENTER;
-        mainConstraints.insets = new Insets(8, 40, 8, 80);
+        mainConstraints.insets = new Insets(8, 20, 8, 0);
         panelMain.add(headerPrice, mainConstraints);
 
         mainConstraints.gridx++;
         CLabel headerAllergen = new CLabel("ALLERGEN", 24);
         headerAllergen.setForeground(Colors.blue);
         mainConstraints.anchor = GridBagConstraints.CENTER;
-        mainConstraints.insets = new Insets(8, 40, 8, 80);
+        mainConstraints.insets = new Insets(8, 20, 8, 150);
         panelMain.add(headerAllergen, mainConstraints);
 
         List<MIngredient> ingredients = MIngredient.getInventory();
