@@ -1,17 +1,20 @@
-Create TABLE Ingredient
-(
-    IngredientID integer primary key,
-    IngredientName char,
-    Quantity integer,
-    StockLevel integer, 
-    lowStockThreshold integer,
-    Price decimal(6,2)
-    
-)
+-- Create the Ingredient table
+CREATE TABLE Ingredient (
+    IngredientID INTEGER PRIMARY KEY,
+    IngredientName CHAR,
+    Quantity INTEGER,
+    StockLevel INTEGER,
+    LowStockThreshold INTEGER,
+    Price DECIMAL(6,2),
+    AllergenID INTEGER,
+    FOREIGN KEY (AllergenID) REFERENCES Allergen (AllergenID)
+);
 
 CREATE TABLE Orders
 (
-    OrderID integer primary key
+    OrderID integer primary key,
+    OrderedDate date,
+    ArrivalDate date
     );
 
 CREATE TABLE Wine
@@ -40,24 +43,22 @@ Create TABLE Booking
     noOfCovers integer(10)    
 );
 
-Create TABLE BookingCapacity
+CREATE TABLE BookingCapacity
 (
-   	BookingCapacityID integer primary key,
-    CapacityDay date,
-    HalfHourLimit integer(10),
-    PreBookLimit integer(10),
-    MaxDiningLimit integer(10),
-    PriceMultiplier integer(10)
-    
+    CapacityDay DATE PRIMARY KEY,
+    HalfHourLimit INTEGER(10),
+    PreBookLimit INTEGER(10),
+    MaxDiningLimit INTEGER(10),
+    PriceMultiplier INTEGER(10)
 );
 
-Create TABLE StaffMember
+Create TABLE Staff
 (
    	StaffID integer primary key,
     StaffName char(25),
     Address varchar(25),
     DateOfBirth date,
-    OnHoliday char(1)
+    Role char(10)
     );
     
     
@@ -83,21 +84,24 @@ Create TABLE Course
     ExpiryStatus char(25)
     );
     
-Create TABLE Ingredient_Dish
+CREATE TABLE Ingredient_Dish
 (
     IngredientID integer,
     DishID integer,
-   	FOREIGN KEY (IngredientID) REFERENCES Ingredient(IngredientID),
+    Quantity integer,
+    FOREIGN KEY (IngredientID) REFERENCES Ingredient(IngredientID),
     FOREIGN KEY (DishID) REFERENCES Dish(DishID)
-    );
+);
     
-Create TABLE Ingredient_Order
-(
-    IngredientID integer,
-    OrderID integer,
-   	FOREIGN KEY (IngredientID) REFERENCES Ingredient(IngredientID),
+-- Create the Ingredient_Order table
+CREATE TABLE Ingredient_Order (
+    IngredientID INTEGER,
+    OrderID INTEGER,
+    Quantity INTEGER,
+    FOREIGN KEY (IngredientID) REFERENCES Ingredient(IngredientID),
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
-    );
+);
+
     
 Create TABLE Dish_Wine
 (
@@ -124,14 +128,14 @@ Create TABLE Course_Menu
     );
     
  
-Create TABLE Allergen
+CREATE TABLE Allergen
 (
-    allerginID integer primary key ,
-    allergenName char(25),
-    allergenDesc char(50),
-    DishID integer,
+    AllergenID INTEGER PRIMARY KEY,
+    AllergenName CHAR(25),
+    DishID INTEGER,
     FOREIGN KEY (DishID) REFERENCES Dish (DishID)
-    );
+);
+
     
 Create TABLE Supplier
 (
@@ -150,21 +154,38 @@ Create TABLE Product
     availabilityStatus tinyint(1),
     FOREIGN KEY (supplierID) REFERENCES Supplier (supplierID)
     );
+    
+    
+-- Create the AuthUser table
+CREATE TABLE AuthUser (
+    UserID INTEGER PRIMARY KEY,
+    Username CHAR(25) UNIQUE,
+    Password CHAR(25),
+    Role CHAR(10)
+);
 
+
+-- Create the Holiday table
+CREATE TABLE Holiday (
+    HolidayID INTEGER PRIMARY KEY,
+    FromDate DATE,
+    ToDate DATE
+);
 (Dummy Data)
 
-    INSERT INTO Ingredient (IngredientID, IngredientName, Quantity, StockLevel, lowStockThreshold, Price)
-    VALUES 
-        (1, 'Chicken Breast', 50, 50, 10, 7.99),
-        (2, 'Beef Steak', 30, 30, 8, 12.99),
-        (3, 'Salmon Fillet', 40, 40, 12, 14.99),
-        (4, 'Shrimp', 60, 60, 15, 18.99),
-        (5, 'Pasta', 100, 100, 20, 2.49),
-        (6, 'Rice', 80, 80, 18, 1.99),
-        (7, 'Potatoes', 70, 70, 15, 0.99),
-        (8, 'Tomatoes', 90, 90, 25, 1.49),
-        (9, 'Lettuce', 120, 120, 30, 0.79),
-        (10, 'Cheese', 40, 40, 10, 6.49);
+    -- Insert data into Ingredient
+INSERT INTO Ingredient (IngredientID, IngredientName, Quantity, StockLevel, LowStockThreshold, Price, AllergenID)
+VALUES 
+    (1, 'Chicken Breast', 50, 50, 10, 7.99, NULL),
+    (2, 'Beef Steak', 30, 30, 8, 12.99, NULL),
+    (3, 'Salmon Fillet', 40, 40, 12, 14.99, NULL),
+    (4, 'Shrimp', 60, 60, 15, 18.99, 5),
+    (5, 'Pasta', 100, 100, 20, 2.49, 1),
+    (6, 'Rice', 80, 80, 18, 1.99, 1),
+    (7, 'Potatoes', 70, 70, 15, 0.99, NULL),
+    (8, 'Tomatoes', 90, 90, 25, 1.49, NULL),
+    (9, 'Lettuce', 120, 120, 30, 0.79, NULL),
+    (10, 'Cheese', 40, 40, 10, 6.49, 3);
     
 INSERT INTO Wine (WineID, WineName, WineYear, Price, StockLevel)
 VALUES 
@@ -181,7 +202,7 @@ VALUES
     
 INSERT INTO Dish (DishID, DishName, Price, Description)
 VALUES 
-    (1, 'Spaghetti Carbonara', 12.99, 'Classic Italian pasta dish with creamy sauce, bacon, and Parmesan cheese.'),
+    (1, 'Spaghetti Carbonara', 13.99, 'Classic Italian pasta dish with creamy sauce, bacon, and Parmesan cheese.'),
     (2, 'Grilled Salmon', 18.99, 'Fresh salmon fillet grilled to perfection, served with roasted vegetables and lemon butter sauce.'),
     (3, 'Beef Burger', 9.99, 'Juicy beef patty topped with cheese, lettuce, tomato, and pickles, served on a toasted bun with fries.'),
     (4, 'Vegetable Stir-Fry', 11.99, 'Assorted vegetables stir-fried with tofu in a savory sauce, served with steamed rice.'),
@@ -213,13 +234,13 @@ VALUES
     (9, '10/07/24', 26, 62, 125, 2),
     (10, '11/07/24', 24, 58, 115, 2);
 
-INSERT INTO StaffMember (StaffID, StaffName, Address, DateOfBirth, OnHoliday)
+INSERT INTO Staff (StaffID, StaffName, Address, DateOfBirth, Role)
 VALUES 
-    (1, 'John Smith', '123 Main St', '1990-05-15', 'N'),
-    (2, 'Jane Doe', '456 Oak Ave', '1988-10-20', 'Y'),
-    (3, 'Michael Johnson', '789 Elm St', '1995-03-08', 'N'),
-    (4, 'Emily Brown', '321 Pine St', '1992-07-12', 'N'),
-    (5, 'Chris Wilson', '567 Maple Ave', '1998-12-30', 'Y');
+    (1, 'John Smith', '123 Main St', '1990-05-15', 'FOH'),
+    (2, 'Jane Doe', '456 Oak Ave', '1988-10-20', 'FOH'),
+    (3, 'Michael Johnson', '789 Elm St', '1995-03-08', 'Kitchen'),
+    (4, 'Emily Brown', '321 Pine St', '1992-07-12', 'Kitchen'),
+    (5, 'Chris Wilson', '567 Maple Ave', '1998-12-30', 'Management');
     
 INSERT INTO Sale (SaleID, NHSDiscount, ArmyDiscount, OptionalCharge, Total, PaymentMethod)
 VALUES 
@@ -245,18 +266,13 @@ VALUES
     (4, '2024/07/13'),
     (5, '2024/08/10');
     
-INSERT INTO Allergen (allerginID, allergenName, allergenDesc, DishID)
-VALUES 
-    (1, 'Gluten', 'Contains gluten', 1),
-    (2, 'Fish', 'Contains fish', 2),
-    (3, 'Dairy', 'Contains dairy', 1),
-    (4, 'Nuts', 'Contains nuts', 5),
-    (5, 'Shellfish', 'Contains shellfish', 7),
-    (6, 'Eggs', 'Contains eggs', 1),
-    (7, 'Soy', 'Contains soy', 4),
-    (8, 'Wheat', 'Contains wheat', 6),
-    (9, 'Sulfites', 'Contains sulfites', 3),
-    (10, 'Peanuts', 'Contains peanuts', 8);
+INSERT INTO Allergen (AllergenID, AllergenName, AllergenDesc, DishID) VALUES 
+(1, 'Gluten', 'Contains gluten', NULL),
+(2, 'Moluscs', 'Contains moluscs', NULL),
+(3, 'Milk', 'Contains milk', NULL),
+(4, 'Peanuts', 'Contains peanuts', NULL),
+(5, 'Crustaceans', 'Contains crustaceans', NULL),
+(6, 'Sesame', 'Contains sesame', NULL);
     
 INSERT INTO Supplier (supplierID, contactInfo, supplierName)
 VALUES 
@@ -274,13 +290,32 @@ VALUES
     (4, 'Artisan bread loaf', 'Bread', 4, 1),
     (5, 'Wild-caught salmon fillet', 'Salmon Fillet', 5, 1);
 
-INSERT INTO Orders (OrderID)
+-- Insert data into Ingredient_Order
+INSERT INTO Ingredient_Order (IngredientID, OrderID, Quantity)
 VALUES 
-   (1),
-   (2),
-   (3),
-   (4),
-   (5);
+   (1, 1, 10),
+   (2, 1, 10),
+   (3, 1, 10),
+   (4, 2, 10),
+   (5, 2, 10),
+   (6, 3, 10),
+   (7, 3, 10),
+   (8, 3, 10),
+   (9, 4, 10),
+   (10, 4, 10),
+   (5, 5, 10),
+   (6, 5, 10),
+   (10, 5, 10),
+   (2, 7, 10),
+   (6, 7, 10),
+   (10, 8, 10),
+   (2, 8, 10),
+   (6, 9, 10),
+   (1, 9, 10),
+   (1, 10, 10),
+   (6, 10, 10),
+   (1, 10, 10),
+   (1, 10, 10);
 
 INSERT INTO Ingredient_Dish (IngredientID, DishID)
 VALUES 
@@ -363,3 +398,23 @@ VALUES
     (3, 5),  
     (4, 5),  
     (5, 5);
+    
+    
+   -- Insert data into AuthUser
+INSERT INTO AuthUser (Username, Password, Role) VALUES 
+('lancaster', 'lancaster', 'admin'),
+('staff', 'staff', 'user'); 
+
+
+-- Insert data into Holiday
+INSERT INTO Holiday (FromDate, ToDate) VALUES 
+('2024-04-11', '2024-04-30'),
+('2024-04-14', '2024-04-14'),
+('2024-04-16', '2024-04-24'),
+('2024-04-18', '2024-04-25'),
+('2024-04-23', '2024-04-25'),
+('2024-04-17', '2024-04-17'),
+('2024-04-17', '2024-04-17'),
+('2024-04-17', '2024-04-26'),
+('2024-04-19', '2024-04-25'),
+('2024-04-17', '2024-04-26');
