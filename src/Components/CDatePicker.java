@@ -4,7 +4,14 @@ import Resources.*;
 
 import com.github.lgooddatepicker.components.*;
 
+/**
+ * Themed date picker component
+ * <p> Defaults the selected date to today
+ */
 public class CDatePicker extends DatePicker {
+
+    /** Create a themed date picker component
+     */
     public CDatePicker() {
         super();
         this.setBackground(Colors.background);

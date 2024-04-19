@@ -6,11 +6,27 @@ import java.sql.*;
 import java.time.*;
 import java.util.*;
 
+/**
+ * Backend class for Menu entries
+ */
 public class MMenu {
+
+    /** Unique identifier for this menu
+     */
     public int id;
+
+    /** Date this menu will start being used, will be a Monday
+     */
     public LocalDate date;
+
+    /** List of courses that are in this menu, will contain 3 courses
+     */
     public List<MCourse> courses;
 
+    /** Get menu starting on this date, only Monday values will give results
+     * @param date the date of the menu to retrieve
+     * @return the menu for that date
+     */
     public static MMenu getOnDate(LocalDate date) {
         // NOTE: This should have connected to Kitchen to get new Menu, but we were never given an API
 
@@ -91,6 +107,8 @@ public class MMenu {
         return null;
     }
 
+    /** Save changes of this menu's items to the database
+     */
     public void saveChanges() {
         for (MCourse course : courses) {
             course.saveChanges();

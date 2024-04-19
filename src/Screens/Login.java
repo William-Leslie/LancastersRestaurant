@@ -7,6 +7,9 @@ import Resources.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Screen to log into the program after the splashscreen
+ */
 public class Login extends JPanel {
     CWindow window;
     CTextField fieldUsername;

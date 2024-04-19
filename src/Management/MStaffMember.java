@@ -6,13 +6,34 @@ import java.sql.*;
 import java.time.*;
 import java.util.*;
 
+/**
+ * Backend class for StaffMember entries
+ */
 public class MStaffMember {
+
+    /** Unique identifier for this staff member
+     */
     public int id;
+
+    /** THe staff member's name
+     */
     public String name;
+
+    /** Current home address of this staff member
+     */
     public String address;
+
+    /** Date of birth of this staff member
+     */
     public LocalDate dateOfBirth;
+
+    /** The role of this staff member
+     */
     public String role;
 
+    /** Get all employed staff members
+     * @return list of employed staff members
+     */
     public static List<MStaffMember> getStaff() {
         try (Connection conn = Database.connection();
              PreparedStatement stmt = conn.prepareStatement("""

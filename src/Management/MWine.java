@@ -6,13 +6,34 @@ import Resources.*;
 import java.sql.*;
 import java.util.*;
 
+/**
+ * Backend class for Wine entries
+ */
 public class MWine {
+
+    /** Unique identifier for this wine
+     */
     public int id;
+
+    /** The name of the wine
+     */
     public String name;
+
+    /** The production year of the wine
+     */
     public String year;
+
+    /** The price of the wine
+     */
     public double price;
+
+    /** The current stock level of this wine
+     */
     public int stock;
 
+    /** Get all known wines and their stock and details
+     * @return list of all known wines
+     */
     public static List<MWine> getCellar() {
         try (Connection conn = Database.connection();
              PreparedStatement stmt = conn.prepareStatement("""
@@ -41,6 +62,8 @@ public class MWine {
         return null;
     }
 
+    /** Add this new wine to the database
+     */
     public void addToDB() {
         try (Connection conn = Database.connection();
              PreparedStatement stmt = conn.prepareStatement("""
@@ -60,6 +83,8 @@ public class MWine {
         }
     }
 
+    /** Save changes of this wine to the database
+     */
     public void saveChanges() {
         try (Connection conn = Database.connection();
              PreparedStatement stmt = conn.prepareStatement("""

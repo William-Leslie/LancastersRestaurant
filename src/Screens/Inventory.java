@@ -10,6 +10,9 @@ import java.time.*;
 import java.util.*;
 import java.util.List;
 
+/**
+ * Screen to manage ingredient inventory
+ */
 public class Inventory extends JPanel {
     public Inventory(CWindow window) {
         super(new GridBagLayout());

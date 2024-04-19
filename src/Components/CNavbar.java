@@ -7,7 +7,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Themed navbar component
+ * <p> Includes a back button, logo, user info, and title for current screen
+ */
 public class CNavbar extends JPanel {
+
+    /** Create a themed navbar component
+     * @param title textual title of the current screen
+     * @param backAction callback action for clicking back
+     */
     public CNavbar(String title, ActionListener backAction) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();

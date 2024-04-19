@@ -14,6 +14,9 @@ import java.awt.*;
 import java.time.*;
 import java.util.*;
 
+/**
+ * Screen to view sales and bookings from front of house
+ */
 public class Sales extends JPanel {
     private final DefaultCategoryDataset dishData;
     private final DefaultCategoryDataset takingsData;

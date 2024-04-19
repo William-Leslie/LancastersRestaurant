@@ -2,6 +2,9 @@ package Resources;
 
 import java.awt.*;
 
+/**
+ * Utility class with standard colors used in the GUI
+ */
 public class Colors {
     public static final Color background = new Color(40, 48, 51);
     public static final Color text = new Color(237, 236, 232);

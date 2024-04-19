@@ -4,11 +4,25 @@ import Resources.*;
 
 import java.sql.*;
 
+/**
+ * Backend class for user authentication
+ */
 public class MAuthUser {
     private static boolean loggedIn;
+
+    /** The currently logged-in user's name
+     */
     public static String username;
+
+    /** The currently logged-in user's role
+     */
     public static String role;
 
+    /** Login to user account
+     * @param username the account's username
+     * @param password the account's password
+     * @return whether login was successful, or already logged in
+     */
     public static boolean login(String username, String password) {
         if (MAuthUser.loggedIn) {
             return true;
@@ -38,6 +52,8 @@ public class MAuthUser {
         return false;
     }
 
+    /** Logout of user account
+     */
     public static void logout() {
         MAuthUser.loggedIn = false;
         MAuthUser.username = null;

@@ -5,10 +5,17 @@ import java.awt.*;
 import java.awt.image.*;
 import java.io.*;
 
+/**
+ * Utility class to load resources in different sizes
+ */
 public class Resources {
     private static BufferedImage logo = null;
     private static Font font = null;
 
+    /** Get logo image in a certain size
+     * @param size size of the square logo in pixels
+     * @return scaled logo image
+     */
     public static Image getLogo(int size) {
         try {
             if (Resources.logo == null) {
@@ -21,6 +28,10 @@ public class Resources {
         return Resources.logo.getScaledInstance(size, size, Image.SCALE_SMOOTH);
     }
 
+    /** Get font instance in a certain size
+     * @param size size of the font in points
+     * @return scaled font instance
+     */
     public static Font getFont(float size) {
         try {
             if (Resources.font == null) {

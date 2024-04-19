@@ -6,12 +6,29 @@ import java.sql.*;
 import java.time.*;
 import java.util.*;
 
+/**
+ * Backend class for delivery Order entries
+ */
 public class MOrder {
+
+    /** Unique identifier for this order
+     */
     public int id;
+
+    /** The date this order was placed on
+     */
     public LocalDate ordered;
+
+    /** The scheduled date of arrival of this order
+     */
     public LocalDate arrival;
+
+    /** A map of ingredients to amount of ordered items
+     */
     public Map<MIngredient, Integer> items;
 
+    /** Add this new delivery order to the database
+     */
     public void addToDB() {
         try (Connection conn = Database.connection();
              PreparedStatement stmt = conn.prepareStatement("""

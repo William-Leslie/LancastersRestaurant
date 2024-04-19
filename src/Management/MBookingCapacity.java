@@ -5,12 +5,32 @@ import Resources.*;
 import java.sql.*;
 import java.time.*;
 
+/**
+ * Backend class for daily BookingCapacity entries
+ * <p> This includes half-hour, pre-book and max-dining limits for that day
+ */
 public class MBookingCapacity {
+
+    /** The date these limits apply to
+     */
     public LocalDate date;
+
+    /** The number of maximum allowed new customers per half-hour that ensures good customer service
+     */
     public int halfHourLimit;
+
+    /** The number of maximum allowed pre-bookings before service begins
+     */
     public int preBookLimit;
+
+    /** The number of maximum allowed concurrent diners that ensures good customer service
+     */
     public int maxDiningLimit;
 
+    /** Get the capacity limits for a certain date
+     * @param date the relevant date to retrieve capacity for
+     * @return the capacity limits for that date
+     */
     public static MBookingCapacity getOnDate(LocalDate date) {
         MBookingCapacity capacity = new MBookingCapacity();
 
@@ -42,6 +62,8 @@ public class MBookingCapacity {
         return capacity;
     }
 
+    /** Save changes to this date's capacity to the database
+     */
     public void saveChanges() {
         try (Connection conn = Database.connection();
              PreparedStatement stmt = conn.prepareStatement("""

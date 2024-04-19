@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.nio.file.*;
 
+/**
+ * Screen for homepage with buttons to select submenus
+ */
 public class Home extends JPanel {
     public Home(CWindow window) {
         super(new GridBagLayout());

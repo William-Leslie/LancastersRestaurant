@@ -9,6 +9,9 @@ import javax.swing.event.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Screen to view and edit menu details
+ */
 public class EditMenu extends JPanel {
     CButton saveButton;
 

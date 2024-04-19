@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Screen shown at startup before login
+ */
 public class Splash extends JPanel {
     public Splash(CWindow window) {
         super(new GridBagLayout());

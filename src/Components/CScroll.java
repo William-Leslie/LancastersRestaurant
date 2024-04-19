@@ -6,7 +6,15 @@ import javax.swing.*;
 import javax.swing.plaf.basic.*;
 import java.awt.*;
 
+/**
+ * Themed scroll pane component
+ * <p> Defaults to a scroll increment of 16 units
+ */
 public class CScroll extends JScrollPane {
+
+    /** Create a themed scroll pane component
+     * @param content the component for scrolling content
+     */
     public CScroll(Component content) {
         super(content);
         this.setPreferredSize(new Dimension(0, 0));

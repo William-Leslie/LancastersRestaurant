@@ -9,6 +9,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.time.*;
 
+/**
+ * Screen to view upcoming menus, leads to EditMenu screen
+ */
 public class Menus extends JPanel {
     public Menus(CWindow window) {
         super(new GridBagLayout());

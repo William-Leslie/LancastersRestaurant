@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Screen to manage wine inventory
+ */
 public class Wines extends JPanel {
     public Wines(CWindow window) {
         super(new GridBagLayout());

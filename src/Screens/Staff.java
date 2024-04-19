@@ -10,6 +10,9 @@ import java.time.*;
 import java.util.*;
 import java.util.List;
 
+/**
+ * Screen to manage staff and holidays
+ */
 public class Staff extends JPanel {
     CButton saveButton;
 
