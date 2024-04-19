@@ -1,0 +1,63 @@
+.
+└── LancastersRestaurant/
+    ├── docs #Contains the documents about diagrams and meeting notes
+    ├── lib/ 
+    │   ├── LGoodDatePicker/
+    │   │   └── LGoodDatePicker-11.2.1.jar #Allows use of calander in GUI
+    │   ├── jfreechar/ #Allows use of charts in GUI
+    │   │   ├── jcommon-1.0.23.jar
+    │   │   ├── jfreechart-1.0.19.jar
+    │   │   └── license-LGPL.txt
+    │   ├── mysql-connector-j/
+    │   │   └── mysql-connector-j-8.3.0.jar #Allows connection to the database
+    │   └── FOHtoMangement.jar
+    ├── src/
+    │   ├── Componenets/ #Contains reuseable GUI elements
+    │   │   ├── CButton.java
+    │   │   ├── CDate.java
+    │   │   ├── CDatePicker.java
+    │   │   ├── CLabel.java
+    │   │   ├── CLogo.java
+    │   │   ├── CNavbar.java
+    │   │   ├── CPasswordField.java
+    │   │   ├── CPrice.java
+    │   │   ├── CScroll.java
+    │   │   ├── CTextArea.java
+    │   │   ├── CTextField.Java
+    │   │   └── CWindow.java
+    │   ├── KitchenToManagement
+    │   ├── Management/ #Classes to get data from the database 
+    │   │   ├── MAllergen.java
+    │   │   ├── MAuthUser.java
+    │   │   ├── MBookingCapacity.java
+    │   │   ├── MCourse.java
+    │   │   ├── MDish.java
+    │   │   ├── MHoliday.java
+    │   │   ├── MMenu.java
+    │   │   ├── MOrder.java
+    │   │   ├── MStaffMember.java
+    │   │   └── MWine.java
+    │   ├── ManagementToFoh
+    │   ├── ManagementToKitchen
+    │   ├── Resources/
+    │   │   ├── Colors.java #Class that contains the color element
+    │   │   ├── Database.java #Class for connection to the database
+    │   │   └── Resources.java #Class that contains functions to retrieve the font and logo
+    │   ├── Screens/ #Contains the primary classes representing the different screens
+    │   │   ├── EditMenu.java
+    │   │   ├── Home.java
+    │   │   ├── Inventory.java
+    │   │   ├── Menus.java
+    │   │   ├── Sales.java
+    │   │   ├── Splash.java
+    │   │   ├── Staff.java
+    │   │   └── Wines.java
+    │   ├── Assets/
+    │   │   ├── PayrollHR/ #Payroll html for the payroll button
+    │   │   │   ├── cog.gif
+    │   │   │   ├── index.css
+    │   │   │   └── index.html
+    │   │   ├── AbrilFatface-Regular.ttf #text font 
+    │   │   └── LancastersLogo.jpg #logo image
+    │   └── Main.java #The class used to run the code
+    └── LancastersRestaurant.iml

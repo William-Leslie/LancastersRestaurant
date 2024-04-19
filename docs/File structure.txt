@@ -1,0 +1,63 @@
+.
+└── LancastersRestaurant/
+    ├── docs
+    ├── lib/
+    │   ├── LGoodDatePicker/
+    │   │   └── LGoodDatePicker-11.2.1.jar
+    │   ├── jfreechar/
+    │   │   ├── jcommon-1.0.23.jar
+    │   │   ├── jfreechart-1.0.19.jar
+    │   │   └── license-LGPL.txt
+    │   ├── mysql-connector-j/
+    │   │   └── mysql-connector-j-8.3.0.jar
+    │   └── FOHtoMangement.jar
+    ├── src/
+    │   ├── Componenets/
+    │   │   ├── CButton.java
+    │   │   ├── CDate.java
+    │   │   ├── CDatePicker.java
+    │   │   ├── CLabel.java
+    │   │   ├── CLogo.java
+    │   │   ├── CNavbar.java
+    │   │   ├── CPasswordField.java
+    │   │   ├── CPrice.java
+    │   │   ├── CScroll.java
+    │   │   ├── CTextArea.java
+    │   │   ├── CTextField.Java
+    │   │   └── CWindow.java
+    │   ├── KitchenToManagement
+    │   ├── Management/
+    │   │   ├── MAllergen.java
+    │   │   ├── MAuthUser.java
+    │   │   ├── MBookingCapacity.java
+    │   │   ├── MCourse.java
+    │   │   ├── MDish.java
+    │   │   ├── MHoliday.java
+    │   │   ├── MMenu.java
+    │   │   ├── MOrder.java
+    │   │   ├── MStaffMember.java
+    │   │   └── MWine.java
+    │   ├── ManagementToFoh
+    │   ├── ManagementToKitchen
+    │   ├── Resources/
+    │   │   ├── Colors.java
+    │   │   ├── Database.java
+    │   │   └── Resources.java
+    │   ├── Screens/
+    │   │   ├── EditMenu.java
+    │   │   ├── Home.java
+    │   │   ├── Inventory.java
+    │   │   ├── Menus.java
+    │   │   ├── Sales.java
+    │   │   ├── Splash.java
+    │   │   ├── Staff.java
+    │   │   └── Wines.java
+    │   ├── Assets/
+    │   │   ├── PayrollHR/
+    │   │   │   ├── cog.gif
+    │   │   │   ├── index.css
+    │   │   │   └── index.html
+    │   │   ├── AbrilFatface-Regular.ttf
+    │   │   └── LancastersLogo.jpg
+    │   └── Main.java
+    └── LancastersRestaurant.iml
